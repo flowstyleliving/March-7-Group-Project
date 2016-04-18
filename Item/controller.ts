@@ -27,7 +27,7 @@ export function getOne(req: express.Request, res: express.Response, next: Functi
 
 export function create(req: express.Request, res: express.Response, next: Function) {
     req.body.user = req['payload']._id;
-    req.body.datePosted = Date.now();
+    req.body.date = Date.now();
     Item.create(req.body, (err, item:IItemModel)=>{
         if (err) return next (err);
         res.json(item);
