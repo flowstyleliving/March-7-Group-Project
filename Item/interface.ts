@@ -5,6 +5,7 @@ namespace app.i{
     images: string;
     description: string;
     date: number;
+    dateComplete: string,
     notes: string;
     category: string;
     user: (string | IUser);
