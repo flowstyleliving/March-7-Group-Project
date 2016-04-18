@@ -7,6 +7,8 @@ import bodyParser = require('body-parser');
 import mongoose = require('mongoose');
 const app = express();
 
+
+require('./Items/model');
 require('./Comment/model');
 
 mongoose.connect('mongodb://localhost/folio', (err) => {
@@ -33,8 +35,9 @@ app.use(express.static('./ngApp'));
 app.use('/scripts', express.static('bower_components'));
 
 // Routes
-
+app.use('/api/v1/items', require ('./Items/routes'));
 app.use('/api/v1/comments', require('./Comment/routes'));
+
 
 app.get('/*', function(req, res, next) {
   if (/.js|.html|.css|templates|js|scripts/.test(req.path) || req.xhr) {
