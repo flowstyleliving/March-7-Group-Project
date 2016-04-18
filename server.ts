@@ -4,7 +4,13 @@ import favicon = require('serve-favicon');
 import logger = require('morgan');
 import cookieParser = require('cookie-parser');
 import bodyParser = require('body-parser');
+import mongoose = require('mongoose');
 const app = express();
+
+mongoose.connect('mongodb://localhost/folio', (err) => {
+  if(err) console.log(err);
+  else console.log('Connected to mongodb://localhost/folio');
+});
 
 // view engine setup
 app.set('views', './views');
