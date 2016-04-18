@@ -1,6 +1,6 @@
 'use strict';
 namespace app {
-  angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap'])
+  angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap', 'ngMessages', 'ngMaterial'])
     .config((
     $stateProvider: ng.ui.IStateProvider,
     $locationProvider: ng.ILocationProvider,
@@ -12,7 +12,7 @@ namespace app {
       controller: app.Controllers.HomeController,
       controllerAs: 'vm'
     });
-    
+
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
   });
