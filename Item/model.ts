@@ -7,6 +7,7 @@ let itemSchema = new mongoose.Schema({
     images: {type: String},
     description: {type: String},
     date: {type: Number},
+    dateCompleted: {type: String},
     notes: {type: String},
     category: {type: String},
     user: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
