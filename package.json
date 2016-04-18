@@ -23,11 +23,8 @@
     "express-jwt": "^3.3.0",
     "express-messages": "^1.0.0",
     "express-session": "^1.13.0",
-<<<<<<< Updated upstream
     "istanbul": "^0.4.3",
-=======
     "express-unless": "^0.3.0",
->>>>>>> Stashed changes
     "jsonwebtoken": "^5.7.0",
     "mocha": "^2.4.5",
     "mongoose": "^4.4.12",
