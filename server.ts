@@ -13,11 +13,8 @@ import flash = require('connect-flash');
 const app = express();
 
 require('./Item/model');
-
 require('./Comment/model');
 require('./User/model');
-
-
 
 mongoose.connect('mongodb://localhost/folio', (err) => {
   if(err) console.log(err);
@@ -50,8 +47,7 @@ app.use('/scripts', express.static('bower_components'));
 
 
 app.use('/api/v1/items', require ('./Item/routes'));
-
-// Routes
+app.use('/api/v1/users', require('./User/routes'));
 app.use('/api/v1/comments', require('./Comment/routes'));
 
 
