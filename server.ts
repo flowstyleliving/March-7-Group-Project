@@ -7,6 +7,8 @@ import bodyParser = require('body-parser');
 import mongoose = require('mongoose');
 const app = express();
 
+require('./Items/model');
+
 mongoose.connect('mongodb://localhost/folio', (err) => {
   if(err) console.log(err);
   else console.log('Connected to mongodb://localhost/folio');
@@ -26,6 +28,8 @@ app.use(cookieParser());
 
 app.use(express.static('./ngApp'));
 app.use('/scripts', express.static('bower_components'));
+
+app.use('/api/v1/items', require ('./Items/routes'));
 
 app.get('/*', function(req, res, next) {
   if (/.js|.html|.css|templates|js|scripts/.test(req.path) || req.xhr) {
