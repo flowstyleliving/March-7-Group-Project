@@ -3,6 +3,8 @@ namespace app.i{
     _id: any;
     email: string;
     password: string;
+    resetPasswordToken: string;
+    resetPasswordDate: number;
     name: string;
     img?: string;
     aboutMe?: string;
@@ -11,7 +13,6 @@ namespace app.i{
       url: string
     };
     comments?: Array<string>;
-    categories?: Array<string>;
     items?: Array<string>;
     facebook: {id: string, token: string},
     google: {id: string, token: string},

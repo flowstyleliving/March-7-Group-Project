@@ -5,12 +5,18 @@ import logger = require('morgan');
 import cookieParser = require('cookie-parser');
 import bodyParser = require('body-parser');
 import mongoose = require('mongoose');
-const app = express();
+import session = require('express-session');
+import nodemailer = require('nodemailer');
+import passport = require('./config/passport');
+import flash = require('connect-flash');
 
+const app = express();
 
 require('./Items/model');
 
 require('./Comment/model');
+require('./User/model');
+
 
 
 mongoose.connect('mongodb://localhost/folio', (err) => {
@@ -30,8 +36,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+
 // View Route
 app.use('templates', require('./views/viewRoutes'));
+
+app.use(session({secret: 'yoyo'}));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(express.static('./ngApp'));
 app.use('/scripts', express.static('bower_components'));
