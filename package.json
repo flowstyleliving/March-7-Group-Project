@@ -1,0 +1,22 @@
+{
+  "name": "final-cc-group-project",
+  "version": "0.0.0",
+  "description": "A MEAN stack application.",
+  "scripts": {
+    "start": "node ./bin/www",
+    "devStart": "nodemon ./bin/www"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "cookie-parser": "^1.4.1",
+    "dotenv": "^2.0.0",
+    "ejs": "^2.4.1",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.12",
+    "morgan": "^1.7.0",
+    "nodemon": "^1.9.1",
+    "serve-favicon": "^2.3.0",
+    "supertest": "^1.2.0"
+  }
+}
