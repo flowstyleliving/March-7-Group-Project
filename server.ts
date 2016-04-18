@@ -12,7 +12,7 @@ import flash = require('connect-flash');
 
 const app = express();
 
-require('./Items/model');
+require('./Item/model');
 
 require('./Comment/model');
 require('./User/model');
