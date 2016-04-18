@@ -1,6 +1,7 @@
 import * as mongoose from 'mongoose';
 import * as express from 'express';
 import {Comment, ICommentModel} from './model';
+import {Item, IItemModel} from '../Item/model';
 
 export function create(req: express.Request, res: express.Response, next: Function) {
   req.body.datePosted = Date.now();

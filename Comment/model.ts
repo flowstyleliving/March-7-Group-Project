@@ -7,7 +7,7 @@ let commentSchema = new mongoose.Schema({
   datePosted: {type: Number},
 
   item: {type: mongoose.Schema.Types.ObjectId, ref: 'Item', required: true},
-  user: {type: mongoose.Schema.Types.ObjectId, ref: 'User', requred: true}
+  user: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true}
 });
 
 export let Comment = mongoose.model<ICommentModel>('Comment', commentSchema);
