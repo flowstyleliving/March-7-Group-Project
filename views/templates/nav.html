@@ -1,1 +1,41 @@
-<h1>YO!</h1>
+<div>
+    <md-content>
+        <md-toolbar class="md-hue-2 md-whiteframe-z2">
+            <div class="md-toolbar-tools">
+                <h1 layout="row" style="font-family: 'Pacifico', cursive; font-size: 30px;">Folio</h1>
+                <span flex></span>
+                <md-menu-bar>
+                    <md-menu>
+                        <button ng-click="$mdOpenMenu()" class="md-icon-button" aria-label="Open some menu">
+                            <md-icon md-menu-origin md-font-icon="material icon">menu</md-icon>
+                        </button>
+                        <md-menu-content width="3">
+                            <div>
+                                <md-menu-item>
+                                    <md-button aria-label="Login" style="text-align: center;">
+                                        Login
+                                    </md-button>
+                                </md-menu-item>
+                            </div>
+                            <div>
+                                <menudivider></menudivider>
+                                <md-menu-item>
+                                    <md-button aria-label="Logout" style="text-align: center;">
+                                        Log Out
+                                    </md-button>
+                                </md-menu-item>
+                                <menudivider></menudivider>
+                                <md-menu-item>
+                                    <md-button aria-label="User" style="text-align: center;">
+                                        User Settings
+                                    </md-button>
+                                </md-menu-item>
+                                <menudivider></menudivider>
+                            </div>
+                        </md-menu-content>
+                    </md-menu>
+                </md-menu-bar>
+            </div>
+        </md-toolbar>
+    </md-content>
+</div>
