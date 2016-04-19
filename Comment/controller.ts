@@ -17,6 +17,7 @@ export function create(req: express.Request, res: express.Response, next: Functi
 
 export function remove(req: express.Request, res: express.Response, next: Function) {
   Comment.remove({_id: req.params.id}, (err) => {
+    if(err) return next(err)
     //if comment was found and deleted, update the Item
     if(Comment) {
       Item.update({comments: req.params.id}, {$pull: {comments: req.params.id}}, (err, numRows) => {
