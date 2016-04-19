@@ -15,12 +15,12 @@ namespace app {
     }).state('Login', {
       url: '/login',
       templateUrl: '/templates/login.html',
-      controller: '',
+      controller: 'UserLoginController',
       controllerAs: 'vm'
     }).state('Register', {
       url: '/register',
       templateUrl: '/templates/register.html',
-      controller: '',
+      controller: 'UserRegisterController',
       controllerAs: 'vm'
     });
 
