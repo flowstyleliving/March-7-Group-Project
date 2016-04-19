@@ -155,9 +155,95 @@ describe('Item Controller', () => {
   });
   describe('create()', () => {
     let create;
-    beforeEach(() => {
-      create = sinon.stub
-    })
-    it('Should return success')
+    before(() => {
+      create = sinon.stub(Item, 'create')
+    });
+    after(() => {
+      create.restore();
+    });
+
+    it('Should save req body to the collection and return new Obj', (done) => {
+      create.yields(null, '01');
+
+      let req = {
+        body: {
+          title: 'test'
+        },
+        payload: {
+          _id: 5
+        }
+      };
+      let res = {
+        json: function(data) {
+          data.should.equal('01');
+          let i = create.getCalls()[0].args[0];
+          i.user.should.equal(5);
+          i.title.should.equal('test');
+          should.exist(i.datePosted);
+          done();
+        }
+      };
+      let next = function() {
+        throw new Error('Next wanted to sleep!')
+      };
+      controller.create(req, res, next);
+    });
+    it('Should throw next with an error', (done) => {
+      create.yields('ER-ROR');
+
+      let req = {
+        body: {},
+        payload: {}
+      };
+      let res = {json: () => {throw new Error('JSON wanted to nap')}};
+      let next = function(err) {
+        err.should.equal('ER-ROR');
+        done();
+      };
+      controller.create(req, res, next);
+    });
+  });
+  describe('update()', () => {
+    it('Should return message on success', (done) => {
+      ItemMock.expects('update')
+      .withArgs({_id: 5, user: 8}, {msg: 'testing ftw!'})
+      .yields(null, {nModified: 1});
+
+      let req = {
+        params: {id: 5},
+        body: {msg: 'testing ftw!'},
+        payload: {_id: 8}
+      };
+      let res = {
+        json: function(data) {
+          data.message.should.equal('This entry has been updated!');
+          ItemMock.verify();
+          done();
+        }
+      };
+      let next = function() {
+        throw new Error('Next wanted to sleep!')
+      };
+      controller.update(req, res, next);
+    });
+    it('Should call next if numRows were not modified', (done) => {
+      ItemMock.expects('update').withArgs({_id: 5, user: 8}, {msg: 'hi'})
+      .yields(null, {nModified: 0});
+
+      let req = {
+        params: {},
+        body: {},
+        payload: {}
+      };
+      let res = {json: (data) => {throw new Error('JSON wanted to take a nap')}};
+      let next = function(err) {
+        err.message.should.equal('Unable to update entry');
+        err.status.should.equal(500);
+        ItemMock.verify();
+        done();
+      };
+      controller.update(req, res, next);
+    });
+
   })
 })
