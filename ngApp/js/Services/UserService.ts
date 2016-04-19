@@ -36,7 +36,7 @@ namespace app.Services{
     }
 
     public resetPassword(token){
-      
+
     }
 
     public getToken(){

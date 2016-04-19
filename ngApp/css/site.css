@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+}
+
+.registerbtn, .loginbtn {
+    width: 300px;
+    height: 50px;
+    text-transform: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.facebook:hover {
+    text-decoration: none;
+}
