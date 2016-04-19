@@ -2,10 +2,12 @@
     <md-content>
         <md-toolbar class="md-hue-2 md-whiteframe-z2">
             <div class="md-toolbar-tools">
-                <h1 layout="row" style="font-family: 'Pacifico', cursive; font-size: 30px;">Folio</h1>
+                <a ui-sref="Home" class="home_link">
+                    <h1 layout="row" style="font-family: 'Pacifico', cursive; font-size: 30px;">Folio</h1>
+                </a>
                 <span flex></span>
                 <md-menu-bar>
-                    <md-menu offset="15">
+                    <md-menu offset="15" class="md-accent">
                         <md-button ng-click="$mdOpenMenu()" class="md-icon-button" aria-label="Open some menu">
                             <md-icon md-menu-origin md-font-icon="material icon">menu</md-icon>
                         </md-button>
