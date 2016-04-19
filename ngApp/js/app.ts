@@ -10,7 +10,7 @@ namespace app {
     $stateProvider.state('Home', {
       url: '/',
       templateUrl: '/templates/home.html',
-      controller: app.Controllers.HomeController,
+      controller: 'HomeController',
       controllerAs: 'vm'
     });
 
