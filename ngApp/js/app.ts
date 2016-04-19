@@ -12,6 +12,16 @@ namespace app {
       templateUrl: '/templates/home.html',
       controller: 'HomeController',
       controllerAs: 'vm'
+    }).state('Login', {
+      url: '/login',
+      templateUrl: '/templates/login.html',
+      controller: '',
+      controllerAs: 'vm'
+    }).state('Register', {
+      url: '/register',
+      templateUrl: '/templates/register.html',
+      controller: '',
+      controllerAs: 'vm'
     });
 
     $urlRouterProvider.otherwise('/');
