@@ -1,5 +1,6 @@
 <h1>Login</h1>
-<form ng-submit="">
-    <input />
-    <button type="submit"></button>
+<form  ng-submit="vm.login()">
+  <input required type="email" ng-model="vm.user.email" placeholder="email" />
+    <input required type="password" ng-model="vm.user.password" placeholder="password" />
+    <button type="submit">login</button>
 </form>
