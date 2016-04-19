@@ -1,4 +1,4 @@
 --recursive
 --ui bdd
--R spec
 --require should
+-R spec

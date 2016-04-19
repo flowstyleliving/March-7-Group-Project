@@ -4,7 +4,7 @@ import {Item, IItemModel} from './model';
 import {Comment, ICommentModel} from '../Comment/model';
 
 export function getAll(req: express.Request, res: express.Response, next: Function) {
-    Item.find({user: req.params._id})
+    Item.find({_id: req.params.id})
     .populate('user', 'name')
     .exec((err, items)=>{
         if (err) return next (err);
@@ -27,7 +27,7 @@ export function getOne(req: express.Request, res: express.Response, next: Functi
 
 export function create(req: express.Request, res: express.Response, next: Function) {
     req.body.user = req['payload']._id;
-    req.body.date = Date.now();
+    req.body.datePosted = Date.now();
     Item.create(req.body, (err, item:IItemModel)=>{
         if (err) return next (err);
         res.json(item);
