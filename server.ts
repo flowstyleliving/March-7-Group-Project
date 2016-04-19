@@ -35,7 +35,7 @@ app.use(cookieParser());
 
 
 // View Route
-app.use('templates', require('./views/viewRoutes'));
+app.use('/templates', require('./views/viewRoutes'));
 
 app.use(session({secret: 'yoyo'}));
 app.use(flash());
