@@ -2,6 +2,7 @@
 namespace app {
   angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap', 'ngMessages', 'ngMaterial'])
     .config((
+    $httpProvider: ng.IHttpProvider,
     $stateProvider: ng.ui.IStateProvider,
     $locationProvider: ng.ILocationProvider,
     $urlRouterProvider: ng.ui.IUrlRouterProvider) => {
@@ -15,5 +16,6 @@ namespace app {
 
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
+    $httpProvider.interceptors.push('AuthInterceptor');
   });
 }
