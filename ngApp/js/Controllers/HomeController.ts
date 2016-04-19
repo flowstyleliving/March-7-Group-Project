@@ -4,6 +4,7 @@ namespace app.Controllers {
 
       constructor(private UserService: app.Services.UserService, private $location: ng.ILocationService){
         this.user = UserService.status;
+        console.log($location.search());
         if($location.search().code){
           UserService.setToken($location.search().code);
           UserService.setUser();
