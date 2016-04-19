@@ -1,1 +1,55 @@
-<h1>Register</h1>
+<div layout='column'>
+    <md-content layout-gt-sm="row" layout-padding layout-align="center" style="margin-top: 10%;">
+        <form name="userForm" flex-gt-sm="33" ng-submit="vm.register()">
+            <!-- NAME -->
+            <div >
+                <md-input-container class='md-block' flex-gt-sm>
+                    <label>Name</label>
+                    <input name="name" type="text" required='true' ng-model="vm.user.name">
+                    <div ng-messages="userForm.name.$error">
+                        <div ng-message="required">*Required</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <!-- EMAIL -->
+            <div >
+                <md-input-container class='md-block' flex-gt-sm>
+                    <label>Email</label>
+                    <input name="email" type="email" required='true' ng-model="vm.user.email">
+                    <div ng-messages="userForm.email.$error">
+                        <div ng-message="required">*Required</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <!-- PASSWORD -->
+            <div>
+                <md-input-container class='md-block' flex-gt-sm>
+                    <label>Password</label>
+                    <input name="password" type="password"  required='true' ng-model="vm.user.password">
+                    <div ng-messages="userForm.password.$error">
+                        <div ng-message="required">*Required</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout="row"  layout-align="center">
+                <md-button ng-disabled="userForm.$invalid" class="md-raised md-primary md-cornered md-padding registerbtn" type="submit" >
+                    Register
+                </md-button>
+            </div>
+            <hr>
+            <section layout="row" layout-align="center" flex>
+                <a class="facebook" href="/api/v1/users/auth/facebook" target="_self">
+                    <md-button layout='row' class="md-raised md-cornered md-padding loginbtn" style='background-color: #3b5998; color: white;'>
+                        <div layout="row" layout-align='center center'>
+                            &nbsp&nbsp
+                            <i class="fa fa-facebook" aria-hidden="true"></i></div>
+                        &nbsp&nbsp&nbsp
+                        <div style="border-left:1px solid #dfe3ee;"></div>
+                        &nbsp&nbsp
+                        <div flex layout-align='center center'>Continue with Facebook</div>
+                    </md-button>
+                </a>
+            </section>
+        </form>
+    </md-content>
+</div>

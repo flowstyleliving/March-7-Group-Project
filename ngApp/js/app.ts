@@ -2,6 +2,7 @@
 namespace app {
   angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap', 'ngMessages', 'ngMaterial'])
     .config((
+    $mdThemingProvider,
     $httpProvider: ng.IHttpProvider,
     $stateProvider: ng.ui.IStateProvider,
     $locationProvider: ng.ILocationProvider,
@@ -23,6 +24,10 @@ namespace app {
       controller: 'UserRegisterController',
       controllerAs: 'vm'
     });
+
+    $mdThemingProvider.theme('default')
+        .primaryPalette('grey')
+        .accentPalette('teal');
 
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
