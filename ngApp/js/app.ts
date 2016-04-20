@@ -31,10 +31,10 @@ namespace app {
       templateUrl: '/templates/forgot.html',
       controller: 'UserForgotController',
       controllerAs: 'vm'
-    }).state('createItem', {
-      url: '/createItem',
-      templateUrl: 'templates/createItem.html',
-      controller: 'CreateItemController',
+    }).state('itemCreate', {
+      url: '/itemcreate',
+      templateUrl: 'templates/itemCreate.html',
+      controller: 'ItemCreateController',
       controllerAs: 'vm'
     });
 

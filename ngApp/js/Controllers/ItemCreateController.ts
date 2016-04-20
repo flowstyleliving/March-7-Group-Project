@@ -1,5 +1,5 @@
 namespace app.Controllers {
-  export class CreateItemController {
+  export class ItemCreateController {
     public file;
 
     public pickFile() {
@@ -19,5 +19,5 @@ namespace app.Controllers {
 
     }
   }
-  angular.module('app').controller('CreateItemController', CreateItemController);
+  angular.module('app').controller('ItemCreateController', ItemCreateController);
 }
