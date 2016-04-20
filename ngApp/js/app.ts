@@ -1,12 +1,15 @@
 'use strict';
 namespace app {
-  angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap', 'ngMessages', 'ngMaterial'])
+  angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap', 'ngMessages', 'ngMaterial', 'angular-filepicker'])
     .config((
     $mdThemingProvider,
     $httpProvider: ng.IHttpProvider,
     $stateProvider: ng.ui.IStateProvider,
     $locationProvider: ng.ILocationProvider,
+    filepickerProvider,
     $urlRouterProvider: ng.ui.IUrlRouterProvider) => {
+
+    filepickerProvider.setKey('ArDxY3ePCQ6eI13v5WoxOz');
 
     $stateProvider.state('Home', {
       url: '/',

@@ -4,7 +4,11 @@ export interface IItemModel extends app.i.IItem, mongoose.Document{}
 
 let itemSchema = new mongoose.Schema({
     title: {type: String},
-    images: [{type: String}],
+    images: [{
+      imgUrl: {type: String},
+      caption: {type: String},
+      mainOrNah: {type: Boolean}
+    }],
     description: {type: String},
     datePosted: {type: Number},
     dateCompleted: {type: String},
