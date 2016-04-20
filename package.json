@@ -10,16 +10,12 @@
   "dependencies": {
     "async": "^2.0.0-rc.3",
     "bcrypt": "^0.8.5",
-    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.0",
-    "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.1",
     "crypto": "0.0.3",
     "dotenv": "^2.0.0",
     "ejs": "^2.4.1",
-    "email-templates": "^2.3.0",
     "express": "^4.13.4",
-    "express-flash": "0.0.2",
     "express-jwt": "^3.3.0",
     "express-messages": "^1.0.0",
     "express-session": "^1.13.0",
@@ -44,6 +40,7 @@
     "sinon": "^1.17.3",
     "sinon-as-promised": "^4.0.0",
     "sinon-mongoose": "^1.2.1",
+    "stormpath": "^0.18.2",
     "supertest": "^1.2.0"
   }
 }
