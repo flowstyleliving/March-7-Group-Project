@@ -227,7 +227,7 @@ describe('Item Controller', () => {
       controller.update(req, res, next);
     });
     it('Should call next if numRows were not modified', (done) => {
-      ItemMock.expects('update').withArgs({_id: 5, user: 8}, {msg: 'hi'})
+      ItemMock.expects('update')
       .yields(null, {nModified: 0});
 
       let req = {
@@ -235,7 +235,11 @@ describe('Item Controller', () => {
         body: {},
         payload: {}
       };
-      let res = {json: (data) => {throw new Error('JSON wanted to take a nap')}};
+      let res = {
+        json: function() {
+          throw new Error('JSON wanted to take a nap')
+        }
+      };
       let next = function(err) {
         err.message.should.equal('Unable to update entry');
         err.status.should.equal(500);
@@ -244,6 +248,104 @@ describe('Item Controller', () => {
       };
       controller.update(req, res, next);
     });
+    it('Should throw next and return ER-ROR', (done) => {
+      ItemMock.expects('update')
+      .yields('ER-ROR');
 
-  })
-})
+      let req = {
+        params: {},
+        body: {},
+        payload: {}
+      };
+      let res = {json: () => {throw new Error('JSON wanted to to f*ck in peace')}};
+      let next = function(err) {
+        err.should.equal('ER-ROR');
+        ItemMock.verify();
+        done();
+      };
+      controller.update(req, res, next);
+    });
+  });
+  describe('remove()', () => {
+    it('Should remove by id and return message on success', (done) => {
+      ItemMock.expects('findOneAndRemove')
+      .withArgs({_id: 5, user: 8})
+      .yields(null, {});
+
+      CommentMock.expects('remove')
+      .withArgs({item: 5})
+      .yields(null);
+
+      let req = {
+        params: {id: 5},
+        payload: {_id: 8}
+      };
+      let res = {
+        json: function(data) {
+          data.message.should.equal('This entry has been removed');
+          ItemMock.verify();
+          CommentMock.verify();
+          done();
+        }
+      };
+      let next = function() {
+        throw new Error('Next really wanted some down-time');
+      };
+      controller.remove(req, res, next);
+    });
+    it('Should throw next on Comment.remove error', (done) => {
+      ItemMock.expects('findOneAndRemove')
+      .yields(null, {});
+      CommentMock.expects('remove')
+      .yields('ER-ROR');
+
+      let req = {
+        params: {},
+        payload: {}
+      };
+      let res = {json: () => {throw new Error('JSON is pissed!')}};
+      let next = function(err) {
+        err.should.equal('ER-ROR');
+        ItemMock.verify();
+        CommentMock.verify();
+        done();
+      };
+      controller.remove(req, res, next);
+    });
+    it('Should call next with message when Item cannot be found', (done) => {
+      ItemMock.expects('findOneAndRemove')
+      .yields(null);
+
+      let req = {
+        params: {},
+        payload: {}
+      };
+      let res = {json: () => {throw new Error('JSON is hungry')}};
+      let next = function(err) {
+        err.message.should.equal('Unable to delete entry');
+        err.status.should.equal(500);
+        ItemMock.verify();
+        done();
+      };
+      controller.remove(req, res, next);
+    });
+    it('Should call next for Item and return ER-ROR', (done) => {
+      ItemMock.expects('findOneAndRemove')
+      .yields('ER-ROR');
+
+      let req = {
+        params: {},
+        payload: {}
+      };
+      let res = {json: () => {throw new Error('JSON is not ER-ROR!')}};
+      let next = function(err) {
+        err.should.equal('ER-ROR');
+        ItemMock.verify();
+        done();
+      };
+      controller.remove(req, res, next);
+    });
+  });
+});
+
+//muhahahaha ;D
