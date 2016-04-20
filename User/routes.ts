@@ -31,4 +31,7 @@ router.get('/auth/github/callback', passport.authenticate('github',{session: fal
   res.redirect('/?code=' + req['tempUser'].generateJWT());
 })
 
+router.get('/', controller.findAll);
+router.get('/:id', controller.findOne);
+
 export = router;
