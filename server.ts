@@ -8,7 +8,6 @@ import mongoose = require('mongoose');
 import session = require('express-session');
 import nodemailer = require('nodemailer');
 import passport = require('./config/passport');
-import flash = require('connect-flash');
 
 const app = express();
 
@@ -38,7 +37,6 @@ app.use(cookieParser());
 app.use('/templates', require('./views/viewRoutes'));
 
 app.use(session({secret: 'yoyo'}));
-app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 

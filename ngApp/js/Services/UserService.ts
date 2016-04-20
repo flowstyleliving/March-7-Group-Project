@@ -35,15 +35,11 @@ namespace app.Services{
             return q.promise;
         }
 
-        public forgotPassword(user) {
-            let q = this.$q.defer();
-            this.$http.get('/api/v1/users/forgot', user).then((res) => {
-                q.resolve();
-            });
-            return q.promise;
+        public forgotPassword() {
+
         }
 
-        public resetPassword(token) {
+        public resetPassword() {
 
         }
 
