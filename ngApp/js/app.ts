@@ -31,6 +31,11 @@ namespace app {
       templateUrl: '/templates/forgot.html',
       controller: 'UserForgotController',
       controllerAs: 'vm'
+    }).state('createItem', {
+      url: '/createItem',
+      templateUrl: 'templates/createItem.html',
+      controller: 'CreateItemController',
+      controllerAs: 'vm'
     });
 
     $mdThemingProvider.theme('default')

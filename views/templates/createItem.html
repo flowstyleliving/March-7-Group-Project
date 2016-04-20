@@ -1,0 +1,4 @@
+<button ng-click="vm.pickFile()">Upload</button>
+
+<h2>{{vm.file.filename}}</h2>
+<img ng-src="{{vm.file.url | fpConvert:{w: 400} }}" alt="{{vm.file.filename}}" />
