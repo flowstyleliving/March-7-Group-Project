@@ -23,6 +23,11 @@ namespace app {
       templateUrl: '/templates/register.html',
       controller: 'UserRegisterController',
       controllerAs: 'vm'
+    }).state('Forgot', {
+      url: '/forgot?',
+      templateUrl: '/templates/forgot.html',
+      controller: 'UserForgotController',
+      controllerAs: 'vm'
     });
 
     $mdThemingProvider.theme('default')
