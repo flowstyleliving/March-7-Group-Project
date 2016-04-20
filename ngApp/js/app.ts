@@ -27,7 +27,7 @@ namespace app {
       controller: 'UserRegisterController',
       controllerAs: 'vm'
     }).state('Forgot', {
-      url: '/forgot?',
+      url: '/forgot',
       templateUrl: '/templates/forgot.html',
       controller: 'UserForgotController',
       controllerAs: 'vm'
@@ -42,6 +42,9 @@ namespace app {
         templateUrl: 'templates/createprofile.html',
         controller: "ProfileController",
         controllerAs: 'vm'
+    }).state('Receive', {
+      url: '/receive',
+      templateUrl: '/templates/received.html'
     });
 
     $mdThemingProvider.theme('default')
