@@ -1,6 +1,48 @@
-<md-content layout='column' flex>
-    <div layout='row' flex layout-align="center" md-block>
-        <h1>Let the people know a little about you</h1>
-        <md-divider></md-divider>
+<md-content layout='column' layout-align="center">
+    <div layout='row' flex="33" layout-align="center center" style=" background-color: white; height: 75px;">
+        <h3>Let the people know a little about you</h3>
+    </div>
+    <div layout='row' layout-align="center">
+        <div class="md-block" layout-padding>
+            <md-button class="md-fab">
+                <i class="fa fa-facebook-square fa-2x" aria-hidden="true" ng-click="vm.socialHold.provider = 'facebook'"></i>
+            </md-button>
+            <md-button class="md-fab">
+                <i class="fa fa-instagram fa-2x" aria-hidden="true" ng-click="vm.socialHold.provider = 'instagram'"></i>
+            </md-button>
+            <md-button class="md-fab">
+                <i class="fa fa-twitter-square fa-2x" aria-hidden="true" ng-click="vm.socialHold.provider = 'twitter'"></i>
+            </md-button>
+            <md-button class="md-fab">
+                <i class="fa fa-github-square fa-2x" aria-hidden="true" ng-click="vm.socialHold.provider = 'github'"></i>
+            </md-button>
+        </div>
+    </div>
+    <div layout='column' layout-align="center center">
+        <div layout-gt-sm="row" layout-align="center">
+        <md-input-container class="md-block">
+            <label>Social Provider</label>
+            <input type="text" ng-model='vm.socialHold.provider' disabled>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Url</label>
+            <input type="text" ng-model='vm.socialHold.url'>
+        </md-input-container>
+        </div>
+        <div ng-repeat="s in vm.social"><h6>{{s.provider}}</h6></div>
+        <md-button class="md-primary md-raised" ng-click="vm.addSocial()" style="width: 50px;">Add</md-button>
+    </div>
+    <div layout='row' layout-align="center">
+        <form name="profile" flex-gt-sm="33" ng-submit="hold">
+            <div layout-padding>
+                <md-input-container class='md-block' flex-gt-sm>
+                    <label class="md-accent">About Me</label>
+                    <textarea rows="6" cols="50" name="about" type="text" class="md-accent" required='true' ng-model="vm.user.aboutMe"></textarea>
+                    <div ng-messages="userForm.about.$error">
+                        <div ng-message="required">*Required</div>
+                    </div>
+                </md-input-container>
+            </div>
+        </form>
     </div>
 </md-content>
