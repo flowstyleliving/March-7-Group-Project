@@ -36,7 +36,13 @@ namespace app {
       templateUrl: 'templates/itemCreate.html',
       controller: 'ItemCreateController',
       controllerAs: 'vm'
-    });
+    })
+    .state('Create Profile'), {
+        url:'/createprofile',
+        templateUrl: 'templates/createprofile.html',
+        controller: "ProfileController",
+        controllerAs: 'vm'
+    };
 
     $mdThemingProvider.theme('default')
         .primaryPalette('grey')
