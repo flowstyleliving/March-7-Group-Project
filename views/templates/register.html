@@ -31,6 +31,20 @@
                     </div>
                 </md-input-container>
             </div>
+            <div>
+                <md-input-container class='md-block' flex-gt-sm>
+                    <label>Confirm Password</label>
+                    <input name="password_c" type="password"  required='true' ng-model="vm.user.password_c" ng-pattern="vm.user.password">
+                    <div ng-messages="userForm.password.$error">
+                        <div ng-message="required">*Required</div>
+                    </div>
+                    <div ng-messages="userForm.password.$error" ng-show="!userForm.password_c.$valid" ng-hide="!vm.user.password">
+                      <div ng-messge="required">
+                        ***Your passwords do not match.***
+                      </div>
+                    </div>
+                </md-input-container>
+            </div>
             <div layout="row"  layout-align="center">
                 <md-button ng-disabled="userForm.$invalid" class="md-raised md-accent md-cornered md-padding registerbtn" type="submit" >
                     Register

@@ -3,15 +3,16 @@ namespace app.Controllers {
         public status;
         public user;
         public socialHold;
+        public social = [];
 
         /////////Add socialSite to Array
         public addSocial(){
-            this.user.social.push(this.socialHold);
+            this.social.push(this.socialHold);
             this.socialHold = {};
         }
 
         public updateProfile(){
-            this.UserService.update(this.status._id, this.user).then((res)=>{
+            this.UserService.update(this.status._id, this.user.aboutMe, this.social).then((res)=>{
                 this.$state.go('Home');
             })
         }

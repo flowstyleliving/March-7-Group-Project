@@ -47,6 +47,9 @@ namespace app {
         templateUrl: '/templates/createprofile.html',
         controller: "ProfileController",
         controllerAs: 'vm'
+    }).state('Success', {
+      url: '/success',
+      templateUrl: '/templates/success.html'
     });
 
     $mdThemingProvider.theme('default')

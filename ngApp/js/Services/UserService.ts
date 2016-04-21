@@ -18,9 +18,9 @@ namespace app.Services{
             return q.promise;
         }
 
-        public update(id: string, user){
+        public update(id: string, aboutMe, social){
             let q = this.$q.defer();
-            this.$http.put('/api/v1/users/update/' + id, user).then((res)=>{
+            this.$http.put('/api/v1/users/update/' + id, {aboutMe: aboutMe, social: social}).then((res)=>{
                 q.resolve();
             });
             return q.promise;
@@ -55,6 +55,14 @@ namespace app.Services{
           let q = this.$q.defer();
           this.$http.post('/api/v1/users/forgot', user).then((res) => {
               q.resolve();
+          });
+          return q.promise;
+        }
+
+        public resetPassword(token, user) {
+          let q = this.$q.defer();
+          this.$http.post('/api/v1/users/reset/' + token, user).then((res) => {
+            q.resolve();
           });
           return q.promise;
         }

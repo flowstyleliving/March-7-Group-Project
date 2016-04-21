@@ -25,6 +25,13 @@
                     Login
                 </md-button>
             </div>
+            <div layout ="row" layout-align="center" flex class="md-padding">
+                <p>Forgot password? Click <a ui-sref="Forgot">here</a>.
+            </div>
+            <hr>
+            <div layout ="row" layout-align="center" flex class="md-padding">
+                <p>Don't have an account? <a ui-sref="Register">Sign up here</a> or Continue with Facebook</p>
+            </div>
             <section layout="row" layout-align="center" flex>
                 <a class="facebook" href="/api/v1/users/auth/facebook" target="_self">
                     <md-button layout='row' class="md-raised md-cornered md-padding loginbtn" style='background-color: #3b5998; color: white;'>
@@ -38,11 +45,6 @@
                     </md-button>
                 </a>
             </section>
-            <hr>
-            <br>
-            <div layout ="row" layout-align="center" flex class="md-padding">
-                <p>Don't have an account? <a ui-sref="Register">Sign up here</a> or Continue with Facebook</p>
-            </div>
         </form>
     </md-content>
 </div>

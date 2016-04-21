@@ -1,6 +1,7 @@
 <h1>Reset Password</h1>
 
-<form ng-submit="vm.reset()">
-  <input type="email" ng-model="vm.user.password">
+<form name="userForm" ng-submit="vm.reset()">
+  <input type="password" ng-model="vm.user.password" />
+  <input type="password" ng-model="vm.user.password_c" />
   <button type="submit">submit</button>
 </form>
