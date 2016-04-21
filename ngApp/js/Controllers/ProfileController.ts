@@ -10,7 +10,7 @@ namespace app.Controllers {
             this.socialHold = {};
         }
 
-        public updateProfile(id, user){
+        public updateProfile(){
             this.UserService.update(this.status._id, this.user).then((res)=>{
                 this.$state.go('Home');
             })
@@ -31,8 +31,10 @@ namespace app.Controllers {
             this.status = UserService.status;
             UserService.getUser(this.status._id).then((data)=>{
                 this.user = data;
+                if(!this.user.aboutMe){
+                    this.openDialog();
+                }
             })
-            this.openDialog();
         }
     }
     angular.module('app').controller("ProfileController", ProfileController);

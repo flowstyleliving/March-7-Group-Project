@@ -15,8 +15,8 @@ namespace app.Services {
       return this.ItemResource.get({id: id});
     }
 
-    public createItem(item: app.i.IItem) {
-      return this.ItemResource.save(item).$promise;
+    public createItem(title, images, description, dateCompleted, notes, category) {
+      return this.ItemResource.save({title: title, images: images, description: description, dateCompleted: dateCompleted, notes: notes, category: category }).$promise;
     }
 
     public update(item: app.i.IItem) {

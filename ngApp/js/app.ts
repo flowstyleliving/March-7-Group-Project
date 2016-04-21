@@ -38,13 +38,13 @@ namespace app {
       controllerAs: 'vm'
     }).state('itemCreate', {
       url: '/createitem',
-      templateUrl: 'templates/itemCreate.html',
+      templateUrl: '/templates/itemCreate.html',
       controller: 'ItemCreateController',
       controllerAs: 'vm'
     })
     .state('Create Profile', {
         url:'/createprofile',
-        templateUrl: 'templates/createprofile.html',
+        templateUrl: '/templates/createprofile.html',
         controller: "ProfileController",
         controllerAs: 'vm'
     });

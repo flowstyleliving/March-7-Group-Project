@@ -39,7 +39,7 @@
         </md-button>
     </div>
     <div layout="row" layout-align="center">
-        <div ng-repeat="s in vm.social">
+        <div ng-repeat="s in vm.user.social">
             <md-button class="md-accent md-mini md-hue-2">{{s.provider}}</md-button>
         </div>
     </div>
@@ -55,5 +55,8 @@
                 </md-input-container>
             </div>
         </form>
+    </div>
+    <div layout="row" layout-align="center">
+            <md-button class="md-accent md-raised md-hue-2" ng-click="vm.updateProfile()">Submit</md-button>
     </div>
 </md-content>
