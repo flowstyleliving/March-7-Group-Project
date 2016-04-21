@@ -31,6 +31,11 @@ namespace app {
       templateUrl: '/templates/forgot.html',
       controller: 'UserForgotController',
       controllerAs: 'vm'
+    }).state('Reset', {
+      url: '/reset/:token',
+      templateUrl: '/templates/reset.html',
+      controller: 'UserResetController',
+      controllerAs: 'vm'
     }).state('itemCreate', {
       url: '/createitem',
       templateUrl: 'templates/itemCreate.html',
@@ -42,9 +47,6 @@ namespace app {
         templateUrl: 'templates/createprofile.html',
         controller: "ProfileController",
         controllerAs: 'vm'
-    }).state('Reset', {
-      url: '/reset',
-      templateUrl: '/templates/reset.html'
     });
 
     $mdThemingProvider.theme('default')
