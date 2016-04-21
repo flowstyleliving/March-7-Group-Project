@@ -18,7 +18,7 @@
             </md-button>
         </div>
     </div>
-    <div layout='column' layout-align="center center">
+    <div layout='row' layout-align="center">
         <div layout-gt-sm="row" layout-align="center">
         <md-input-container class="md-block">
             <label>Social Provider</label>
@@ -29,8 +29,14 @@
             <input type="text" ng-model='vm.socialHold.url'>
         </md-input-container>
         </div>
-        <div ng-repeat="s in vm.social"><h6>{{s.provider}}</h6></div>
-        <md-button class="md-primary md-raised" ng-click="vm.addSocial()" style="width: 50px;">Add</md-button>
+        <md-button class="md-primary md-fab md-mini md-raised" ng-click="vm.addSocial()" >
+            <i class="fa fa-plus" aria-hidden="true"></i>
+        </md-button>
+    </div>
+    <div layout="row" layout-align="center">
+        <div ng-repeat="s in vm.social">
+            <md-button class="md-accent md-mini md-hue-2">{{s.provider}}</md-button>
+        </div>
     </div>
     <div layout='row' layout-align="center">
         <form name="profile" flex-gt-sm="33" ng-submit="hold">

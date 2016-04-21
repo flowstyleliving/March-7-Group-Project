@@ -4,6 +4,9 @@ import * as controller from './controller';
 const passport = require('passport');
 const router = express.Router();
 
+router.get('/', controller.findAll);
+router.get('/:id', controller.findOne);
+
 router.post('/login', controller.login);
 router.post('/register', controller.register);
 
@@ -28,8 +31,5 @@ router.get('/auth/github', passport.authenticate('github',{session: false}));
 router.get('/auth/github/callback', passport.authenticate('github',{session: false}), (req,res,next) => {
   res.redirect('/?code=' + req['tempUser'].generateJWT());
 })
-
-router.get('/', controller.findAll);
-router.get('/:id', controller.findOne);
 
 export = router;

@@ -1,7 +1,7 @@
 namespace app.Controllers {
     export class ProfileController {
         public status;
-
+        public user;
         public social = [];
         public socialHold;
 
@@ -24,6 +24,9 @@ namespace app.Controllers {
         };
         constructor(private UserService: app.Services.UserService, private $mdDialog){
             this.status = UserService.status;
+            UserService.getUser(this.status._id).then((data)=>{
+                this.user = data;
+            })
             this.openDialog();
         }
     }
