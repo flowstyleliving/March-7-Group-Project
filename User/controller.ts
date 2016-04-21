@@ -2,7 +2,8 @@ import * as mongoose from 'mongoose';
 import * as express from 'express';
 import * as crypto from 'crypto';
 import * as nodemailer from 'nodemailer';
-import smtpTransport = require('nodemailer-smtp-transport');
+import * as async from 'async';
+import transport = require('nodemailer-smtp-transport');
 import {User, IUserModel} from './model';
 
 export function login(req: express.Request, res: express.Response, next: Function) {
@@ -34,24 +35,43 @@ export function forgot(req: express.Request, res: express.Response, next: Functi
     .exec((err,user) => {
       if (err) return next(err);
       if (!user) return next({message: 'Invalid user'});
-      if (user) return res.redirect('/')
+      if (user) {
+        async.waterfall([
+          function(cb) {
+            crypto.randomBytes(20, (err, buf) => {
+              let token = buf.toString('hex');
+              cb(err, token);
+            });
+          }, function(token, cb) {
+            user.resetPasswordToken = token;
+            user.save((err) => {
+              cb(err, token, user);
+            });
+          }, function(token, user: app.i.IUser, cb) {
+            let smtpTransporter = nodemailer.createTransport(transport({
+              service: 'Gmail',
+              auth: {
+                user: process.env.GMAIL_USER,
+                pass: process.env.GMAIL_PASS
+              }
+            }));
+            let mailOptions = {
+              from: 'Folio Team <folioteamcc@gmail.com>',
+              to: user.email,
+              subject: 'Password Reset',
+              text: 'http://localhost:3000/reset/' + token
+            };
+            smtpTransporter.sendMail(mailOptions, (err) => {
+              return res.redirect('/');
+            })
+          }], function(err) {
+            if(err) return next(err);
+            return res.redirect('/');
+          })
+      }
     });
     }
-  // async.waterfall([
-  //   function(cb) {
-  //     crypto.randomBytes(20, (err, buf) => {
-  //       let token = buf.toString('hex');
-  //       cb(err, token);
-  //     });
-  //   }, function(token, cb) {
-  //     User.findOne({email: req.body.email})
-  //       .exec((err, user) => {
-  //       if (!user) return next({message: 'Invalid user'});
-  //       user.resetPasswordToken = token;
-  //       user.save((err) => {
-  //         cb(err, token, user);
-  //       });
-  //     });
+
   //   }, function(token, user: app.i.IUser, cb) {
   //     let transport = nodemailer.createTransport(smtpTransport({
   //       service: 'gmail',
