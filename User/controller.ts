@@ -58,8 +58,8 @@ export function forgot(req: express.Request, res: express.Response, next: Functi
             let mailOptions = {
               from: 'Folio Team <folioteamcc@gmail.com>',
               to: user.email,
-              subject: 'Password Reset',
-              text: 'http://localhost:3000/reset/' + token
+              subject: 'Folio Password Reset',
+              text: 'Hey ' + user.name + ',\n\n' + 'We heard you forgot your password. Please click on the link below to reset it:\n\n' + 'http://localhost:3000/reset/' + token + '\n\n' + 'If you did not request a reset, please ignore this email. Your password will not be reset.\n\n' + 'Have a great day!\n\n' + 'xo,\n' + 'The Folio Team'          
             };
             smtpTransporter.sendMail(mailOptions, (err) => {
               return res.redirect('/');
@@ -71,29 +71,6 @@ export function forgot(req: express.Request, res: express.Response, next: Functi
       }
     });
     }
-
-  //   }, function(token, user: app.i.IUser, cb) {
-  //     let transport = nodemailer.createTransport(smtpTransport({
-  //       service: 'gmail',
-  //       auth: {
-  //         user: process.env.GMAIL_USER,
-  //         pass: process.env.GMAIL_PASS
-  //       }
-  //     }));
-  //     let mailOptions = {
-  //       to: user.email,
-  //       from: 'Folio Team <folioteamcc@gmail.com>',
-  //       subject: 'Password Reset Request',
-  //       text: 'Click this link to reset password: http://localhost:3000/reset' + token
-  //     };
-  //     transport.sendMail(mailOptions, (err) => {
-  //       cb(err);
-  //     });
-  //   }], function(err) {
-  //     if (err) return next(err);
-  //   }
-  // )}
-
 
 export function findAll(req: express.Request, res: express.Response, next: Function) {
         User.findOne({})
