@@ -1,24 +1,29 @@
-<md-content layout='column' layout-align="center">
-    <div layout='row' flex="33" layout-align="center center" style=" background-color: white; height: 75px;">
+<md-content layout='column' layout-align="center" style="margin-top: 40px;">
+    <div layout='column' flex="33" layout-align="center center" class="md-padding" style=" background-color: white; height: 75px;">
         <h3>Let the people know a little about you</h3>
+        <br />
+        <p>
+            Choose a social media account you'd like to add!
+        </p>
+        <br />
     </div>
     <div layout='row' layout-align="center">
         <div class="md-block" layout-padding>
-            <md-button class="md-fab">
-                <i class="fa fa-facebook-square fa-2x" aria-hidden="true" ng-click="vm.socialHold.provider = 'facebook'"></i>
+            <md-button class="md-fab" ng-click="vm.socialHold.provider = 'facebook'">
+                <i class="fa fa-facebook-square fa-2x" aria-hidden="true"> </i>
             </md-button>
-            <md-button class="md-fab">
-                <i class="fa fa-instagram fa-2x" aria-hidden="true" ng-click="vm.socialHold.provider = 'instagram'"></i>
+            <md-button class="md-fab" ng-click="vm.socialHold.provider = 'instagram'">
+                <i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
             </md-button>
-            <md-button class="md-fab">
-                <i class="fa fa-twitter-square fa-2x" aria-hidden="true" ng-click="vm.socialHold.provider = 'twitter'"></i>
+            <md-button class="md-fab" ng-click="vm.socialHold.provider = 'twitter'">
+                <i class="fa fa-twitter-square fa-2x" aria-hidden="true"> </i>
             </md-button>
-            <md-button class="md-fab">
-                <i class="fa fa-github-square fa-2x" aria-hidden="true" ng-click="vm.socialHold.provider = 'github'"></i>
+            <md-button class="md-fab" ng-click="vm.socialHold.provider = 'github'">
+                <i class="fa fa-github-square fa-2x" aria-hidden="true"> </i>
             </md-button>
         </div>
     </div>
-    <div layout='row' layout-align="center">
+    <div layout='row' layout-align="center" ng-show="vm.socialHold.provider">
         <div layout-gt-sm="row" layout-align="center">
         <md-input-container class="md-block">
             <label>Social Provider</label>
@@ -38,7 +43,7 @@
             <md-button class="md-accent md-mini md-hue-2">{{s.provider}}</md-button>
         </div>
     </div>
-    <div layout='row' layout-align="center">
+    <div layout='row' layout-align="center" style="margin-top: 50px;">
         <form name="profile" flex-gt-sm="33" ng-submit="hold">
             <div layout-padding>
                 <md-input-container class='md-block' flex-gt-sm>

@@ -59,7 +59,7 @@ export function forgot(req: express.Request, res: express.Response, next: Functi
               from: 'Folio Team <folioteamcc@gmail.com>',
               to: user.email,
               subject: 'Folio Password Reset',
-              text: 'Hey ' + user.name + ',\n\n' + 'We heard you forgot your password. Please click on the link below to reset it:\n\n' + 'http://localhost:3000/reset/' + token + '\n\n' + 'If you did not request a reset, please ignore this email. Your password will not be reset.\n\n' + 'Have a great day!\n\n' + 'xo,\n' + 'The Folio Team'          
+              text: 'Hey ' + user.name + ',\n\n' + 'We heard you forgot your password. Please click on the link below to reset it:\n\n' + 'http://localhost:3000/reset/' + token + '\n\n' + 'If you did not request a reset, please ignore this email. Your password will not be reset.\n\n' + 'Have a great day!\n\n' + 'xo,\n' + 'The Folio Team'
             };
             smtpTransporter.sendMail(mailOptions, (err) => {
               return res.redirect('/');
@@ -88,5 +88,12 @@ export function findOne(req: express.Request, res: express.Response, next: Funct
         .exec((err, data) => {
             if (err) return next (err);
             res.json(data);
+        });
+    }
+
+export function update (req: express.Request, res: express.Response, next: Function) {
+        User.update({_id: req.params.id}, req.body,(err, numRows) => {
+            if(err) return next(err);
+            res.json({message: "Updated"});
         });
     }

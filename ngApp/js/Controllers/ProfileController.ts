@@ -2,13 +2,18 @@ namespace app.Controllers {
     export class ProfileController {
         public status;
         public user;
-        public social = [];
         public socialHold;
 
         /////////Add socialSite to Array
         public addSocial(){
-            this.social.push(this.socialHold);
+            this.user.social.push(this.socialHold);
             this.socialHold = {};
+        }
+
+        public updateProfile(id, user){
+            this.UserService.update(this.status._id, this.user).then((res)=>{
+                this.$state.go('Home');
+            })
         }
 
         //////////////$mdDialog(Modal);
@@ -22,7 +27,7 @@ namespace app.Controllers {
                     .ok("Let's Do It!")
                 );
         };
-        constructor(private UserService: app.Services.UserService, private $mdDialog){
+        constructor(private UserService: app.Services.UserService, private $mdDialog, private $state: ng.ui.IStateService){
             this.status = UserService.status;
             UserService.getUser(this.status._id).then((data)=>{
                 this.user = data;

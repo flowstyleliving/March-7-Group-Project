@@ -18,10 +18,10 @@ let userSchema = new mongoose.Schema({
   name: {type: String, required: true},
   img: {type: String, default: 'something.png'},
   aboutMe: {type: String},
-	social: {
+	social: [{
 		provider: {type: String, lowercase: true, trim: true},
-    url: {type: String}
-	},
+        url: {type: String}
+    }],
   comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
   items: [{type: mongoose.Schema.Types.ObjectId, ref: 'Item'}],
   facebook: {id: String, token: String},

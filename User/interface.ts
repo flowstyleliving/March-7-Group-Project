@@ -8,10 +8,10 @@ namespace app.i{
     name: string;
     img?: string;
     aboutMe?: string;
-    social: {
-      provider: string,
-      url: string
-    };
+    social: [{
+        provider: string,
+        url: string
+    }];
     comments?: Array<string>;
     items?: Array<string>;
     facebook: {id: string, token: string},

@@ -18,6 +18,13 @@ namespace app.Services{
             return q.promise;
         }
 
+        public update(id: string, user){
+            let q = this.$q.defer();
+            this.$http.put('/ap/v1/users/update/' + id, user).then((res)=>{
+                q.resolve();
+            });
+            return q.promise;
+        }
 
         public login(user) {
             let q = this.$q.defer();
