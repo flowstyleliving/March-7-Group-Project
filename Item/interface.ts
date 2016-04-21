@@ -9,7 +9,7 @@ namespace app.i{
     }];
     description: string;
     datePosted: number;
-    dateComplete: string;
+    dateCompleted: string;
     notes: string;
     category: string;
 

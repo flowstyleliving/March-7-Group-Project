@@ -1,8 +1,13 @@
 namespace app.Controllers {
   export class ItemCreateController {
-    public arr = []
-    public modfile: app.i.IItem;
+    public item: app.i.IItem;
     public file;
+
+    public create() {
+      this.ItemService.createItem(this.item).then((res) => {
+        // this.$state.go('Profile');
+      })
+    }
 
     public pickFile() {
       this.filepickerService.pick(
@@ -14,17 +19,22 @@ namespace app.Controllers {
     public fileUploaded(file) {
       // save file url to database
       this.file = file;
-      console.log(file.url)
-      this.modfile = {}
-      this.modfile.images[0] = file.url;
-      this.modfile['caption'] = file.caption;
-      this.modfile['mainOrNah'] = file.boolean;
-      console.log(this.modfile)
-      this.arr.push(this.modfile);
+      // console.log(file.url)
+      // this.modfile = {}
+      // this.modfile.images[0] = file.url;
+      // this.modfile['caption'] = file.caption;
+      // this.modfile['mainOrNah'] = file.boolean;
+      // console.log(this.modfile)
+      // this.arr.push(this.modfile);
       this.$scope.$apply(); // force page to update
     }
 
-    constructor(private filepickerService, private $scope: ng.IScope) {
+    constructor(
+      private ItemService: app.Services.ItemService,
+      private $state: ng.ui.IStateService,
+      private filepickerService,
+      private $scope: ng.IScope
+    ) {
 
     }
   }
