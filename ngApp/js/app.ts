@@ -42,9 +42,9 @@ namespace app {
         templateUrl: 'templates/createprofile.html',
         controller: "ProfileController",
         controllerAs: 'vm'
-    }).state('Receive', {
-      url: '/receive',
-      templateUrl: '/templates/received.html'
+    }).state('Reset', {
+      url: '/reset',
+      templateUrl: '/templates/reset.html'
     });
 
     $mdThemingProvider.theme('default')
