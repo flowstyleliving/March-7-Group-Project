@@ -7,9 +7,7 @@ const router = express.Router();
 router.post('/login', controller.login);
 router.post('/register', controller.register);
 
-router.get('/forgot', controller.forgot);
-router.get('/reset/:token', controller.reset);
-router.post('/reset/:token', controller.reset);
+router.post('/forgot', controller.forgot);
 
 router.get('/auth/facebook', passport.authenticate('facebook',{session: false}));
 router.get('/auth/facebook/callback', passport.authenticate('facebook',{session: false}), (req,res,next) => {
@@ -30,5 +28,8 @@ router.get('/auth/github', passport.authenticate('github',{session: false}));
 router.get('/auth/github/callback', passport.authenticate('github',{session: false}), (req,res,next) => {
   res.redirect('/?code=' + req['tempUser'].generateJWT());
 })
+
+router.get('/', controller.findAll);
+router.get('/:id', controller.findOne);
 
 export = router;

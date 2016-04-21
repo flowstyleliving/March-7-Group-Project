@@ -7,15 +7,15 @@
                 </a>
                 <span flex></span>
                 <md-menu-bar>
-                    <md-menu offset="15" class="md-accent">
-                        <md-button ng-click="$mdOpenMenu()" class="md-icon-button" aria-label="Open some menu">
+                    <md-menu offset="15">
+                        <md-button ng-click="$mdOpenMenu()" class="md-icon-button md-accent" aria-label="Open some menu">
                             <md-icon md-menu-origin md-font-icon="material icon">menu</md-icon>
                         </md-button>
                         <md-menu-content width="3">
                             <div ng-show="!nav.status._id">
                                 <a ui-sref="Login">
                                     <md-menu-item>
-                                        <md-button aria-label="Login" style="text-align: center;">
+                                        <md-button  aria-label="Login" style="text-align: center;">
                                             Login
                                         </md-button>
                                     </md-menu-item>

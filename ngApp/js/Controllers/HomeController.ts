@@ -12,12 +12,12 @@ namespace app.Controllers {
                 $location.search('');
                 if ($location.hash()) $location.hash('');
             }
-            // UserService.getUser(this.status.id).then((data)=>{
-            //     this.user = data;
-            //     if(!this.user.bio){
-            //         this.$state.go('Profile');
-            //     }
-            // });
+            UserService.getUser(this.status._id).then((data)=>{
+                this.user = data;
+                if(!this.user.bio){
+                    this.$state.go('Create Profile');
+                }
+            });
         }
     }
     angular.module('app').controller('HomeController', HomeController);

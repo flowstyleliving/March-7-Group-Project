@@ -10,6 +10,15 @@ namespace app.Services{
             return q.promise;
         }
 
+        public getAll(){
+            let q = this.$q.defer();
+            this.$http.get('/api/v1/users/', null).then((res)=>{
+                q.resolve(res.data);
+            });
+            return q.promise;
+        }
+
+
         public login(user) {
             let q = this.$q.defer();
             this.$http.post('/api/v1/users/login', user).then((res) => {
@@ -35,12 +44,12 @@ namespace app.Services{
             return q.promise;
         }
 
-        public forgotPassword() {
-
-        }
-
-        public resetPassword() {
-
+        public forgotPassword(user) {
+          let q = this.$q.defer();
+          this.$http.post('/api/v1/users/forgot', user).then((res) => {
+              q.resolve();
+          });
+          return q.promise;
         }
 
         public getToken() {
