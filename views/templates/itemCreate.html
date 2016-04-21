@@ -1,4 +1,37 @@
-<button ng-click="vm.pickFile()">Upload</button>
+<h1>Item Create!</h1>
+<br>
+<div>
+  <form class="container" ng-submit="vm.create()">
+    <br />
+    <div>
+      Title
+      <br />
+      <input type="text" ng-model="vm.item.title" />
+      <br />
+      Description
+      <br />
+      <textarea ng-model="vm.item.description"></textarea>
+      <br />
+      dateCompleted
+      <br />
+      <input type="text" ng-model="vm.item.dateCompleted" />
+      <br />
+      Notes
+      <br />
+      <input type="text" ng-model="vm.item.notes" />
+      <br />
+      Category
+      <br />
+      <input type="text" ng-model="vm.item.category" />
+      <br />
+      <br />
+    </div>
+    <button class="btn-success" type="submit" />Submit
+  </form>
+</div>
+<br /><br />
 
-<h2>{{vm.file.filename}}</h2>
-<img ng-src="{{vm.file.url | fpConvert:{w: 400} }}" alt="{{vm.file.filename}}" />
+<!-- <button ng-click="vm.pickFile()">Upload</button> -->
+
+<!-- <h2>{{vm.file.filename}}</h2>
+<img ng-src="{{vm.file.url | fpConvert:{w: 400} }}" alt="{{vm.file.filename}}" /> -->

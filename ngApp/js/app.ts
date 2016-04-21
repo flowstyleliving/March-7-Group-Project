@@ -32,7 +32,7 @@ namespace app {
       controller: 'UserForgotController',
       controllerAs: 'vm'
     }).state('itemCreate', {
-      url: '/itemcreate',
+      url: '/createitem',
       templateUrl: 'templates/itemCreate.html',
       controller: 'ItemCreateController',
       controllerAs: 'vm'
