@@ -1,7 +1,7 @@
 namespace app.Controller{
   export class UserResetController{
 
-    public forgot(token){
+    public reset(token){
         this.UserService.resetPassword(token).then(()=> {
             this.$state.go('Home');
         })
