@@ -30,42 +30,50 @@ export function register(req: express.Request, res: express.Response, next: Func
 }
 
 export function forgot(req: express.Request, res: express.Response, next: Function) {
-  async.waterfall([
-    function(cb) {
-      crypto.randomBytes(20, (err, buf) => {
-        let token = buf.toString('hex');
-        cb(err, token);
-      });
-    }, function(token, cb) {
-      User.findOne({email: req.body.email})
-        .exec((err, user) => {
-        if (!user) return next({message: 'Invalid user'});
-        user.resetPasswordToken = token;
-        user.save((err) => {
-          cb(err, token, user);
-        });
-      });
-    }, function(token, user: app.i.IUser, cb) {
-      let transport = nodemailer.createTransport(smtpTransport({
-        service: 'gmail',
-        auth: {
-          user: process.env.GMAIL_USER,
-          pass: process.env.GMAIL_PASS
-        }
-      }));
-      let mailOptions = {
-        to: user.email,
-        from: 'Folio Team <folioteamcc@gmail.com>',
-        subject: 'Password Reset Request',
-        text: 'Click this link to reset password: http://localhost:3000/reset' + token
-      };
-      transport.sendMail(mailOptions, (err) => {
-        cb(err);
-      });
-    }], function(err) {
+  User.findOne({email: req.body.email})
+    .exec((err,user) => {
       if (err) return next(err);
+      if (!user) return next({message: 'Invalid user'});
+      if (user) return res.redirect('/')
+    });
     }
-  )}
+  // async.waterfall([
+  //   function(cb) {
+  //     crypto.randomBytes(20, (err, buf) => {
+  //       let token = buf.toString('hex');
+  //       cb(err, token);
+  //     });
+  //   }, function(token, cb) {
+  //     User.findOne({email: req.body.email})
+  //       .exec((err, user) => {
+  //       if (!user) return next({message: 'Invalid user'});
+  //       user.resetPasswordToken = token;
+  //       user.save((err) => {
+  //         cb(err, token, user);
+  //       });
+  //     });
+  //   }, function(token, user: app.i.IUser, cb) {
+  //     let transport = nodemailer.createTransport(smtpTransport({
+  //       service: 'gmail',
+  //       auth: {
+  //         user: process.env.GMAIL_USER,
+  //         pass: process.env.GMAIL_PASS
+  //       }
+  //     }));
+  //     let mailOptions = {
+  //       to: user.email,
+  //       from: 'Folio Team <folioteamcc@gmail.com>',
+  //       subject: 'Password Reset Request',
+  //       text: 'Click this link to reset password: http://localhost:3000/reset' + token
+  //     };
+  //     transport.sendMail(mailOptions, (err) => {
+  //       cb(err);
+  //     });
+  //   }], function(err) {
+  //     if (err) return next(err);
+  //   }
+  // )}
+
 
 export function findAll(req: express.Request, res: express.Response, next: Function) {
         User.findOne({})
