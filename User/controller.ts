@@ -72,6 +72,10 @@ export function forgot(req: express.Request, res: express.Response, next: Functi
     });
     }
 
+export function reset(req: express.Request, res: express.Response, next: Function) {
+  
+}
+
 export function findAll(req: express.Request, res: express.Response, next: Function) {
         User.findOne({})
         .select('-password')

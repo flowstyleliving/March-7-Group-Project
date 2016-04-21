@@ -12,6 +12,7 @@ router.post('/login', controller.login);
 router.post('/register', controller.register);
 
 router.post('/forgot', controller.forgot);
+router.post('/reset/:token', controller.reset);
 
 router.get('/auth/facebook', passport.authenticate('facebook',{session: false}));
 router.get('/auth/facebook/callback', passport.authenticate('facebook',{session: false}), (req,res,next) => {
