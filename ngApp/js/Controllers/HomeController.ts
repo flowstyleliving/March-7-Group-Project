@@ -14,7 +14,7 @@ namespace app.Controllers {
             }
             UserService.getUser(this.status._id).then((data)=>{
                 this.user = data;
-                if(!this.user.bio){
+                if(!this.user.aboutMe){
                     this.$state.go('Create Profile');
                 }
             });

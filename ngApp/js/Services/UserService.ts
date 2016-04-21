@@ -20,7 +20,7 @@ namespace app.Services{
 
         public update(id: string, user){
             let q = this.$q.defer();
-            this.$http.put('/ap/v1/users/update/' + id, user).then((res)=>{
+            this.$http.put('/api/v1/users/update/' + id, user).then((res)=>{
                 q.resolve();
             });
             return q.promise;
@@ -55,14 +55,6 @@ namespace app.Services{
           let q = this.$q.defer();
           this.$http.post('/api/v1/users/forgot', user).then((res) => {
               q.resolve();
-          });
-          return q.promise;
-        }
-
-        public resetPassword(token, user) {
-          let q = this.$q.defer();
-          this.$http.post('/api/v1/users/reset/' + token, user).then((res) => {
-            q.resolve();
           });
           return q.promise;
         }

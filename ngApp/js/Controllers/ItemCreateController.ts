@@ -1,12 +1,13 @@
 namespace app.Controllers {
   export class ItemCreateController {
-    public item: app.i.IItem;
-    public file;
+    public item;
+    public file=[];
+    public obj;
 
-    public create() {
-      this.ItemService.createItem(this.item).then((res) => {
-        // this.$state.go('Profile');
-      })
+    public create(){
+        this.ItemService.createItem(this.item.title, this.file, this.item.description, this.item.dateCompleted, this.item.notes, this.item.category).then(()=>{
+            this.$state.go('Home');
+        })
     }
 
     public pickFile() {
@@ -17,17 +18,10 @@ namespace app.Controllers {
     }
 
     public fileUploaded(file) {
-      // save file url to database
-      this.file = file;
-      // console.log(file.url)
-      // this.modfile = {}
-      // this.modfile.images[0] = file.url;
-      // this.modfile['caption'] = file.caption;
-      // this.modfile['mainOrNah'] = file.boolean;
-      // console.log(this.modfile)
-      // this.arr.push(this.modfile);
+      this.file.push(file);
       this.$scope.$apply(); // force page to update
     }
+
 
     constructor(
       private ItemService: app.Services.ItemService,
@@ -40,3 +34,16 @@ namespace app.Controllers {
   }
   angular.module('app').controller('ItemCreateController', ItemCreateController);
 }
+
+// save file url to database
+//   let modfile;
+//   modfile.imgUrl = file.url;
+//   this.file.push(modfile);
+//   console.log(this.file);
+// console.log(this.file)
+// let modfile = {}
+// modfile.imgUrl = this.file.url;
+// modfile.caption = file.caption;
+// modfile.mainOrNah = file.boolean;
+// console.log(this.modfile)
+// this.arr.push(modfile);

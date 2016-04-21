@@ -2,11 +2,7 @@ namespace app.i{
   export interface IItem{
     _id: any;
     title: string;
-    images: [{
-      imgUrl: string;
-      caption: string;
-      mainOrNah: boolean;
-    }];
+    images: [any];
     description: string;
     datePosted: number;
     dateCompleted: string;
