@@ -1,11 +1,12 @@
 import * as mongoose from 'mongoose';
 import * as express from 'express';
 import * as crypto from 'crypto';
-import * as nodemailer from 'nodemailer';
 import * as async from 'async';
-import transport = require('nodemailer-smtp-transport');
 import {User, IUserModel} from './model';
 import {Item, IItemModel} from '../Item/model';
+
+let nodemailer = require('nodemailer');
+let transport = require('nodemailer-smtp-transport');
 
 export function login(req: express.Request, res: express.Response, next: Function) {
   User.findOne({ email: req.body.email })

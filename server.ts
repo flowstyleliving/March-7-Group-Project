@@ -6,7 +6,7 @@ import cookieParser = require('cookie-parser');
 import bodyParser = require('body-parser');
 import mongoose = require('mongoose');
 import session = require('express-session');
-import nodemailer = require('nodemailer');
+let nodemailer = require('nodemailer');
 import passport = require('./config/passport');
 
 const app = express();
