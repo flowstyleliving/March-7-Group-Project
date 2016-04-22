@@ -5,6 +5,7 @@ import * as nodemailer from 'nodemailer';
 import * as async from 'async';
 import transport = require('nodemailer-smtp-transport');
 import {User, IUserModel} from './model';
+import {Item, IItemModel} from '../Item/model';
 
 export function login(req: express.Request, res: express.Response, next: Function) {
   User.findOne({ email: req.body.email })
@@ -115,7 +116,7 @@ export function reset(req: express.Request, res: express.Response, next: Functio
 
 export function findAll(req: express.Request, res: express.Response, next: Function) {
         User.find({})
-        .select('-password')
+        .select('-password -facebook')
         .exec((err, data) => {
             if (err) return next (err);
             res.json(data);
@@ -125,13 +126,16 @@ export function findAll(req: express.Request, res: express.Response, next: Funct
 
 export function findOne(req: express.Request, res: express.Response, next: Function) {
         User.findOne({_id: req.params.id})
-        .select('-password')
+        .select('-password -facebook')
         .populate('items', 'title images description datePosted dateComplete notes category')
         .exec((err, data) => {
             if (err) return next (err);
-            res.json(data);
-        });
-    }
+            Item.populate(data.items,{path:'user',select:'name',model:'User'}, (err, response) => {
+              if (err) return next(err);
+              res.json(data);
+            });
+          });
+      }
 
 export function update (req: express.Request, res: express.Response, next: Function) {
         User.update({_id: req.params.id}, req.body,(err, numRows) => {
