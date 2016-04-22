@@ -14,7 +14,7 @@ namespace app.Controllers {
         }
 
         public updateProfile(){
-            this.UserService.update(this.status._id, this.user.aboutMe, this.social, this.user.img, this.user.theme).then((res)=>{
+            this.UserService.update(this.status._id, this.user.aboutMe, this.social, this.user.img, this.theme).then((res)=>{
                 this.$state.go('Home');
             })
         }
