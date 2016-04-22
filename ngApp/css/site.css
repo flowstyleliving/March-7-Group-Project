@@ -19,3 +19,13 @@
     text-decoration: none;
     color:
 }
+
+.menuLink {
+    text-decoration: none;
+    color: black;
+}
+
+.menuLink:hover {
+    text-decoration: none;
+    color: black;
+}

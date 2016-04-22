@@ -22,6 +22,7 @@ let userSchema = new mongoose.Schema({
 		provider: {type: String, lowercase: true, trim: true},
         url: {type: String}
     }],
+  theme: {type: String},
   comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
   items: [{type: mongoose.Schema.Types.ObjectId, ref: 'Item'}],
   facebook: {id: String, token: String},

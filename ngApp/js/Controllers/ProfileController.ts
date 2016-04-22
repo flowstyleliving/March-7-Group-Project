@@ -5,6 +5,7 @@ namespace app.Controllers {
         public socialHold;
         public social = [];
         public isShow = false;
+        public theme;
 
         /////////Add socialSite to Array
         public addSocial(){
@@ -13,7 +14,7 @@ namespace app.Controllers {
         }
 
         public updateProfile(){
-            this.UserService.update(this.status._id, this.user.aboutMe, this.social, this.user.img).then((res)=>{
+            this.UserService.update(this.status._id, this.user.aboutMe, this.social, this.user.img, this.user.theme).then((res)=>{
                 this.$state.go('Home');
             })
         }
