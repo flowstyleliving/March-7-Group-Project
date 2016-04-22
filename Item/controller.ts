@@ -1,6 +1,7 @@
 import * as mongoose from 'mongoose';
 import * as express from 'express';
 import {Item, IItemModel} from './model';
+import {User, IUserModel} from '../User/model';
 import {Comment, ICommentModel} from '../Comment/model';
 
 export function getAll(req: express.Request, res: express.Response, next: Function) {
@@ -30,7 +31,10 @@ export function create(req: express.Request, res: express.Response, next: Functi
     req.body.datePosted = Date.now();
     Item.create(req.body, (err, item:IItemModel)=>{
         if (err) return next (err);
-        res.json(item);
+        User.update({ _id: item.user }, { $push: { 'items': item._id } }, (err, result) => {
+          if (err) return next(err);
+          res.json(item);
+        });
     });
 }
 

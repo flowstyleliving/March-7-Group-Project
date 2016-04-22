@@ -50,7 +50,7 @@ namespace app {
       templateUrl: '/templates/success.html'
     })
     .state('User Profile', {
-        url:'/userprofile',
+        url:'/userprofile/:id',
         templateUrl: '/templates/profile.html',
         controller: 'UserProfileController',
         controllerAs: 'vm'

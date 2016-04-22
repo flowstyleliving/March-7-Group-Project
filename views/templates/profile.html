@@ -1,0 +1,14 @@
+<md-content layout="column">
+    <md-card class="md-whiteframe-z2" md-theme="{{ vm.user.theme }}" md-theme-watch layout-margin>
+        <md-card-title >
+            <md-card-title-media layout-padding>
+                <div class="md-media-xl card-media">
+                    <img ng-src="{{vm.user.img}}" alt="{{vm.user.img}}" style="border: 5px solid white">
+                </div>
+            </md-card-title-media>
+            <md-card-title-text layout-align="center center">
+                <span class="md-headline" style="font-size: 5.5rem; color: white;">{{vm.user.name}}</span>
+            </md-card-title-text>
+        </md-card-title>
+    </md-card>
+</md-content>
