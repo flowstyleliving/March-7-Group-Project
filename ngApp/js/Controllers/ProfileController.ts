@@ -4,6 +4,7 @@ namespace app.Controllers {
         public user;
         public socialHold;
         public social = [];
+        public isShow = false;
 
         /////////Add socialSite to Array
         public addSocial(){
@@ -12,9 +13,22 @@ namespace app.Controllers {
         }
 
         public updateProfile(){
-            this.UserService.update(this.status._id, this.user.aboutMe, this.social).then((res)=>{
+            this.UserService.update(this.status._id, this.user.aboutMe, this.social, this.user.img).then((res)=>{
                 this.$state.go('Home');
             })
+        }
+
+        public pickFile() {
+          this.filepickerService.pick(
+            { mimetype: 'image/*' },
+            this.fileUploaded.bind(this)
+            );
+        }
+
+        public fileUploaded(file) {
+          this.user.img = file.url;
+          this.isShow = true;
+          this.$scope.$apply(); // force page to update
         }
 
         //////////////$mdDialog(Modal);
@@ -28,7 +42,8 @@ namespace app.Controllers {
                     .ok("Let's Do It!")
                 );
         };
-        constructor(private UserService: app.Services.UserService, private $mdDialog, private $state: ng.ui.IStateService){
+        constructor(private UserService: app.Services.UserService, private $mdDialog, private $state: ng.ui.IStateService, private filepickerService,
+              private $scope: ng.IScope){
             this.status = UserService.status;
             UserService.getUser(this.status._id).then((data)=>{
                 this.user = data;

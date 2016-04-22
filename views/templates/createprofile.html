@@ -1,8 +1,8 @@
-<md-content layout='column' layout-align="center" style="margin-top: 40px;">
+<md-content layout='column' layout-align="center" layout-margin>
     <div layout='column' flex="33" layout-align="center center" class="md-padding" style=" background-color: white; height: 75px;">
         <h3>Let the people know a little about you</h3>
         <br />
-        <p>
+        <p style="margin-top: 20px;">
             Choose a social media account you'd like to add!
         </p>
         <br />
@@ -43,7 +43,17 @@
             <md-button class="md-accent md-mini md-hue-2">{{s.provider}}</md-button>
         </div>
     </div>
-    <div layout='row' layout-align="center" style="margin-top: 50px;">
+    <md-divider></md-divider>
+    <div layout="column" layout-align="center center" >
+        <p>
+            Profile Picture
+        </p>
+        <md-button class="md-accent md-hue-2 md-raised" ng-show="!vm.isShow"ng-click="vm.pickFile()">
+            <i class="fa fa-user  fa-3x" aria-hidden="true" style="color: white;" ></i>
+        </md-button>
+            <img ng-show="vm.isShow" ng-src="vm.user.img | fpConvert:{w: 200}"  / >
+    </div>
+    <div layout='row' layout-align="center" >
         <form name="profile" flex-gt-sm="33" ng-submit="hold">
             <div layout-padding>
                 <md-input-container class='md-block' flex-gt-sm>

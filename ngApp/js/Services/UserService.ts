@@ -18,9 +18,9 @@ namespace app.Services{
             return q.promise;
         }
 
-        public update(id: string, aboutMe, social){
+        public update(id: string, aboutMe, social, img){
             let q = this.$q.defer();
-            this.$http.put('/api/v1/users/update/' + id, {aboutMe: aboutMe, social: social}).then((res)=>{
+            this.$http.put('/api/v1/users/update/' + id, {aboutMe: aboutMe, social: social, img: img}).then((res)=>{
                 q.resolve();
             });
             return q.promise;

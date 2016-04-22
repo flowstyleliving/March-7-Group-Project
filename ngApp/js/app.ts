@@ -54,6 +54,13 @@ namespace app {
         .primaryPalette('grey')
         .accentPalette('teal');
 
+    $mdThemingProvider.theme('dark-teal').backgroundPalette('teal').dark();
+    $mdThemingProvider.theme('dark-red').backgroundPalette('red').dark();
+    $mdThemingProvider.theme('dark-purple').backgroundPalette('deep-purple').dark();
+    $mdThemingProvider.theme('dark-indigo').backgroundPalette('indigo').dark();
+    $mdThemingProvider.theme('dark-light-green').backgroundPalette('light-green').dark();
+    $mdThemingProvider.theme('dark-pink').backgroundPalette('pink').dark();
+
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('AuthInterceptor');
