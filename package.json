@@ -6,7 +6,7 @@
     "start": "node ./bin/www",
     "devStart": "nodemon ./bin/www",
     "test": "mocha",
-    "postinstall": "./node_modules/.bin/typings install && ./node_modules/.bin/tsc && ./node_modules/.bin/bower install"
+    "postInstall": "./node_modules/.bin/typings install && ./node_modules/.bin/tsc && ./node_modules/.bin/bower install"
   },
   "license": "MIT",
   "dependencies": {
