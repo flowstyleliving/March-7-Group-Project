@@ -1,0 +1,43 @@
+//app.ts
+$mdThemingProvider.theme('dark-teal').backgroundPalette('teal').dark();
+$mdThemingProvider.theme('dark-red').backgroundPalette('red').dark();
+$mdThemingProvider.theme('dark-purple').backgroundPalette('deep-purple').dark();
+$mdThemingProvider.theme('dark-indigo').backgroundPalette('indigo').dark();
+$mdThemingProvider.theme('dark-light-green').backgroundPalette('light-green').dark();
+$mdThemingProvider.theme('dark-pink').backgroundPalette('pink').dark();
+
+
+//userService.ts
+public getUser(id: string){
+    let q = this.$q.defer();
+    this.$http.get('/api/v1/users/' + id, null).then((res)=>{
+        q.resolve(res.data);
+    });
+    return q.promise;
+}
+
+public getAll(){
+    let q = this.$q.defer();
+    this.$http.get('/api/v1/users/', null).then((res)=>{
+        q.resolve(res.data);
+    });
+    return q.promise;
+}
+
+public update(id: string, aboutMe, social, img){
+    let q = this.$q.defer();
+    this.$http.put('/api/v1/users/update/' + id, {aboutMe: aboutMe, social: social, img: img}).then((res)=>{
+        q.resolve();
+    });
+    return q.promise;
+}
+
+//User/controller
+export function findAll(req: express.Request, res: express.Response, next: Function) {
+        User.find({})
+        .select('-password')
+        .exec((err, data) => {
+            if (err) return next (err);
+            res.json(data);
+        });
+    }

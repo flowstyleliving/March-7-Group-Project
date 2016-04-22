@@ -48,11 +48,24 @@ namespace app {
     }).state('Success', {
       url: '/success',
       templateUrl: '/templates/success.html'
+    })
+    .state('User Profile', {
+        url:'/userprofile',
+        templateUrl: '/templates/profile.html',
+        controller: 'UserProfileController',
+        controllerAs: 'vm'
     });
 
     $mdThemingProvider.theme('default')
         .primaryPalette('grey')
         .accentPalette('teal');
+
+    $mdThemingProvider.theme('dark-teal').primaryPalette('teal').backgroundPalette('teal').dark();
+    $mdThemingProvider.theme('dark-red').primaryPalette('red').backgroundPalette('red').dark();
+    $mdThemingProvider.theme('dark-purple').primaryPalette('deep-purple').backgroundPalette('deep-purple').dark();
+    $mdThemingProvider.theme('dark-indigo').primaryPalette('indigo').backgroundPalette('indigo').dark();
+    $mdThemingProvider.theme('dark-light-green').primaryPalette('light-green').backgroundPalette('light-green').dark();
+    $mdThemingProvider.theme('dark-pink').primaryPalette('pink').backgroundPalette('pink').dark();
 
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);

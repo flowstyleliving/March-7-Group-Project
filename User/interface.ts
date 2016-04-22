@@ -12,6 +12,7 @@ namespace app.i{
         provider: string,
         url: string
     }];
+    theme: string;
     comments?: Array<string>;
     items?: Array<string>;
     facebook: {id: string, token: string},

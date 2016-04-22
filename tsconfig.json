@@ -46,6 +46,7 @@
     "ngApp/js/Controllers/ProfileController.ts",
     "ngApp/js/Controllers/UserForgotController.ts",
     "ngApp/js/Controllers/UserLoginController.ts",
+    "ngApp/js/Controllers/UserProfileController.ts",
     "ngApp/js/Controllers/UserRegisterController.ts",
     "ngApp/js/Controllers/UserResetController.ts",
     "ngApp/js/Directives/nav.ts",

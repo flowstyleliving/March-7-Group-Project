@@ -114,13 +114,14 @@ export function reset(req: express.Request, res: express.Response, next: Functio
 }
 
 export function findAll(req: express.Request, res: express.Response, next: Function) {
-        User.findOne({})
+        User.find({})
         .select('-password')
         .exec((err, data) => {
             if (err) return next (err);
             res.json(data);
         });
     }
+
 
 export function findOne(req: express.Request, res: express.Response, next: Function) {
         User.findOne({_id: req.params.id})

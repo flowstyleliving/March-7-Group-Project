@@ -2,7 +2,9 @@ namespace app.Controllers {
     export class HomeController {
         public status;
         public user;
+        public users;
 
+        public
         constructor(private UserService: app.Services.UserService, private $location: ng.ILocationService, private $mdDialog, private $state: ng.ui.IStateService) {
             this.status = UserService.status;
             console.log($location.search());
@@ -18,6 +20,9 @@ namespace app.Controllers {
                     this.$state.go('Create Profile');
                 }
             });
+            UserService.getAll().then((res)=>{
+                this.users = res;
+            })
         }
     }
     angular.module('app').controller('HomeController', HomeController);

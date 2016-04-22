@@ -1,14 +1,12 @@
-<md-content layout='column' layout-align="center" style="margin-top: 40px;">
-    <div layout='column' flex="33" layout-align="center center" class="md-padding" style=" background-color: white; height: 75px;">
+<md-content layout='column' layout-align=" start " md-theme="{{vm.theme}}" md-theme-watch style="height: 100vh;">
+    <div layout='column' layout-align="start center" >
         <h3>Let the people know a little about you</h3>
-        <br />
         <p>
             Choose a social media account you'd like to add!
         </p>
-        <br />
     </div>
     <div layout='row' layout-align="center">
-        <div class="md-block" layout-padding>
+        <div class="md-block" >
             <md-button class="md-fab" ng-click="vm.socialHold.provider = 'facebook'">
                 <i class="fa fa-facebook-square fa-2x" aria-hidden="true"> </i>
             </md-button>
@@ -43,7 +41,17 @@
             <md-button class="md-accent md-mini md-hue-2">{{s.provider}}</md-button>
         </div>
     </div>
-    <div layout='row' layout-align="center" style="margin-top: 50px;">
+    <md-divider></md-divider>
+    <div layout="column" layout-align="center center" >
+        <p>
+            Profile Picture
+        </p>
+        <md-button class="md-accent md-hue-2 md-raised" ng-show="!vm.isShow"ng-click="vm.pickFile()">
+            <i class="fa fa-user  fa-3x" aria-hidden="true" style="color: white;" ></i>
+        </md-button>
+            <img ng-show="vm.isShow" ng-src="vm.user.img | fpConvert:{w: 200}"  / >
+    </div>
+    <div layout='row' layout-align="center" >
         <form name="profile" flex-gt-sm="33" ng-submit="hold">
             <div layout-padding>
                 <md-input-container class='md-block' flex-gt-sm>
@@ -55,6 +63,23 @@
                 </md-input-container>
             </div>
         </form>
+    </div>
+    <div layout="row" layout-align="center">
+        <h1>Theme</h1>
+    </div>
+    <div layout="row" layout-align="center">
+        <md-button md-theme="dark-red" class="md-raised md-primary"  ng-click="vm.theme = 'dark-red'">
+        </md-button>
+        <md-button md-theme="dark-teal"  class="md-raised md-primary" ng-click="vm.theme = 'dark-teal'">
+        </md-button>
+        <md-button md-theme="dark-purple"  class="md-raised md-primary" ng-click="vm.theme = 'dark-purple'">
+        </md-button>
+        <md-button md-theme="dark-pink"  class="md-raised md-primary" ng-click="vm.theme = 'dark-pink'">
+        </md-button>
+        <md-button md-theme="dark-indigo"  class="md-raised md-primary" ng-click="vm.theme = 'dark-indigo'">
+        </md-button>
+        <md-button md-theme="dark-light-green"  class="md-raised md-primary" ng-click="vm.theme = 'dark-light-green'">
+        </md-button>
     </div>
     <div layout="row" layout-align="center">
             <md-button class="md-accent md-raised md-hue-2" ng-click="vm.updateProfile()">Submit</md-button>

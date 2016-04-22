@@ -17,5 +17,15 @@
 
 .home_link:hover {
     text-decoration: none;
-    color:
+    color: #64FFDA;
+}
+
+.menuLink {
+    text-decoration: none;
+    color: black;
+}
+
+.menuLink:hover {
+    text-decoration: none;
+    color: black;
 }
