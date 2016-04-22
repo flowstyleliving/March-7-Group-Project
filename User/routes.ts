@@ -1,5 +1,7 @@
 import * as express from 'express';
 import * as controller from './controller';
+import {User, IUserModel} from './model';
+
 
 const passport = require('passport');
 const router = express.Router();
@@ -12,7 +14,21 @@ router.post('/login', controller.login);
 router.post('/register', controller.register);
 
 router.post('/forgot', controller.forgot);
+
+router.get('/reset/:token', (req, res, next) => {
+  User.findOne({resetPasswordToken: req.params.token} , (err, user) => {
+    if (err) return next(err);
+    if (!user) {
+      return res.redirect('/forgot');
+    }
+      res.render('Reset', {
+        user: req.user
+      });
+  });
+});
+
 router.post('/reset/:token', controller.reset);
+
 
 router.get('/auth/facebook', passport.authenticate('facebook',{session: false}));
 router.get('/auth/facebook/callback', passport.authenticate('facebook',{session: false}), (req,res,next) => {

@@ -77,39 +77,38 @@ export function reset(req: express.Request, res: express.Response, next: Functio
     if (err) return next(err);
     if (!user) return next({message: 'Invalid or expired token'});
     if (user) {
-      return next({message: 'Hi!'});
-  //     async.waterfall([
-  //       function(cb) {
-  //         // user.hashPassword(req.body.password, (err, hash) => {
-  //         //   if (err) return next(err);
-  //         //   user.password = hash;
-  //         // });
-  //         user.resetPasswordToken = undefined;
-  //         user.save((err) => {
-  //           res.json({token: user.generateJWT()});
-  //           cb(err, user);
-  //         });
-  //       }, function(user: app.i.IUser, done) {
-  //         let smtpTransporter = nodemailer.createTransport(transport({
-  //           service: 'Gmail',
-  //           auth: {
-  //             user: process.env.GMAIL_USER,
-  //             pass: process.env.GMAIL_PASS
-  //           }
-  //         }));
-  //         let mailOptions = {
-  //           from: 'Folio Team <folioteamcc@gmail.com>',
-  //           to: user.email,
-  //           subject: 'Your Folio Password has been Reset',
-  //           text: 'Password has been reset!'
-  //         };
-  //         smtpTransporter.sendMail(mailOptions, (err) => {
-  //           return res.redirect('/');
-  //         })
-  //       }], function(err) {
-  //         if (err) return next(err);
-  //         return res.redirect('/');
-  //       })
+      async.waterfall([
+        function(cb) {
+          // user.hashPassword(req.body.password, (err, hash) => {
+          //   if (err) return next(err);
+          //   user.password = hash;
+          // });
+          user.resetPasswordToken = undefined;
+          user.save((err) => {
+            res.json({token: user.generateJWT()});
+            cb(err, user);
+          });
+        }, function(user: app.i.IUser, done) {
+          let smtpTransporter = nodemailer.createTransport(transport({
+            service: 'Gmail',
+            auth: {
+              user: process.env.GMAIL_USER,
+              pass: process.env.GMAIL_PASS
+            }
+          }));
+          let mailOptions = {
+            from: 'Folio Team <folioteamcc@gmail.com>',
+            to: user.email,
+            subject: 'Your Folio Password has been Reset',
+            text: 'Password has been reset!'
+          };
+          smtpTransporter.sendMail(mailOptions, (err) => {
+            return res.redirect('/');
+          })
+        }], function(err) {
+          if (err) return next(err);
+          return res.redirect('/');
+        })
     }
   });
 }
