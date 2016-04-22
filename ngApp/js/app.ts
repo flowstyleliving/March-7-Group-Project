@@ -60,7 +60,7 @@ namespace app {
         .primaryPalette('grey')
         .accentPalette('teal');
 
-    $mdThemingProvider.theme('dark-teal').primaryPalette('teal').backgroundPalette('teal').dark();
+    $mdThemingProvider.theme('dark-teal').primaryPalette('teal').backgroundPalette('lime').dark();
     $mdThemingProvider.theme('dark-red').primaryPalette('red').backgroundPalette('red').dark();
     $mdThemingProvider.theme('dark-purple').primaryPalette('deep-purple').backgroundPalette('deep-purple').dark();
     $mdThemingProvider.theme('dark-indigo').primaryPalette('indigo').backgroundPalette('indigo').dark();

@@ -15,9 +15,10 @@ require('./Item/model');
 require('./Comment/model');
 require('./User/model');
 
-mongoose.connect('mongodb://localhost/folio', (err) => {
-  if(err) console.log(err);
-  else console.log('Connected to mongodb://localhost/folio');
+let mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/folio';
+mongoose.connect(mongoUrl,(err) => {
+  if (err) console.log(err);
+  else console.log('Connected to ' + mongoUrl);
 });
 
 // view engine setup
