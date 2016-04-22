@@ -15,19 +15,21 @@ router.post('/register', controller.register);
 
 router.post('/forgot', controller.forgot);
 
-router.get('/reset/:token', (req, res, next) => {
-  User.findOne({resetPasswordToken: req.params.token} , (err, user) => {
-    if (err) return next(err);
-    if (!user) {
-      return res.redirect('/forgot');
-    }
-      res.render('Reset', {
-        user: req.user
-      });
-  });
+router.param('token', (req, res, next) => {
+  User.findOne({resetPasswordToken: req.params.token})
+    .exec((err, user) => {
+      if (err) return next(err);
+      if (!user) return next({message: 'Invalid/expired token'});
+      req.user = user;
+      next();
+    });
 });
 
-router.post('/reset/:token', controller.reset);
+router.get('/reset/:token', (req, res, next) => {
+  console.log('Tadah!');
+});
+
+// router.post('/reset/:token', controller.reset);
 
 
 router.get('/auth/facebook', passport.authenticate('facebook',{session: false}));
