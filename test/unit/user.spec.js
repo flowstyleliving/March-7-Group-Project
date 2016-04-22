@@ -63,7 +63,7 @@ describe('User Model', () => {
       u.name.required.should.equal(true);
       done();
     });
-    it('Should have email: lowercase, trim, unique & spare', (done) => {
+    it('Should have email: lowercase, trim, unique & sparse', (done) => {
       let e = u.email;
       e.lowercase.should.equal(true);
       e.trim.should.equal(true);
