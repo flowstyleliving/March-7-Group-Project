@@ -48,6 +48,12 @@ namespace app {
     }).state('Success', {
       url: '/success',
       templateUrl: '/templates/success.html'
+    })
+    .state('User Profile', {
+        url:'/userprofile',
+        templateUrl: '/templates/profile.html',
+        controller: 'UserProfileController',
+        controllerAs: 'vm'
     });
 
     $mdThemingProvider.theme('default')
