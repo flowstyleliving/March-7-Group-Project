@@ -5,6 +5,6 @@ namespace app.i {
     datePosted: number;
 
     item: (string | IItem);
-    user: (user | IUser);
+    user: (string | IUser);
   }
 }
