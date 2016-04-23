@@ -32,8 +32,10 @@ namespace app {
       controller: 'UserForgotController',
       controllerAs: 'vm'
     }).state('Reset', {
-      url: '/reset/:token',
-      templateUrl: '/templates/reset.html'
+      url: '/reset',
+      templateUrl: '/templates/reset.html',
+      controller: 'UserResetController',
+      controllerAs: 'vm'
     }).state('itemCreate', {
       url: '/createitem',
       templateUrl: '/templates/itemCreate.html',

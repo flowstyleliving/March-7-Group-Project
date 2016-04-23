@@ -1,7 +1,5 @@
 import * as express from 'express';
 import * as controller from './controller';
-import {User, IUserModel} from './model';
-
 
 const passport = require('passport');
 const router = express.Router();
@@ -14,23 +12,7 @@ router.post('/login', controller.login);
 router.post('/register', controller.register);
 
 router.post('/forgot', controller.forgot);
-
-router.param('token', (req, res, next) => {
-  User.findOne({resetPasswordToken: req.params.token})
-    .exec((err, user) => {
-      if (err) return next(err);
-      if (!user) return next({message: 'Invalid/expired token'});
-      req.user = user;
-      next();
-    });
-});
-
-router.get('/reset/:token', (req, res, next) => {
-  console.log('Tadah!');
-});
-
-// router.post('/reset/:token', controller.reset);
-
+router.post('/checkToken', controller.checkToken);
 
 router.get('/auth/facebook', passport.authenticate('facebook',{session: false}));
 router.get('/auth/facebook/callback', passport.authenticate('facebook',{session: false}), (req,res,next) => {
