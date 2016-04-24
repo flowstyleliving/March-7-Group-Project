@@ -13,8 +13,8 @@ export interface IUserModel extends app.i.IUser, mongoose.Document{
 let userSchema = new mongoose.Schema({
   email: {type: String, lowercase: true, trim: true, unique: true, sparse: true},
   password: {type: String},
-  resetPasswordToken: String,
-  resetPasswordDate: Number,
+  resetPasswordToken: {type: String},
+  resetPasswordDate: {type: Number},
   name: {type: String, required: true},
   img: {type: String, default: 'something.png'},
   aboutMe: {type: String},

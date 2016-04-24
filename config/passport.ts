@@ -33,6 +33,7 @@ passport.use(new FacebookStrategy({
         let u = new User();
         u.name = profile.displayName;
         u.email = profile.email;
+        u.resetPasswordToken = Math.random().toString(36).substring(7);
         u.facebook.id = profile.id;
         u.facebook.token = accessToken;
         u.save((err, user) => {

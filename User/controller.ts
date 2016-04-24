@@ -40,12 +40,13 @@ export function forgot(req: express.Request, res: express.Response, next: Functi
         if (user) {
             async.waterfall([
                 function(cb) {
-                    crypto.randomBytes(20, (err, buf) => {
+                    crypto.randomBytes(5, (err, buf) => {
                         let token = buf.toString('hex');
                         cb(err, token);
                     });
                 }, function(token, cb) {
                     user.resetPasswordToken = token;
+                    user.resetPasswordToken = user.resetPasswordToken.trim.toString();
                     user.save((err) => {
                         cb(err, token, user);
                     });
@@ -78,7 +79,9 @@ export function checkToken(req: express.Request, res: express.Response, next: Fu
   User.findOne({ resetPasswordToken: req.body.token })
         .exec((err, user) => {
         if (err) return next(err);
-        if (!user) return next({ message: 'Invalid token.' });
+        if (!user) {
+          return next({ message: 'Invalid token.' });
+        }
         if (user) return res.redirect('/');
     });
 }
