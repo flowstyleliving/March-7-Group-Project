@@ -62,7 +62,7 @@ export function forgot(req: express.Request, res: express.Response, next: Functi
                         from: 'Folio Team <folioteamcc@gmail.com>',
                         to: user.email,
                         subject: 'Folio Password Reset',
-                        html: 'Hey ' + user.name + ',<br>' + 'We heard you forgot your password. There are 2 steps to reset:<br>' + '1) Here is your reset token. It expires within an hour from when you requested to reset your password: ' + '<strong>' + token + '</strong><br><br>' + '2) Click on the link below to reset<br>' + 'http://localhost:3000/reset/<br><br>' + 'If you did not request a reset, please ignore this email. Your password will not be reset.<br><br>' + 'Have a great day!<br><br>' + 'xo,<br>' + 'The Folio Team'
+                        html: 'Hey ' + user.name + ',<br>' + 'We heard you forgot your password. There are 2 steps to reset:<br>' + '1) Here is your reset token. It expires within an hour from when you requested to reset your password: ' + '<strong>' + token + '</strong><br><br>' + '2) Click on the link below to reset<br>' + 'http://localhost:3000/resetPassword/<br><br>' + 'If you did not request a reset, please ignore this email. Your password will not be reset.<br><br>' + 'Have a great day!<br><br>' + 'xo,<br>' + 'The Folio Team'
                     };
                     smtpTransporter.sendMail(mailOptions, (err) => {
                         return res.redirect('/');
@@ -72,18 +72,6 @@ export function forgot(req: express.Request, res: express.Response, next: Functi
                     return res.redirect('/');
                 })
         }
-    });
-}
-
-
-export function checkToken(req: express.Request, res: express.Response, next: Function) {
-  User.findOne({ resetPasswordToken: req.body.token, resetPasswordDate: {$gt: Date.now()} })
-        .exec((err, token) => {
-        if (err) return next(err);
-        if (!token) {
-          return next({ message: 'Invalid token.' });
-        }
-        if (token) return res.redirect('/');
     });
 }
 
