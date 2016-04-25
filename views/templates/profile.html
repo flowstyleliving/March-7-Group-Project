@@ -1,17 +1,75 @@
-<md-content layout="column">
-    <md-card class="md-whiteframe-z2" md-theme="{{ vm.user.theme }}" md-theme-watch layout-margin>
-        <md-card-title >
+<div layout="column" layout-align="center center">
+    <md-card class="md-whiteframe-z2" md-theme="{{ vm.user.theme }}" md-theme-watch layout-margin style="width: 960px;">
+        <md-card-title>
             <md-card-title-media layout-padding>
-                <div class="md-media-xl card-media">
-                    <img ng-src="{{vm.user.img}}" alt="{{vm.user.img}}" style="border: 5px solid white">
+                <div class="md-media-lg card-media">
+                    <img ng-src="{{vm.user.img}}" alt="{{vm.user.img}}" class="profile_img">
                 </div>
             </md-card-title-media>
             <md-card-title-text layout-align="center center">
                 <span class="md-headline" style="font-size: 5.5rem; color: white;">{{vm.user.name}}</span>
-                <div layout="row">
-                    
-                </div>
             </md-card-title-text>
         </md-card-title>
     </md-card>
-</md-content>
+    <div style="width: 960px;">
+        <md-content layout="row">
+            <md-tabs md-dynamic-height md-stretch-tabs='always' md-border-bottom flex>
+                <md-tab label="About Me">
+                    <md-content class="md-padding">
+                        <h1 class="md-display-2">{{vm.user.name}}</h1>
+                        <p>{{vm.user.aboutMe}}</p>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Portfolio">
+                    <md-content class="md-padding" ng-repeat="i in vm.user.items">
+                        <div layout="row">
+                            <div layout="column" flex='33' ng-repeat="u in i.images">
+                                <img ng-src="{{u.url}}" alt="{{u.url}}" ng-hide="!u.mainOrNah" class="item_img">
+                            </div>
+                            <div layout="column" flex="5"></div>
+                            <div layout="column" layout-align="start center" flex="60">
+                                <h1>{{i.title}}</h1>
+                                <p>{{i.description}}</p>
+                                <span layout="row" layout-align="start start"><p>Date Posted: {{i.datePosted | date: medium}} </p>&nbsp&nbsp <p>Date Completed: {{i.dateCompleted}}</p></span>
+                                <h3>Notes</h3>
+                                <p>{{i.notes}}</p>
+                                <pre>{{i.category}}</pre>
+                            </div>
+                        </div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Conact Me">
+                    <md-content class="md-padding">
+                        <div ng-show="vm.user.social">
+                            <div layout="row" layout-align="center" >
+                                <h3>Social Media</h3>
+                            </div>
+                            <div layout="row" layout-align="center">
+                                <div ng-repeat="s in vm.user.social" class="md-padding">
+                                    <a href="http://www.{{s.provider}}.com/{{s.url}}">
+                                        <md-button class="md-fab md-primary">
+                                            <i class="fa {{s.template}} fa-2x" style="color: white;"></i>
+                                        </md-button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="vm.user.email">
+                            <div layout="row" layout-align="center">
+                                <h3>Email Address</h3>
+                            </div>
+                            <div layout="row" layout-align="center">
+                                    <a href="mailto:{{vm.user.email}}">
+                                        <md-button class="md-fab">
+                                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                        </md-button>
+                                        {{vm.user.email}}
+                                    </a>
+                            </div>
+                        </div>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </div>
+</div>

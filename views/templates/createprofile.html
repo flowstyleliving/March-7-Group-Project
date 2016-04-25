@@ -7,16 +7,16 @@
     </div>
     <div layout='row' layout-align="center">
         <div class="md-block" >
-            <md-button class="md-fab" ng-click="vm.socialHold.provider = 'facebook'">
+            <md-button class="md-fab" ng-click="vm.socialHold.provider = 'facebook'; vm.socialHold.template='fa-facebook-square'">
                 <i class="fa fa-facebook-square fa-2x" aria-hidden="true"> </i>
             </md-button>
-            <md-button class="md-fab" ng-click="vm.socialHold.provider = 'instagram'">
+            <md-button class="md-fab" ng-click="vm.socialHold.provider = 'instagram'; vm.socialHold.template='fa-instagram'">
                 <i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
             </md-button>
-            <md-button class="md-fab" ng-click="vm.socialHold.provider = 'twitter'">
+            <md-button class="md-fab" ng-click="vm.socialHold.provider = 'twitter'; vm.socialHold.template='fa-twitter-square'">
                 <i class="fa fa-twitter-square fa-2x" aria-hidden="true"> </i>
             </md-button>
-            <md-button class="md-fab" ng-click="vm.socialHold.provider = 'github'">
+            <md-button class="md-fab" ng-click="vm.socialHold.provider = 'github'; vm.socialHold.template='fa-github-square'">
                 <i class="fa fa-github-square fa-2x" aria-hidden="true"> </i>
             </md-button>
         </div>
@@ -28,7 +28,7 @@
             <input type="text" ng-model='vm.socialHold.provider' disabled>
         </md-input-container>
         <md-input-container class="md-block">
-            <label>Url</label>
+            <label>Username</label>
             <input type="text" ng-model='vm.socialHold.url'>
         </md-input-container>
         </div>

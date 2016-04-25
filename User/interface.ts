@@ -10,7 +10,8 @@ namespace app.i{
     aboutMe?: string;
     social: [{
         provider: string,
-        url: string
+        url: string,
+        template: string,
     }];
     theme: string;
     comments?: Array<string>;

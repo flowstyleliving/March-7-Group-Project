@@ -1,6 +1,17 @@
 * {
     margin: 0;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
+}
+
+.profile_img {
+    border: 1px solid white;
+    max-width: 400px;
+    max-height: 400px;
+}
+
+.item_img{
+    max-width: 100%;
+    max-height: auto;
 }
 
 .registerbtn, .loginbtn {
@@ -10,6 +21,10 @@
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: 20px;
+}
+
+.md-card {
+
 }
 
 .facebook:hover {

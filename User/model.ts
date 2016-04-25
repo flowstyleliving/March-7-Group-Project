@@ -20,7 +20,8 @@ let userSchema = new mongoose.Schema({
   aboutMe: {type: String},
 	social: [{
 		provider: {type: String, lowercase: true, trim: true},
-        url: {type: String}
+        url: {type: String},
+        template: {type: String}
     }],
   theme: {type: String},
   comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
