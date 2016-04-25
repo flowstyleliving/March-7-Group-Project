@@ -13,8 +13,6 @@ router.post('/login', controller.login);
 router.post('/register', controller.register);
 
 router.post('/forgot', controller.forgot);
-
-router.post('/checkToken', controller.checkToken);
 router.post('/resetPassword', controller.resetPassword);
 
 router.get('/auth/facebook', passport.authenticate('facebook',{session: false}));

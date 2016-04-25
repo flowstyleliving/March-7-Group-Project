@@ -48,7 +48,6 @@
     "ngApp/js/Controllers/UserProfileController.ts",
     "ngApp/js/Controllers/UserRegisterController.ts",
     "ngApp/js/Controllers/UserResetController.ts",
-    "ngApp/js/Controllers/UserResetController2.ts",
     "ngApp/js/Directives/nav.ts",
     "ngApp/js/Services/AuthInterceptor.ts",
     "ngApp/js/Services/ItemService.ts",

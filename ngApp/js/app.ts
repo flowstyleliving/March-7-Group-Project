@@ -31,11 +31,6 @@ namespace app {
       templateUrl: '/templates/forgot.html',
       controller: 'UserForgotController',
       controllerAs: 'vm'
-    }).state('Reset', {
-      url: '/reset',
-      templateUrl: '/templates/reset.html',
-      controller: 'UserResetController',
-      controllerAs: 'vm'
     }).state('UpdatePassword', {
       url: '/resetPassword',
       templateUrl: '/templates/resetPassword.html',
