@@ -40,6 +40,7 @@
     "ngApp/js/app.ts",
     "ngApp/js/Controllers/GlobalController.ts",
     "ngApp/js/Controllers/HomeController.ts",
+    "ngApp/js/Controllers/ItemController.ts",
     "ngApp/js/Controllers/ItemCreateController.ts",
     "ngApp/js/Controllers/NavbarController.ts",
     "ngApp/js/Controllers/ProfileController.ts",

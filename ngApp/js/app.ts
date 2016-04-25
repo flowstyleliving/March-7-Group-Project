@@ -52,6 +52,12 @@ namespace app {
         templateUrl: '/templates/profile.html',
         controller: 'UserProfileController',
         controllerAs: 'vm'
+    })
+    .state('Item', {
+        url: '/item/:id',
+        templateUrl: '/templates/item.html',
+        controller: 'ItemController',
+        controllerAs: 'vm'
     });
 
     $mdThemingProvider.theme('default')
