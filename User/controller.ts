@@ -77,12 +77,12 @@ export function forgot(req: express.Request, res: express.Response, next: Functi
 
 export function checkToken(req: express.Request, res: express.Response, next: Function) {
   User.findOne({ resetPasswordToken: req.body.token })
-        .exec((err, user) => {
+        .exec((err, token) => {
         if (err) return next(err);
-        if (!user) {
+        if (!token) {
           return next({ message: 'Invalid token.' });
         }
-        if (user) return res.redirect('/');
+        if (token) return res.redirect('/');
     });
 }
 
