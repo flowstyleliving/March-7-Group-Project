@@ -1,5 +1,5 @@
-<div layout="row" layout-align="center center" style="height: 100vh;" layout-margin >
-    <div layout="column" flex='30' layout-align="center center" style="margin-top: 50px;">
+<md-content layout="column" layout-align="center center" style="height: 100vh; width: 100%" layout-margin style="border: 1px solid blue;">
+    <div layout="column" layout-align="center center" style="margin-top: 50px;">
         <md-button class="md-accent md-hue-2 md-raised">
             <i class="fa fa-upload fa-5x" aria-hidden="true" style="color: white;" ng-click="vm.pickFile()"></i>
         </md-button>
@@ -16,8 +16,8 @@
         </div>
         </div>
     </div>
-    <div layout="column" flex='30' layout-align="center center"style="margin-top: 50px;">
-            <form name="projectForm" style="width: 100%;">
+    <div layout="column" layout-align="center center"style="margin-top: 50px;">
+            <form name="projectForm" style="width: 600px;">
                 <md-input-container class="md-block">
                     <label>Title</label>
                     <input ng-model="vm.item.title">
@@ -42,7 +42,7 @@
                     Submit
                 </md-button>
     </div>
-</div>
+</md-content>
 
 
 <!-- <h1>Item Create!</h1>
