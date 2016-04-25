@@ -10,7 +10,7 @@ namespace app.Controllers {
 
         public resetPassword(){
           this.UserService.resetPassword(this.user).then(() => {
-            this.$state.go('Home');
+            this.$state.go('Login');
           })
         }
 

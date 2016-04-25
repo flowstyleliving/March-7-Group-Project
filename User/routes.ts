@@ -1,5 +1,6 @@
 import * as express from 'express';
 import * as controller from './controller';
+import {User, IUserModel} from './model';
 
 const passport = require('passport');
 const router = express.Router();
@@ -12,6 +13,7 @@ router.post('/login', controller.login);
 router.post('/register', controller.register);
 
 router.post('/forgot', controller.forgot);
+
 router.post('/checkToken', controller.checkToken);
 router.post('/resetPassword', controller.resetPassword);
 

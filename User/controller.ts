@@ -75,6 +75,7 @@ export function forgot(req: express.Request, res: express.Response, next: Functi
     });
 }
 
+
 export function checkToken(req: express.Request, res: express.Response, next: Function) {
   User.findOne({ resetPasswordToken: req.body.token, resetPasswordDate: {$gt: Date.now()} })
         .exec((err, token) => {
@@ -87,49 +88,40 @@ export function checkToken(req: express.Request, res: express.Response, next: Fu
 }
 
 export function resetPassword(req: express.Request, res: express.Response, next: Function) {
-  User.findOne({resetPasswordToken: req.body.token, resetPasswordDate: {$gt: Date.now()}})
-    .exec((err, user) => {
+  async.waterfall([
+    function(err, user) {
       if (err) return next(err);
-      if (!user) {
-        return next({message: 'Invalid token.'});
-      }
-      if (user) {
-        async.waterfall([
-          function (cb) {
-            user.hashPassword(req.body.password, (err, hash) => {
-              if (err) return next(err);
-              user.password = hash;
-              user.resetPasswordToken = undefined;
-              user.resetPasswordDate = undefined;
-              User.save((err) => {
-                req.login(user, (err) => {
-                  cb(err, user);
-                });
-              });
-            });
-          }, function (user: app.i.IUser, cb) {
-            let smtpTransporter = nodemailer.createTransport(transport({
-              service: 'Gmail',
-              auth: {
-                user: process.env.GMAIL_USER,
-                pass: process.env.GMAIL_PASS
-              }
-            }));
-            let mailOptions = {
-              from: 'Folio Team <folioteamcc@gmail.com>',
-              to: user.email,
-              subject: 'Your Folio Password has been updated!',
-              html: 'Hey ' + user.name + ',<br>' + 'We just wanted to let you know that your password has been updated.<br><br>' + 'If you did not update your password, please reply to this email to let us know.<br><br>' + 'Have a great day!<br><br>' + 'xo,<br>' + 'The Folio Team'
-            };
-            smtpTransporter.sendMail(mailOptions, (err) => {
-              return res.redirect('/');
-            })
-          }], function(err) {
-            if (err) return next(err);
-            return res.redirect('/');
-          })
-      }
-    });
+      user.hashPassword(req.body.password, (err, hash) => {
+        if (err) return next(err);
+        user.password = hash;
+        user.resetPasswordToken = undefined;
+        user.resetPasswordDate = undefined;
+        User.save((err) => {
+          if (err) return next(err);
+          return res.redirect('/');
+        });
+      });
+    }, function(user, cb) {
+      let smtpTransporter = nodemailer.createTransport(transport({
+        service: 'Gmail',
+        auth: {
+          user: process.env.GMAIL_USER,
+          pass: process.env.GMAIL_PASS
+        }
+      }));
+      let mailOptions = {
+        from: '',
+        to: user.email,
+        subject: '',
+        html: ''
+      };
+      smtpTransporter.sendMail(mailOptions, (err) => {
+        return res.redirect('/');
+      });
+    }], function(err) {
+      if (err) return next(err);
+      return res.redirect('/');
+    })
 }
 
 export function findAll(req: express.Request, res: express.Response, next: Function) {
