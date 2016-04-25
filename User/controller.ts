@@ -88,39 +88,45 @@ export function checkToken(req: express.Request, res: express.Response, next: Fu
 }
 
 export function resetPassword(req: express.Request, res: express.Response, next: Function) {
-  async.waterfall([
-    function(err, user) {
+  User.findOne({ resetPasswordToken: req.body.token, resetPasswordDate: {$gt: Date.now()}})
+    .exec((err, user) =>{
       if (err) return next(err);
-      user.hashPassword(req.body.password, (err, hash) => {
-        if (err) return next(err);
-        user.password = hash;
-        user.resetPasswordToken = undefined;
-        user.resetPasswordDate = undefined;
-        User.save((err) => {
-          if (err) return next(err);
-          return res.redirect('/');
-        });
-      });
-    }, function(user, cb) {
-      let smtpTransporter = nodemailer.createTransport(transport({
-        service: 'Gmail',
-        auth: {
-          user: process.env.GMAIL_USER,
-          pass: process.env.GMAIL_PASS
-        }
-      }));
-      let mailOptions = {
-        from: '',
-        to: user.email,
-        subject: '',
-        html: ''
-      };
-      smtpTransporter.sendMail(mailOptions, (err) => {
-        return res.redirect('/');
-      });
-    }], function(err) {
-      if (err) return next(err);
-      return res.redirect('/');
+      if (!user) {
+        return next({message: 'Invalid token!'});
+      }
+      if (user) {
+        async.waterfall([
+          function(err) {
+            user.hashPassword(req.body.password, (err, hash) => {
+              if (err) return next(err);
+              user.password = hash;
+              user.resetPasswordDate = undefined;
+              user.resetPasswordToken = undefined;
+              user.save((err) => {
+                res.json({token: user.generateJWT()});
+              });
+            });
+          }, function(err, user) {
+            let smtpTransporter = nodemailer.createTransport(transport({
+              service: 'Gmail',
+              auth: {
+                user: process.env.GMAIL_USER,
+                pass: process.env.GMAIL_PASS
+              }
+            }));
+            let mailOptions = {
+              from: '',
+              to: user.email,
+              subject: '',
+              html: ''
+            };
+            smtpTransporter.sendMail(mailOptions, (err) => {
+              return res.redirect('/');
+            })
+          }], function(err) {
+            if (err) return next(err);
+          })
+      }
     })
 }
 

@@ -4,7 +4,7 @@ namespace app.Controllers {
 
         public forgot(){
             this.UserService.forgotPassword(this.user).then(()=> {
-                this.$state.go('Reset');
+                this.$state.go('UpdatePassword');
             })
         }
         constructor(private UserService: app.Services.UserService, private $state: ng.ui.IStateService) {
