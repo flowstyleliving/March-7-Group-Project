@@ -35,7 +35,7 @@
                 <md-input-container class='md-block' flex-gt-sm>
                     <label>Confirm Password</label>
                     <input name="password_c" type="password"  required='true' ng-model="vm.user.password_c" ng-pattern="vm.user.password">
-                    <div ng-messages="userForm.password.$error">
+                    <div ng-messages="userForm.password_c.$error">
                         <div ng-message="required">*Required</div>
                     </div>
                     <div ng-messages="userForm.password.$error" ng-show="!userForm.password_c.$valid" ng-hide="!vm.user.password">

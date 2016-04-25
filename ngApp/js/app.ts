@@ -36,6 +36,11 @@ namespace app {
       templateUrl: '/templates/reset.html',
       controller: 'UserResetController',
       controllerAs: 'vm'
+    }).state('UpdatePassword', {
+      url: '/resetPassword',
+      templateUrl: '/templates/resetPassword.html',
+      controller: 'UserResetController',
+      controllerAs: 'vm'
     }).state('itemCreate', {
       url: '/createitem',
       templateUrl: '/templates/itemCreate.html',
@@ -47,11 +52,7 @@ namespace app {
         templateUrl: '/templates/createprofile.html',
         controller: "ProfileController",
         controllerAs: 'vm'
-    }).state('Success', {
-      url: '/success',
-      templateUrl: '/templates/success.html'
-    })
-    .state('User Profile', {
+    }).state('User Profile', {
         url:'/userprofile/:id',
         templateUrl: '/templates/profile.html',
         controller: 'UserProfileController',
