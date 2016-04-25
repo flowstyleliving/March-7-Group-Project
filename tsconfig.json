@@ -50,6 +50,7 @@
     "ngApp/js/Controllers/UserResetController.ts",
     "ngApp/js/Directives/nav.ts",
     "ngApp/js/Services/AuthInterceptor.ts",
+    "ngApp/js/Services/CommentService.ts",
     "ngApp/js/Services/ItemService.ts",
     "ngApp/js/Services/UserService.ts",
     "server.ts",
