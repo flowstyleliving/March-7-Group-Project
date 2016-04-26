@@ -1,8 +1,13 @@
 namespace app.Controllers {
     export class ItemController {
-        public item;
+        public item: app.i.IItem;
         public status;
-        public comment: app.i.IComment;
+        public isShow = true;
+        public comment;
+
+        public toggleRight = function() {
+            this.$mdSidenav('right').toggle();
+        };
 
         public createComment() {
             this.comment.item = this.item._id;
@@ -10,6 +15,7 @@ namespace app.Controllers {
                 this.item.comments.push(res);
                 this.comment.message = "";
                 this.comment.user = "";
+                this.$state.reload();
             });
         }
 
@@ -37,7 +43,8 @@ namespace app.Controllers {
             private ItemService: app.Services.ItemService,
             private $state: ng.ui.IStateService,
             private $mdDialog,
-            private $mdMedia
+            private $mdMedia,
+            private $mdSidenav
             ) {
             this.status = UserService.status;
             this.item = ItemService.getOne($stateParams['id']);

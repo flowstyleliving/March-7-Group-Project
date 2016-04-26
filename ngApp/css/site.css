@@ -27,8 +27,21 @@
 
 }
 
+.img-container{
+    position: relative;
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+}
+
 .img-show{
-    width: 20%;
+    position: absolute;
+top: -9999px;
+bottom: -9999px;
+left: -9999px;
+right: -9999px;
+margin: auto;
+
 }
 
 .dialog-img {
