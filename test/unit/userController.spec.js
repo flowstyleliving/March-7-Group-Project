@@ -12,14 +12,17 @@ require('sinon-mongoose');
 describe('User Controller', () => {
   let UserMock;
   let ItemMock;
+  let hashStub;
   beforeEach((done) => {
     UserMock = sinon.mock(User);
     ItemMock = sinon.mock(Item);
+    hashStub = sinon.stub(User.prototype, 'hashPassword');
     done();
   });
   afterEach((done) => {
     UserMock.restore();
     ItemMock.restore();
+    hashStub.restore();
     done();
   });
 
@@ -107,8 +110,7 @@ describe('User Controller', () => {
           return 'abc';
         }
       });
-      let hashStub = sinon.stub(User.prototype, 'hashPassword')
-      hashStub.yields(null, 'macaroni');
+      hashStub.yields(null, 'hash')
 
       let req = {
         body: {
@@ -131,6 +133,9 @@ describe('User Controller', () => {
     it('Should throw next with an error', (done) => {
       UserMock.expects('create')
       .yields('data and salt arguments required')
+      hashStub.yields(null)
+      
+
 
       let req = {
         body: {}
@@ -142,6 +147,7 @@ describe('User Controller', () => {
       };
       let next = function(err) {
         err.should.equal({message: 'data and salt arguments required'});
+        UserMock.verify();
         done();
       };
       controller.register(req, res, next);
@@ -154,19 +160,20 @@ describe('User Controller', () => {
         }
       });
 
-      let hashStub = sinon.stub(User.prototype, 'hashPassword');
       hashStub.yields('data and salt arguments required');
 
       let req = {};
       let res = {json: () => {throw new Error('JSON wanted to nap!')}};
       let next = function(err) {
+        UserMock.verify();
         hashStub.restore();
         err.should.equal('data and salt arguments required');
         done();
       };
       controller.register(req, res, next);
-    })
+    });
   });
+
   describe('forgot()', () => {
     it('Should find user by email ', (done) => {
       let transport = nodemailer.createTransport(stubTransport());
@@ -189,8 +196,9 @@ describe('User Controller', () => {
       }
     };
     controller.reset(req, res, next);
-    })
-  })
+  });
+  });
+
   describe('findAll', () => {
     it('Should find All users', (done) => {
       UserMock.expects('find').withArgs({})
@@ -225,6 +233,7 @@ describe('User Controller', () => {
       controller.findAll(req, res, next);
     });
   });
+
   describe('findOne()', () => {
     it('Should findOne by id and return it', (done) => {
       UserMock.expects('findOne').withArgs({_id: 5})
@@ -301,6 +310,7 @@ describe('User Controller', () => {
       controller.findOne(req, res, next);
     });
   });
+
   describe('update()', () => {
     it('Should update User and return success message', (done) => {
       UserMock.expects('update').withArgs({_id: 5})
@@ -338,6 +348,6 @@ describe('User Controller', () => {
         done();
       };
       controller.update(req, res, next);
-    })
+    });
   });
 });
