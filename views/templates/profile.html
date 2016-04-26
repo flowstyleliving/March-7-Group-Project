@@ -40,7 +40,7 @@
                     </a>
                     </md-content>
                 </md-tab>
-                <md-tab label="Conact Me">
+                <md-tab label="Contact Me">
                     <md-content class="md-padding">
                         <div ng-show="vm.user.social">
                             <div layout="row" layout-align="center" >
@@ -48,7 +48,7 @@
                             </div>
                             <div layout="row" layout-align="center">
                                 <div ng-repeat="s in vm.user.social" class="md-padding">
-                                    <a href="http://www.{{s.provider}}.com/{{s.url}}">
+                                    <a href="http://www.{{s.provider}}.com/{{s.url}}" target="_blank">
                                         <md-button class="md-fab md-primary">
                                             <i class="fa {{s.template}} fa-2x" style="color: white;"></i>
                                         </md-button>
