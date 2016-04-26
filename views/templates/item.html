@@ -1,8 +1,8 @@
 <div layout="row" layout-align="center center">
-    <div flex="66">
-        <div flex="20" ng-repeat="i in vm.item.images" layout-align="space-between" layout-wrap>
-            <img src="{{i.url}}" alt="{{i.url}}">
-        </div>
+    <div flex="66" style="margin-top: 40px;" layout-align="center" layout-wrap>
+        <span ng-repeat="i in vm.item.images"  class="md-padding" >
+            <img src="{{i.url}}" alt="{{i.url}}" class="img-show" ng-click="">
+        </span>
     </div>
 </div>
 <h3>comments</h3>
