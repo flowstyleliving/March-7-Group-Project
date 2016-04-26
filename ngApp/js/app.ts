@@ -1,12 +1,13 @@
 'use strict';
 namespace app {
-  angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap', 'ngMessages', 'ngMaterial', 'angular-filepicker'])
+  angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap', 'ngMessages', 'ngMaterial', 'angular-filepicker', 'uiGmapgoogle-maps'])
     .config((
     $mdThemingProvider,
     $httpProvider: ng.IHttpProvider,
     $stateProvider: ng.ui.IStateProvider,
     $locationProvider: ng.ILocationProvider,
     filepickerProvider,
+    uiGmapGoogleMapApiProvider: any,
     $urlRouterProvider: ng.ui.IUrlRouterProvider) => {
 
     filepickerProvider.setKey('ArDxY3ePCQ6eI13v5WoxOz');
@@ -77,5 +78,6 @@ namespace app {
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('AuthInterceptor');
+    uiGmapGoogleMapApiProvider.configure({});
   });
 }

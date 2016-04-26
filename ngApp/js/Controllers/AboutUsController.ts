@@ -1,15 +1,15 @@
 namespace app.Controllers{
   export class AboutUsController{
-    public center = { latitude: 37.09024, longitude: -100.712891};
-        public zoom = 4;
+    public center = {latitude: 37.808544, longitude: -122.253681};
+        public zoom = 15;
         public markers = [
             {
                 id: 0,
                 options: {
-                    title: 'Seattle Coder Camps',
+                    title: 'Coder Camps',
                 },
-                latitude: 47.671853,
-                longitude: -122.121328
+                latitude: 37.808544,
+                longitude: -122.253681
             }
         ];
   }
