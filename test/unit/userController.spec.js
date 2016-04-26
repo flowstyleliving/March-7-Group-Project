@@ -2,19 +2,24 @@
 let should = require('should');
 let controller = require('../../User/controller');
 let User = require('../../User/model').User;
+let Item = require('../../Item/model').Item;
 let sinon = require('sinon');
+let nodemailer = require('nodemailer');
 require('sinon-as-promised');
 require('sinon-mongoose');
 
 
 describe('User Controller', () => {
   let UserMock;
+  let ItemMock;
   beforeEach((done) => {
     UserMock = sinon.mock(User);
+    ItemMock = sinon.mock(Item);
     done();
   });
   afterEach((done) => {
     UserMock.restore();
+    ItemMock.restore();
     done();
   });
 
@@ -122,6 +127,217 @@ describe('User Controller', () => {
         throw new Error('Next wants to eat fried macaroni salad!')
       };
       controller.register(req, res, next);
+    });
+    it('Should throw next with an error', (done) => {
+      UserMock.expects('create')
+      .yields('data and salt arguments required')
+
+      let req = {
+        body: {}
+      };
+      let res = {
+        json: function() {
+          throw new Error('JSON wanted to be sleeping')
+        }
+      };
+      let next = function(err) {
+        err.should.equal({message: 'data and salt arguments required'});
+        done();
+      };
+      controller.register(req, res, next);
+    });
+    it('Should throw next with an error if pw does not hash', (done) => {
+      UserMock.expects('create')
+      .yields(null, {
+        generateJWT: function(err, cb) {
+          return 'abc';
+        }
+      });
+
+      let hashStub = sinon.stub(User.prototype, 'hashPassword');
+      hashStub.yields('data and salt arguments required');
+
+      let req = {};
+      let res = {json: () => {throw new Error('JSON wanted to nap!')}};
+      let next = function(err) {
+        hashStub.restore();
+        err.should.equal('data and salt arguments required');
+        done();
+      };
+      controller.register(req, res, next);
+    })
+  });
+  describe('forgot()', () => {
+    it('Should find user by email ', (done) => {
+      let transport = nodemailer.createTransport(stubTransport());
+
+      UserMock.expects('findOne').withArgs({token: 'abc'})
+      .yields(null, {})
+
+      let mailerMock = sinon.mock()
+
+    let req = {
+      params: {
+        token: 'abc'
+      }
+    };
+    let res = {
+      json: function(data) {
+        data.user.resetPasswordToken.should.equal(undefined);
+        data.token.should.exist(true);
+        done();
+      }
+    };
+    controller.reset(req, res, next);
     })
   })
+  describe('findAll', () => {
+    it('Should find All users', (done) => {
+      UserMock.expects('find').withArgs({})
+      .chain('select', '-password', '-facebook')
+      .chain('exec')
+      .yields(null, {})
+
+      let req = {};
+      let res = {
+        json: function(data) {
+          data.should.exist;
+          done();
+        }
+      };
+      let next = function() {
+        throw new Error('Next wanted to be safe')
+      };
+      controller.findAll(req, res, next);
+    });
+    it('Should throw next with an error', (done) => {
+      UserMock.expects('find').withArgs({})
+      .chain('select', '-password', '-facebook')
+      .chain('exec')
+      .yields('ER-ROR');
+
+      let req = {};
+      let res = {json: () => {throw new Error('JSON says no')}};
+      let next = function(err) {
+        err.should.equal('ER-ROR');
+        done();
+      };
+      controller.findAll(req, res, next);
+    });
+  });
+  describe('findOne()', () => {
+    it('Should findOne by id and return it', (done) => {
+      UserMock.expects('findOne').withArgs({_id: 5})
+      .chain('select', '-password', '-facebook')
+      .chain('populate', 'items', 'title images description datePosted dateComplete notes category')
+      .chain('exec')
+      .yields(null, {items: 2})
+
+      ItemMock.expects('populate')
+      .withArgs(2, {
+        path: 'user',
+        select: 'name',
+        model: 'User'
+      })
+      .yields(null, 2)
+
+      let req = {
+        params: {
+          id: 5
+        }
+      };
+      let res = {
+        json: function(data) {
+          data.items.should.equal(2)
+          UserMock.verify();
+          ItemMock.verify();
+          done();
+        }
+      };
+      let next = function() {
+        throw new Error('Next was a no')
+      };
+      controller.findOne(req, res, next);
+    });
+    it('Should throw next with an error if id cannnot be found', (done) => {
+      UserMock.expects('findOne')
+      .chain('select', '-password', '-facebook')
+      .chain('populate', 'items', 'title images description datePosted dateComplete notes category')
+      .chain('exec')
+      .yields('ER-ROR')
+
+      let req = {
+        params: {}
+      };
+      let res = {json: () => {throw new Error('JSON says no')}};
+      let next = function(err) {
+        err.should.equal('ER-ROR');
+        done();
+      };
+      controller.findOne(req, res, next);
+    });
+    it('Should throw next on item populate with an error', (done) => {
+      UserMock.expects('findOne').withArgs({_id: 5})
+      .chain('select', '-password', '-facebook')
+      .chain('populate', 'items', 'title images description datePosted dateComplete notes category')
+      .chain('exec')
+      .yields(null, {});
+
+      ItemMock.expects('populate')
+      .yields('ER-ROR');
+
+      let req = {
+        params: {id: 5}
+      };
+      let res = {
+        json: function() {
+          throw new Error('JSON says no')
+        }
+      };
+      let next = function(err) {
+        err.should.equal('ER-ROR');
+        done();
+      };
+      controller.findOne(req, res, next);
+    });
+  });
+  describe('update()', () => {
+    it('Should update User and return success message', (done) => {
+      UserMock.expects('update').withArgs({_id: 5})
+      .yields(null, {})
+
+      let req = {
+        params: {id: 5},
+        body: {}
+      };
+      let res = {
+        json: function(data) {
+          data.message.should.equal('Updated');
+          UserMock.verify();
+          done();
+        }
+      };
+      let next = function() {
+        throw new Error('Next says Nope')
+      };
+      controller.update(req, res, next);
+    });
+    it('Should throw next with an error if id cannont be found', (done) => {
+      UserMock.expects('update')
+      .yields('ER-ROR');
+
+      let req = {
+        params: {},
+        body: {}
+      };
+      let res = {
+        json: () => {throw new Error('Nah says JSON')}
+      };
+      let next = function(err) {
+        err.should.equal('ER-ROR');
+        done();
+      };
+      controller.update(req, res, next);
+    })
+  });
 });
