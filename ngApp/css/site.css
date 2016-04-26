@@ -31,6 +31,10 @@
     width: 20%;
 }
 
+.dialog-img {
+    width: 100%;
+}
+
 .facebook:hover {
     text-decoration: none;
 }
