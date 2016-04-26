@@ -12,6 +12,7 @@ namespace app.Controllers{
                 longitude: -122.253681
             }
         ];
+        constructor(private $location: ng.ILocationService){}
   }
   angular.module('app').controller('AboutUsController', AboutUsController);
 }
