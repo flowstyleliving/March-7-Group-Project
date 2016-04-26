@@ -41,8 +41,7 @@ namespace app {
       templateUrl: '/templates/itemCreate.html',
       controller: 'ItemCreateController',
       controllerAs: 'vm'
-    })
-    .state('Create Profile', {
+    }).state('Create Profile', {
         url:'/createprofile',
         templateUrl: '/templates/createprofile.html',
         controller: "ProfileController",
@@ -52,11 +51,15 @@ namespace app {
         templateUrl: '/templates/profile.html',
         controller: 'UserProfileController',
         controllerAs: 'vm'
-    })
-    .state('Item', {
+    }).state('Item', {
         url: '/item/:id',
         templateUrl: '/templates/item.html',
         controller: 'ItemController',
+        controllerAs: 'vm'
+    }).state('AboutFolio', {
+        url: '/aboutUs',
+        templateUrl: '/templates/aboutFolio.html',
+        controller: 'AboutUsController',
         controllerAs: 'vm'
     });
 
