@@ -5,3 +5,28 @@
         </div>
     </div>
 </div>
+<h3>comments</h3>
+<div ng-show="global.status._id">
+  <button ng-click="addComment = true" class="btn btn-info">post a comment</button>
+  <br />
+  <form ng-show="addComment" class="form-inline" ng-submit="vm.createComment(); addComment =false">
+    <textarea required class="form-control" ng-model="vm.comment.message" placeholder="message" rows="5" style="margin-bottom: 7px;"/></textarea>
+    <br/>
+    <button type="submit" class="btn btn-primary">submit</button>
+    <button ng-click="addComment = false" class="btn btn-danger">cancel</button>
+  </form>
+</div>
+<br />
+<br />
+<br />
+<div ng-repeat="c in vm.item.comments">
+    <div style="text-align: left">
+      <div style="text-align: right">
+        <button ng-click="vm.removeComment(c)" class="btn btn-danger" ng-if="c.user._id === global.status._id">x</button>
+      </div>
+      <strong>name:</strong> {{c.user.name}}
+      <br />
+      <strong>message:</strong> {{c.message}}
+    </div>
+  <br />
+</div>
