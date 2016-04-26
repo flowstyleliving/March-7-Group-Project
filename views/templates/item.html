@@ -19,7 +19,7 @@
     <md-button flex-gt-sm="20" flex ng-show="vm.isShow;" ng-click="addComment = true; vm.isShow=false;" class="md-accent md-hue-3 md-raised">
         Add Comment
     </md-button>
-    <form layout="column" ng-show="addComment" ng-submit="vm.createComment(); addComment =false; vm.isShow=true;" flex-gt-sm="20">
+    <form layout="column" ng-show="addComment" ng-submit="vm.createComment(); addComment =false; vm.isShow=true;" flex-gt-sm="20" flex>
         <md-input-container>
             <label>Comment</label>
             <input ng-model="vm.comment.message">
@@ -31,7 +31,7 @@
 </div>
 
 <div layout="row" layout-margin layout-align="center start">
-    <md-list flex-gt-sm="60">
+    <md-list flex-gt-sm="60" flex>
         <md-subheader class="md-no-sticky">Comments</md-subheader>
         <md-list-item class="md-2-line" ng-repeat="c in vm.item.comments" ng-click="null">
             <img ng-src="{{c.user.img}}" class="md-avatar" alt="{{c.user.name}}" />
