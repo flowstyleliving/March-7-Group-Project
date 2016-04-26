@@ -5,10 +5,6 @@ namespace app.Controllers {
         public isShow = true;
         public comment;
 
-        public toggleRight = function() {
-            this.$mdSidenav('right').toggle();
-        };
-
         public createComment() {
             this.comment.item = this.item._id;
             this.CommentService.create(this.comment).then((res) => {
@@ -43,8 +39,7 @@ namespace app.Controllers {
             private ItemService: app.Services.ItemService,
             private $state: ng.ui.IStateService,
             private $mdDialog,
-            private $mdMedia,
-            private $mdSidenav
+            private $mdMedia
             ) {
             this.status = UserService.status;
             this.item = ItemService.getOne($stateParams['id']);
