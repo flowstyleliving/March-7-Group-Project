@@ -5,11 +5,11 @@ namespace app.Controllers {
         public comment: app.i.IComment;
 
         public createComment() {
-            this.comment.item = this.comment._id;
+            this.comment.item = this.item._id;
             this.CommentService.create(this.comment).then((res) => {
                 this.item.comments.push(res);
-                this.comment.message = '';
-                this.comment.user = '';
+                this.comment.message = "";
+                this.comment.user = "";
             });
         }
 
@@ -19,14 +19,15 @@ namespace app.Controllers {
             });
         }
 
+
         ///$mdDialog
         public showAdvanced(i) {
-                this.$mdDialog.show({
-                    locals: {i: i},
-                    controller: "DialogController as vm",
-                    templateUrl: '/templates/image.html',
-                    clickOutsideToClose: true,
-                })
+            this.$mdDialog.show({
+                locals: { i: i },
+                controller: "DialogController as vm",
+                templateUrl: '/templates/image.html',
+                clickOutsideToClose: true,
+            })
         };
 
         constructor(
