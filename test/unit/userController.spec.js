@@ -174,10 +174,13 @@ describe('User Controller', () => {
 
   describe('forgot()', () => {
     it('Should find user by email ', (done) => {
-      UserMock.expects('findOne').withArgs({token: 'abc'})
+      UserMock.expects('findOne').withArgs({email: 'test@e.mail'})
+      .chain('exec')
       .yields(null, {})
+            let mailerMock = sinon.mock(nodemailer);
+            mailerMock.createTransport(transport)
 
-      let mailerMock = sinon.mock(nodemailer);
+
 
     let req = {
       params: {
