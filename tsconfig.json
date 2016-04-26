@@ -38,6 +38,7 @@
     "Item/model.ts",
     "Item/routes.ts",
     "ngApp/js/app.ts",
+    "ngApp/js/Controllers/AboutUsController.ts",
     "ngApp/js/Controllers/GlobalController.ts",
     "ngApp/js/Controllers/HomeController.ts",
     "ngApp/js/Controllers/ItemController.ts",

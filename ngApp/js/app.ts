@@ -1,12 +1,13 @@
 'use strict';
 namespace app {
-  angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap', 'ngMessages', 'ngMaterial', 'angular-filepicker'])
+  angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap', 'ngMessages', 'ngMaterial', 'angular-filepicker', 'uiGmapgoogle-maps'])
     .config((
     $mdThemingProvider,
     $httpProvider: ng.IHttpProvider,
     $stateProvider: ng.ui.IStateProvider,
     $locationProvider: ng.ILocationProvider,
     filepickerProvider,
+    uiGmapGoogleMapApiProvider: any,
     $urlRouterProvider: ng.ui.IUrlRouterProvider) => {
 
     filepickerProvider.setKey('ArDxY3ePCQ6eI13v5WoxOz');
@@ -41,8 +42,7 @@ namespace app {
       templateUrl: '/templates/itemCreate.html',
       controller: 'ItemCreateController',
       controllerAs: 'vm'
-    })
-    .state('Create Profile', {
+    }).state('Create Profile', {
         url:'/createprofile',
         templateUrl: '/templates/createprofile.html',
         controller: "ProfileController",
@@ -52,11 +52,15 @@ namespace app {
         templateUrl: '/templates/profile.html',
         controller: 'UserProfileController',
         controllerAs: 'vm'
-    })
-    .state('Item', {
+    }).state('Item', {
         url: '/item/:id',
         templateUrl: '/templates/item.html',
         controller: 'ItemController',
+        controllerAs: 'vm'
+    }).state('AboutFolio', {
+        url: '/aboutUs',
+        templateUrl: '/templates/aboutFolio.html',
+        controller: 'AboutUsController',
         controllerAs: 'vm'
     });
 
@@ -74,5 +78,6 @@ namespace app {
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('AuthInterceptor');
+    uiGmapGoogleMapApiProvider.configure({});
   });
 }
