@@ -27,6 +27,7 @@ export function register(req: express.Request, res: express.Response, next: Func
         if (err) return next(err);
         u.password = hash;
         User.create(u, (err, user: IUserModel) => {
+          if(err) return next(err);
             res.json({ token: user.generateJWT() });
         });
     });

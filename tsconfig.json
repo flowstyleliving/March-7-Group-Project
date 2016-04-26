@@ -73,7 +73,6 @@
     "typings/browser/ambient/express-session/index.d.ts",
     "typings/browser/ambient/express-unless/index.d.ts",
     "typings/browser/ambient/express/index.d.ts",
-    "typings/browser/ambient/helmet/index.d.ts",
     "typings/browser/ambient/jquery/index.d.ts",
     "typings/browser/ambient/jsonwebtoken/index.d.ts",
     "typings/browser/ambient/mime/index.d.ts",

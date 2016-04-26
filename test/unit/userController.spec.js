@@ -132,9 +132,8 @@ describe('User Controller', () => {
     });
     it('Should throw next with an error', (done) => {
       UserMock.expects('create')
-      .yields('data and salt arguments required')
+      .yields({message: 'data and salt arguments required'})
       hashStub.yields(null)
-      
 
 
       let req = {
@@ -146,7 +145,7 @@ describe('User Controller', () => {
         }
       };
       let next = function(err) {
-        err.should.equal({message: 'data and salt arguments required'});
+        err.message.should.equal('data and salt arguments required');
         UserMock.verify();
         done();
       };
@@ -159,14 +158,13 @@ describe('User Controller', () => {
           return 'abc';
         }
       });
-
       hashStub.yields('data and salt arguments required');
 
-      let req = {};
+      let req = {
+        body: {}
+      };
       let res = {json: () => {throw new Error('JSON wanted to nap!')}};
       let next = function(err) {
-        UserMock.verify();
-        hashStub.restore();
         err.should.equal('data and salt arguments required');
         done();
       };
@@ -176,12 +174,10 @@ describe('User Controller', () => {
 
   describe('forgot()', () => {
     it('Should find user by email ', (done) => {
-      let transport = nodemailer.createTransport(stubTransport());
-
       UserMock.expects('findOne').withArgs({token: 'abc'})
       .yields(null, {})
 
-      let mailerMock = sinon.mock()
+      let mailerMock = sinon.mock(nodemailer);
 
     let req = {
       params: {
@@ -195,8 +191,11 @@ describe('User Controller', () => {
         done();
       }
     };
-    controller.reset(req, res, next);
-  });
+    let next = function() {
+      throw new Error('Next wanted Nap')
+    };
+    controller.forgot(req, res, next);
+    });
   });
 
   describe('findAll', () => {

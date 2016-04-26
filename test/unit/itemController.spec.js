@@ -81,7 +81,7 @@ describe('Item Controller', () => {
       CommentMock.expects('populate')
       .withArgs(8, {
         path: 'user',
-        select: 'name',
+        select: 'name img',
         model: 'User'
       })
       .yields(null, 3);
@@ -92,7 +92,6 @@ describe('Item Controller', () => {
       let res = {
         json: function(data) {
           data.comments.should.equal(8);
-          //why is mock.verify() after data.shoulds?
           ItemMock.verify();
           CommentMock.verify();
           done();
@@ -134,7 +133,7 @@ describe('Item Controller', () => {
 
       CommentMock.expects('populate').withArgs(8, {
         path: 'user',
-        select: 'name',
+        select: 'name img',
         model: 'User'
       })
       .yields('ER-ROR');
