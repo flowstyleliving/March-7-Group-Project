@@ -3,7 +3,7 @@ namespace app.Controllers {
         public item: app.i.IItem;
         public status;
         public isShow = true;
-        public comment: app.i.IComment;
+        public comment;
 
         public toggleRight = function() {
             this.$mdSidenav('right').toggle();
@@ -15,6 +15,7 @@ namespace app.Controllers {
                 this.item.comments.push(res);
                 this.comment.message = "";
                 this.comment.user = "";
+                this.$state.reload();
             });
         }
 
