@@ -27,6 +27,10 @@
 
 }
 
+.img-show{
+    width: 20%;
+}
+
 .facebook:hover {
     text-decoration: none;
 }
