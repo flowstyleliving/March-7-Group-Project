@@ -1,19 +1,22 @@
 "use strict";
 let should = require('should');
 let controller = require('../../Item/controller');
+let User = require('../../User/model').User;
 let Item = require('../../Item/model').Item;
 let Comment = require('../../Comment/model').Comment;
 let sinon = require('sinon');
 require('sinon-as-promised');
 require('sinon-mongoose');
 
-let ItemMock, CommentMock;
+let UserMock, ItemMock, CommentMock;
 beforeEach((done) => {
+  UserMock = sinon.mock(User);
   ItemMock = sinon.mock(Item);
   CommentMock = sinon.mock(Comment);
   done();
 });
 afterEach((done) => {
+  UserMock.restore();
   ItemMock.restore();
   CommentMock.restore();
   done();
@@ -78,7 +81,7 @@ describe('Item Controller', () => {
       CommentMock.expects('populate')
       .withArgs(8, {
         path: 'user',
-        select: 'name',
+        select: 'name img',
         model: 'User'
       })
       .yields(null, 3);
@@ -89,7 +92,6 @@ describe('Item Controller', () => {
       let res = {
         json: function(data) {
           data.comments.should.equal(8);
-          //why is mock.verify() after data.shoulds?
           ItemMock.verify();
           CommentMock.verify();
           done();
@@ -131,7 +133,7 @@ describe('Item Controller', () => {
 
       CommentMock.expects('populate').withArgs(8, {
         path: 'user',
-        select: 'name',
+        select: 'name img',
         model: 'User'
       })
       .yields('ER-ROR');
@@ -163,6 +165,8 @@ describe('Item Controller', () => {
     });
 
     it('Should save req body to the collection and return new Obj', (done) => {
+      UserMock.expects('update').withArgs({_id: undefined}, {$push: {'items': undefined}})
+      .yields(null, {})
       create.yields(null, '01');
 
       let req = {

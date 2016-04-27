@@ -4,7 +4,7 @@ namespace app.Controllers {
         public user;
         public users;
 
-        public
+
         constructor(private UserService: app.Services.UserService, private $location: ng.ILocationService, private $mdDialog, private $state: ng.ui.IStateService) {
             this.status = UserService.status;
             console.log($location.search());

@@ -61,7 +61,7 @@ namespace app.Services{
 
         public resetPassword(user) {
           let q = this.$q.defer();
-          this.$http.get('/api/v1/users/reset', user).then((res) => {
+          this.$http.post('/api/v1/users/resetPassword', user).then((res) => {
             q.resolve();
           });
           return q.promise;

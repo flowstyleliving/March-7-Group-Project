@@ -1,5 +1,17 @@
 * {
     margin: 0;
+    /*border: 1px solid red;*/
+}
+
+.profile_img {
+    border: 1px solid white;
+    max-width: 400px;
+    max-height: 400px;
+}
+
+.item_img{
+    width: 100%;
+    max-height: auto;
 }
 
 .registerbtn, .loginbtn {
@@ -9,6 +21,31 @@
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: 20px;
+}
+
+.md-card {
+
+}
+
+.img-container{
+    position: relative;
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+}
+
+.img-show{
+    position: absolute;
+top: -9999px;
+bottom: -9999px;
+left: -9999px;
+right: -9999px;
+margin: auto;
+
+}
+
+.dialog-img {
+    width: 100%;
 }
 
 .facebook:hover {
@@ -29,3 +66,9 @@
     text-decoration: none;
     color: black;
 }
+
+.angular-google-map-container {
+         height: 300px;
+         width: 300px;
+         border: 1px solid black;
+     }

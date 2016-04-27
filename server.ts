@@ -6,6 +6,7 @@ import cookieParser = require('cookie-parser');
 import bodyParser = require('body-parser');
 import mongoose = require('mongoose');
 import session = require('express-session');
+import helmet = require('helmet');
 let nodemailer = require('nodemailer');
 import passport = require('./config/passport');
 
@@ -32,12 +33,12 @@ if (process.env.NODE_ENV !== 'test') app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+app.use(helmet());
 
 // View Route
 app.use('/templates', require('./views/viewRoutes'));
 
-app.use(session({secret: 'yoyo'}));
+app.use(session({secret: 'yoyo', resave: true, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 

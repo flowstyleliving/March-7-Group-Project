@@ -1,12 +1,13 @@
 'use strict';
 namespace app {
-  angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap', 'ngMessages', 'ngMaterial', 'angular-filepicker'])
+  angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap', 'ngMessages', 'ngMaterial', 'angular-filepicker', 'uiGmapgoogle-maps'])
     .config((
     $mdThemingProvider,
     $httpProvider: ng.IHttpProvider,
     $stateProvider: ng.ui.IStateProvider,
     $locationProvider: ng.ILocationProvider,
     filepickerProvider,
+    uiGmapGoogleMapApiProvider: any,
     $urlRouterProvider: ng.ui.IUrlRouterProvider) => {
 
     filepickerProvider.setKey('ArDxY3ePCQ6eI13v5WoxOz');
@@ -31,28 +32,35 @@ namespace app {
       templateUrl: '/templates/forgot.html',
       controller: 'UserForgotController',
       controllerAs: 'vm'
-    }).state('Reset', {
-      url: '/reset/:token',
-      templateUrl: '/templates/reset.html'
+    }).state('UpdatePassword', {
+      url: '/resetPassword',
+      templateUrl: '/templates/resetPassword.html',
+      controller: 'UserResetController',
+      controllerAs: 'vm'
     }).state('itemCreate', {
       url: '/createitem',
       templateUrl: '/templates/itemCreate.html',
       controller: 'ItemCreateController',
       controllerAs: 'vm'
-    })
-    .state('Create Profile', {
+    }).state('Create Profile', {
         url:'/createprofile',
         templateUrl: '/templates/createprofile.html',
         controller: "ProfileController",
         controllerAs: 'vm'
-    }).state('Success', {
-      url: '/success',
-      templateUrl: '/templates/success.html'
-    })
-    .state('User Profile', {
+    }).state('User Profile', {
         url:'/userprofile/:id',
         templateUrl: '/templates/profile.html',
         controller: 'UserProfileController',
+        controllerAs: 'vm'
+    }).state('Item', {
+        url: '/item/:id',
+        templateUrl: '/templates/item.html',
+        controller: 'ItemController',
+        controllerAs: 'vm'
+    }).state('AboutFolio', {
+        url: '/aboutUs',
+        templateUrl: '/templates/aboutFolio.html',
+        controller: 'AboutUsController',
         controllerAs: 'vm'
     });
 
@@ -70,5 +78,6 @@ namespace app {
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('AuthInterceptor');
+    uiGmapGoogleMapApiProvider.configure({});
   });
 }

@@ -1,11 +1,10 @@
-<div layout="row" layout-align="center center" style="height: 100vh;" layout-margin >
-    <div layout="column" flex='30' layout-align="center center" style="margin-top: 50px;">
-        <md-button class="md-accent md-hue-2 md-raised">
-            <i class="fa fa-upload fa-5x" aria-hidden="true" style="color: white;" ng-click="vm.pickFile()"></i>
-        </md-button>
-        <div ng-repeat="p in vm.file" style="margin-top: 10px;">
-            <img ng-src="{{p.url | fpConvert:{w: 400} }}" alt="{{p.filename}}" / >
-            <br />
+<div layout="column" layout-align="center center" style="margin-top: 50px;">
+    <md-button class="md-accent md-hue-2 md-raised">
+        <i class="fa fa-upload fa-5x" aria-hidden="true" style="color: white;" ng-click="vm.pickFile()"></i>
+    </md-button>
+    <div ng-repeat="p in vm.file" style="margin-top: 10px;">
+        <img ng-src="{{p.url | fpConvert:{w: 200} }}" alt="{{p.filename}}" />
+        <br />
         <md-input-container flex>
             <label>Caption</label>
             <input ng-model="p.caption">
@@ -14,74 +13,32 @@
             <label>Hero Image</label>
             <md-checkbox ng-model="p.mainOrNah"></md-checkbox>
         </div>
-        </div>
-    </div>
-    <div layout="column" flex='30' layout-align="center center"style="margin-top: 50px;">
-            <form name="projectForm" style="width: 100%;">
-                <md-input-container class="md-block">
-                    <label>Title</label>
-                    <input ng-model="vm.item.title">
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <label>description</label>
-                    <input ng-model="vm.item.description">
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <label>dateCompleted</label>
-                    <input ng-model="vm.item.dateCompleted">
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <label>notes</label>
-                    <input ng-model="vm.item.notes">
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <label>category</label>
-                    <input ng-model="vm.item.category">
-                </md-input-container>
-                <md-button class="md-accent md-raised md-cornered md-hue-2" ng-click="vm.create()">
-                    Submit
-                </md-button>
     </div>
 </div>
-
-
-<!-- <h1>Item Create!</h1>
-<br>
-<div>
-  <form class="container" ng-submit="vm.create()">
-    <br />
-    <div>
-      Title
-      <br />
-      <input type="text" ng-model="vm.item.title" />
-      <br />
-      Description
-      <br />
-      <textarea ng-model="vm.item.description"></textarea>
-      <br />
-      dateCompleted
-      <br />
-      <input type="text" ng-model="vm.item.dateCompleted" />
-      <br />
-      Notes
-      <br />
-      <input type="text" ng-model="vm.item.notes" />
-      <br />
-      Category
-      <br />
-      <input type="text" ng-model="vm.item.category" />
-      <br />
-      <br />
-    </div>
-    <button class="btn-success" type="submit" />Submit
-  </form>
+<div layout="column" layout-align="center center" style="margin-top: 50px;">
+    <form name="projectForm" style="width: 600px;">
+        <md-input-container class="md-block">
+            <label>Title</label>
+            <input required="true" ng-model="vm.item.title">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>description</label>
+            <input ng-model="vm.item.description">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>dateCompleted</label>
+            <input type="date" ng-model="vm.item.dateCompleted">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>notes</label>
+            <input ng-model="vm.item.notes">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>category</label>
+            <input ng-model="vm.item.category">
+        </md-input-container>
+    </form>
+    <md-button class="md-accent md-raised md-cornered md-hue-2" ng-click="vm.create()" flex>
+        Submit
+    </md-button>
 </div>
-<br /><br />
-
-<button ng-click="vm.pickFile()">Upload</button>
-<div ng-repeat="p in vm.file">
-<h2>{{p.filename }}</h2>
-<img ng-src="{{p.url | fpConvert:{w: 400} }}" alt="{{p.filename}}" />
-<input type="text" ng-model="p.caption">
-<input type="checkbox" clicked="true" ng-model="p.mainOrNah">
-</div> -->

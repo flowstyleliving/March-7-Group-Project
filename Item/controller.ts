@@ -19,7 +19,7 @@ export function getOne(req: express.Request, res: express.Response, next: Functi
     .populate('comments', '-item')
     .exec((err, data)=>{
         if (err) return next(err);
-        Comment.populate(data.comments, {path: 'user' ,select:'name', model: 'User'}, (err, response) => {
+        Comment.populate(data.comments, {path: 'user', select:'name img', model: 'User'}, (err, response) => {
             if (err) return next(err);
             res.json(data);
         });

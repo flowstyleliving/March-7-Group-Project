@@ -10,14 +10,13 @@ namespace app.i{
     aboutMe?: string;
     social: [{
         provider: string,
-        url: string
+        url: string,
+        template: string,
     }];
     theme: string;
     comments?: Array<string>;
     items?: Array<string>;
     facebook: {id: string, token: string},
     google: {id: string, token: string},
-    twitter: {id: string, token: string},
-    github: {id: string, token: string}
   }
 }

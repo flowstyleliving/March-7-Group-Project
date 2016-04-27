@@ -1,0 +1,47 @@
+<div layout-gt-sm="row" layout="column" flex-gt-sm="60" flex-offset-gt-sm="20" flex style="margin-top: 40px;" layout-align="center center">
+    <div layout="column" ng-repeat="i in vm.item.images">
+        <md-card class="md-padding">
+            <div class="img-container">
+                <img src="{{i.url}}" alt="{{i.url}}" ng-click="vm.showAdvanced(i)" class="img-show">
+            </div>
+            <md-content layout="row" layout-align=" center center">
+                <h4>{{i.caption}}</h4>
+            </md-content>
+        </md-card>
+    </div>
+</div>
+
+<div layout="column" flex-gt-sm="60" flex-offset-gt-sm="20" style="margin-top: 20px">
+    <md-divider></md-divider>
+</div>
+
+<div layout="row" layout-align="center center" layout-margin ng-show="global.status._id">
+    <md-button flex-gt-sm="20" flex ng-show="vm.isShow;" ng-click="addComment = true; vm.isShow=false;" class="md-accent md-hue-3 md-raised">
+        Add Comment
+    </md-button>
+    <form layout="column" ng-show="addComment" ng-submit="vm.createComment(); addComment =false; vm.isShow=true;" flex-gt-sm="20" flex>
+        <md-input-container>
+            <label>Comment</label>
+            <input ng-model="vm.comment.message">
+        </md-input-container>
+        <md-button type="submit" class="md-raised md-accent md-hue-3">
+            Submit
+        </md-button>
+    </form>
+</div>
+
+<div layout="row" layout-margin layout-align="center start">
+    <md-list flex-gt-sm="60" flex>
+        <md-subheader class="md-no-sticky">Comments</md-subheader>
+        <md-list-item class="md-2-line" ng-repeat="c in vm.item.comments" ng-click="null">
+            <img ng-src="{{c.user.img}}" class="md-avatar" alt="{{c.user.name}}" />
+            <div class="md-list-item-text" layout="column" flex>
+                <h3>{{ c.user.name}}</h3>
+                <h4>{{ c.message }}</h4>
+                <p>{{ c.datePosted | date: short }}</p>
+            </div>
+            <i class="fa fa-trash-o fa-2x" aria-hidden="true" style="color: red" ng-click="vm.removeComment(c)" ng-if="c.user._id === global.status._id"></i>
+            <md-divider></md-divider>
+        </md-list-item>
+    </md-list>
+</div>

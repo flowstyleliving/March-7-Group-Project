@@ -21,7 +21,11 @@ namespace app.Controllers {
 
         public pickFile() {
           this.filepickerService.pick(
-            { mimetype: 'image/*' },
+            { mimetype: 'image/*',
+             cropRatio: 1,
+             cropForce: true
+
+            },
             this.fileUploaded.bind(this)
             );
         }

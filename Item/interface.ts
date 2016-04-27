@@ -8,7 +8,6 @@ namespace app.i{
     dateCompleted: string;
     notes: string;
     category: string;
-
     user: (string | IUser);
     comments: [string | IComment];
   }
