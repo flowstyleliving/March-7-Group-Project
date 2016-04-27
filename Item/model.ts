@@ -8,8 +8,9 @@ let itemSchema = new mongoose.Schema({
     description: {type: String},
     datePosted: {type: Number},
     dateCompleted: {type: String},
+    projectURL: {type: String},
     notes: {type: String},
-    category: {type: String},
+    category: {type: String, lowercase: true, trim: true},
     user: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
 });

@@ -6,7 +6,7 @@ namespace app.i{
     description: string;
     datePosted: number;
     dateCompleted: string;
-    notes: string;
+    projectURL: string;
     category: string;
     user: (string | IUser);
     comments: [string | IComment];
