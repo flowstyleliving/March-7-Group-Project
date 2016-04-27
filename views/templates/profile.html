@@ -23,7 +23,7 @@
                 <md-tab label="Portfolio">
                     <md-content class="md-padding" ng-repeat="i in vm.user.items">
                         <a ui-sref="Item({id: i._id})">
-                        <div layout="row">
+                        <div layout="row" flex>
                             <div layout="column" flex='33' ng-repeat="u in i.images">
                                 <img ng-src="{{u.url}}" alt="{{u.url}}" ng-hide="!u.mainOrNah" class="item_img">
                             </div>
