@@ -38,7 +38,7 @@ app.use(helmet());
 // View Route
 app.use('/templates', require('./views/viewRoutes'));
 
-app.use(session({secret: 'yoyo'}));
+app.use(session({secret: 'yoyo', resave: true, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 

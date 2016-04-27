@@ -18,7 +18,5 @@ namespace app.i{
     items?: Array<string>;
     facebook: {id: string, token: string},
     google: {id: string, token: string},
-    twitter: {id: string, token: string},
-    github: {id: string, token: string}
   }
 }

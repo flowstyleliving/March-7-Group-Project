@@ -28,8 +28,6 @@ let userSchema = new mongoose.Schema({
   items: [{type: mongoose.Schema.Types.ObjectId, ref: 'Item'}],
   facebook: {id: String, token: String},
   google: {id: String, token: String},
-  twitter: {id: String, token: String},
-  github: {id: String, token: String}
 });
 
 userSchema.method('hashPassword', function(password, done) {
