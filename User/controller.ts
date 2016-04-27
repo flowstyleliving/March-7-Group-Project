@@ -126,6 +126,7 @@ export function findAll(req: express.Request, res: express.Response, next: Funct
         .select('-password -facebook')
         .exec((err, data) => {
         if (err) return next(err);
+        if (!data) return next({ message: 'no user.' });
         res.json(data);
     });
 }
@@ -137,6 +138,7 @@ export function findOne(req: express.Request, res: express.Response, next: Funct
         .populate('items', 'title images description datePosted dateComplete notes category')
         .exec((err, data) => {
         if (err) return next(err);
+        if (!data) return next({ message: 'no users.' });
         Item.populate(data.items, { path: 'user', select: 'name', model: 'User' }, (err, response) => {
             if (err) return next(err);
             res.json(data);
