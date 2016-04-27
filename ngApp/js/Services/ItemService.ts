@@ -15,12 +15,12 @@ namespace app.Services {
       return this.ItemResource.get({id: id});
     }
 
-    public createItem(title, images, description, dateCompleted, notes, category) {
-      return this.ItemResource.save({title: title, images: images, description: description, dateCompleted: dateCompleted, notes: notes, category: category }).$promise;
+    public createItem(title, images, description, dateCompleted, projectURL, category) {
+      return this.ItemResource.save({title: title, images: images, description: description, dateCompleted: dateCompleted, projectURL: projectURL, category: category }).$promise;
     }
 
     public update(item: app.i.IItem) {
-      return this.ItemResource.update({id: item._id}, {title: item.title, images: item.images, description: item.description, dateCompleted: item.dateCompleted, notes: item.notes, category: item.category}).$promise;
+      return this.ItemResource.update({id: item._id}, {title: item.title, images: item.images, description: item.description, dateCompleted: item.dateCompleted, category: item.category, projectURL: item.projectURL}).$promise;
     }
 
     public delete(id: string) {

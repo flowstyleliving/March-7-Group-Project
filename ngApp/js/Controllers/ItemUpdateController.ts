@@ -9,6 +9,12 @@ namespace app.Controllers{
       });
     }
 
+    public remove(){
+     this.ItemService.delete(this.item._id).then(() => {
+       this.$state.go('Home');
+     });
+   }
+
     constructor(private UserService: app.Services.UserService,
     private CommentService: app.Services.CommentService,
     private $stateParams: ng.ui.IStateParamsService,

@@ -9,6 +9,10 @@
             <input ng-model="vm.item.description">
         </md-input-container>
         <md-input-container class="md-block">
+            <label>project url</label>
+            <input ng-model="vm.item.projectURL">
+        </md-input-container>
+        <md-input-container class="md-block">
             <label>dateCompleted</label>
             <input type="date" ng-model="vm.item.dateCompleted">
         </md-input-container>
@@ -22,5 +26,8 @@
     </md-button>
     <md-button class="md-accent md-raised md-cornered md-hue-2" ui-sref="Item({id:vm.item._id})" flex>
         Cancel
+    </md-button>
+    <md-button class="md-accent md-raised md-cornered md-hue-2" ng-click="vm.remove()" flex>
+        Remove from Portfolio
     </md-button>
 </div>
