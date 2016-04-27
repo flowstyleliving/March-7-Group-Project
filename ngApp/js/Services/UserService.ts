@@ -1,6 +1,6 @@
 namespace app.Services{
     export class UserService {
-        public status = { _id: null, name: null };
+        public status = { _id: null, name: null, email: null };
 
         public getUser(id: string){
             let q = this.$q.defer();
@@ -81,11 +81,13 @@ namespace app.Services{
             let u = JSON.parse(this.urlBase64Decode(this.getToken().split('.')[1]));
             this.status._id = u._id;
             this.status.name = u.name;
+            this.status.email = u.email;
         }
 
         public clearUser() {
             this.status._id = null;
             this.status.name = null;
+            this.status.email = null;
         }
         public urlBase64Decode(str) {
             var output = str.replace(/-/g, '+').replace(/_/g, '/');

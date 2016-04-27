@@ -15,7 +15,7 @@ namespace app.Controllers {
                 if ($location.hash()) $location.hash('');
             }
             if(this.status.email){
-                UserService.getUser(this.status._id).then((data)=>{
+                UserService.getUser(this.status.email).then((data)=>{
                     this.user = data;
                     if(!this.user.aboutMe){
                         this.$state.go('Create Profile');
