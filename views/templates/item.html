@@ -11,10 +11,16 @@
     </div>
 </div>
 
+<div layout="row" layout-align="center center">
+    <md-divider></md-divider>
+    <md-button ng-if="vm.item.user._id === global.status._id" flex-gt-sm="20" class="md-raised md-accent md-hue-3" ui-sref="ItemUpdate({id:vm.item._id})">Update</md-button>
+
+</div>
 <div layout="column" flex-gt-sm="60" flex-offset-gt-sm="20" style="margin-top: 20px">
     <md-divider></md-divider>
 </div>
 
+<!-- COMMENTS -->
 <div layout="row" layout-align="center center" layout-margin ng-show="global.status._id">
     <md-button flex-gt-sm="20" flex ng-show="vm.isShow;" ng-click="addComment = true; vm.isShow=false;" class="md-accent md-hue-3 md-raised">
         Add Comment

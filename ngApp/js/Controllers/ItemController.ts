@@ -21,7 +21,7 @@ namespace app.Controllers {
             });
         }
 
-
+        
         ///$mdDialog
         public showAdvanced(i) {
             this.$mdDialog.show({

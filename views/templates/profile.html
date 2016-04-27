@@ -22,22 +22,18 @@
                 </md-tab>
                 <md-tab label="Portfolio">
                     <md-content class="md-padding" ng-repeat="i in vm.user.items">
-                        <a ui-sref="Item({id: i._id})">
                         <div layout="row" flex>
                             <div layout="column" flex='33' ng-repeat="u in i.images">
                                 <img ng-src="{{u.url}}" alt="{{u.url}}" ng-hide="!u.mainOrNah" class="item_img">
                             </div>
                             <div layout="column" flex="5"></div>
                             <div layout="column" layout-align="start center" flex="60">
-                                <h1>{{i.title}}</h1>
+                                <a ui-sref="Item({id: i._id})"><h1>{{i.title}}</h1></a>
                                 <p>{{i.description}}</p>
                                 <span layout="row" layout-align="start start"><p>Date Posted: {{i.datePosted | date: medium}} </p>&nbsp&nbsp <p>Date Completed: {{i.dateCompleted}}</p></span>
-                                <h3>Notes</h3>
-                                <p>{{i.notes}}</p>
                                 <pre>{{i.category}}</pre>
                             </div>
                         </div>
-                    </a>
                     </md-content>
                 </md-tab>
                 <md-tab label="Contact Me">
