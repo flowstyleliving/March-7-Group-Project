@@ -14,7 +14,7 @@ namespace app.Controllers {
         }
 
         public updateProfile(){
-            this.UserService.update(this.status._id, this.user.aboutMe, this.social, this.user.img, this.theme).then((res)=>{
+            this.UserService.update(this.status.email, this.user.aboutMe, this.social, this.user.img, this.theme).then((res)=>{
                 this.$state.go('Home');
             })
         }
@@ -50,7 +50,7 @@ namespace app.Controllers {
         constructor(private UserService: app.Services.UserService, private $mdDialog, private $state: ng.ui.IStateService, private filepickerService,
               private $scope: ng.IScope){
             this.status = UserService.status;
-            UserService.getUser(this.status._id).then((data)=>{
+            UserService.getUser(this.status.email).then((data)=>{
                 this.user = data;
                 if(!this.user.aboutMe){
                     this.openDialog();

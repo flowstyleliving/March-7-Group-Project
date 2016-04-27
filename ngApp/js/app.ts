@@ -33,7 +33,7 @@ namespace app {
       controller: 'UserForgotController',
       controllerAs: 'vm'
     }).state('UpdatePassword', {
-      url: '/resetPassword',
+      url: '/resetPassword/:token',
       templateUrl: '/templates/resetPassword.html',
       controller: 'UserResetController',
       controllerAs: 'vm'
@@ -48,7 +48,7 @@ namespace app {
         controller: "ProfileController",
         controllerAs: 'vm'
     }).state('User Profile', {
-        url:'/userprofile/:id',
+        url:'/userprofile/:email',
         templateUrl: '/templates/profile.html',
         controller: 'UserProfileController',
         controllerAs: 'vm'

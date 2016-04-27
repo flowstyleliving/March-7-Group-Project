@@ -5,7 +5,7 @@ namespace app.Controllers{
         public url = 'fa-facebook-square';
 
         constructor(private UserService: app.Services.UserService, private $stateParams: ng.ui.IStateParamsService){
-            UserService.getUser($stateParams['id']).then((res)=>{
+            UserService.getUser($stateParams['email']).then((res)=>{
                 this.user = res;
             });
         };

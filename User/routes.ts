@@ -6,16 +6,16 @@ const passport = require('passport');
 const router = express.Router();
 
 router.get('/', controller.findAll);
-router.get('/:id', controller.findOne);
-router.put('/update/:id', controller.update)
+router.get('/:email', controller.findOne);
+router.put('/update/:email', controller.update)
 
 router.post('/login', controller.login);
 router.post('/register', controller.register);
 
 router.post('/forgot', controller.forgot);
-router.post('/resetPassword', controller.resetPassword);
+router.post('/resetPassword/:token', controller.resetPassword);
 
-router.get('/auth/facebook', passport.authenticate('facebook',{session: false}));
+router.get('/auth/facebook', passport.authenticate('facebook',{session: false, scope:['email']}));
 router.get('/auth/facebook/callback', passport.authenticate('facebook',{session: false}), (req,res,next) => {
   res.redirect('/?code=' + req['tempUser'].generateJWT());
 });

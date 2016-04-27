@@ -59,9 +59,9 @@ namespace app.Services{
           return q.promise;
         }
 
-        public resetPassword(user) {
+        public resetPassword(user, token) {
           let q = this.$q.defer();
-          this.$http.post('/api/v1/users/resetPassword', user).then((res) => {
+          this.$http.post('/api/v1/users/resetPassword/' + token, user).then((res) => {
             q.resolve();
           });
           return q.promise;

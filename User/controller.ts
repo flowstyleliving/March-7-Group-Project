@@ -63,7 +63,7 @@ export function forgot(req: express.Request, res: express.Response, next: Functi
                         from: 'Folio Team <folioteamcc@gmail.com>',
                         to: user.email,
                         subject: 'Folio Password Reset',
-                        html: 'Hey ' + user.name + ',<br><br>' + 'We heard you forgot your password. There are 2 steps to reset:<br>' + '1) Here is your reset token. It expires within an hour from when you requested to reset your password: ' + '<strong>' + token + '</strong><br><br>' + '2) Click on the link below to reset<br>' + 'http://localhost:3000/resetPassword<br><br>' + 'If you did not request a reset, please ignore this email. Your password will not be reset.<br><br>' + 'Have a great day!<br><br>' + 'xo,<br>' + 'The Folio Team'
+                        html: 'Hey ' + user.name + ',<br><br>' + 'We heard you forgot your password.<br><br>' + 'Click on the link below to reset<br>' + 'http://localhost:3000/resetPassword/' + token + '<br><br>' + 'If you did not request a reset, please ignore this email. Your password will not be reset.<br><br>' + 'Have a great day!<br><br>' + 'xo,<br>' + 'The Folio Team'
                     };
                     smtpTransporter.sendMail(mailOptions, (err) => {
                         return res.redirect('/');
@@ -77,7 +77,7 @@ export function forgot(req: express.Request, res: express.Response, next: Functi
 }
 
 export function resetPassword(req: express.Request, res: express.Response, next: Function) {
-  User.findOne({ resetPasswordToken: req.body.token, resetPasswordDate: {$gt: Date.now()}})
+  User.findOne({ resetPasswordToken: req.params.token, resetPasswordDate: {$gt: Date.now()}})
     .exec((err, user) =>{
       if (err) return next(err);
       if (!user) {
@@ -133,7 +133,7 @@ export function findAll(req: express.Request, res: express.Response, next: Funct
 
 
 export function findOne(req: express.Request, res: express.Response, next: Function) {
-    User.findOne({ _id: req.params.id })
+    User.findOne({ email: req.params.email })
         .select('-password -facebook')
         .populate('items', 'title images description datePosted dateComplete notes category')
         .exec((err, data) => {
@@ -147,7 +147,7 @@ export function findOne(req: express.Request, res: express.Response, next: Funct
 }
 
 export function update(req: express.Request, res: express.Response, next: Function) {
-    User.update({ _id: req.params.id }, req.body, (err, numRows) => {
+    User.update({ email: req.params.email }, req.body, (err, numRows) => {
         if (err) return next(err);
         res.json({ message: "Updated" });
     });

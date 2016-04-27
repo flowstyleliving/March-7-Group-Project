@@ -14,7 +14,7 @@ namespace app.Controllers {
                 $location.search('');
                 if ($location.hash()) $location.hash('');
             }
-            if(this.status._id){
+            if(this.status.email){
                 UserService.getUser(this.status._id).then((data)=>{
                     this.user = data;
                     if(!this.user.aboutMe){

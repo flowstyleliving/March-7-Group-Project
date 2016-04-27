@@ -30,7 +30,7 @@ passport.use(new FacebookStrategy({
       } else {
         let u = new User();
         u.name = profile.displayName;
-        u.email = profile.email;
+        u.email = profile.emails[0].value;
         u.resetPasswordToken = Math.random().toString(36).substring(7);
         u.facebook.id = profile.id;
         u.facebook.token = accessToken;
@@ -58,7 +58,7 @@ passport.use(new GoogleStrategy({
       } else {
         let u = new User();
         u.name = profile.displayName;
-        u.email = profile.email;
+        u.email = profile.emails[0].value;
         u.resetPasswordToken = Math.random().toString(36).substring(7);
         u.google.id = profile.id;
         u.google.token = accessToken;

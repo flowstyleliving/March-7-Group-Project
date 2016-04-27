@@ -3,12 +3,12 @@ namespace app.Controllers {
         public user = {};
 
         public resetPassword(){
-          this.UserService.resetPassword(this.user).then(() => {
+          this.UserService.resetPassword(this.user, this.$stateParams['token']).then(() => {
             this.$state.go('Login');
           })
         }
 
-        constructor(private UserService: app.Services.UserService, private $state: ng.ui.IStateService) {
+        constructor(private UserService: app.Services.UserService, private $state: ng.ui.IStateService, private $stateParams: ng.ui.IStateParamsService) {
 
         }
     }
