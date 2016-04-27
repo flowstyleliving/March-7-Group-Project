@@ -19,7 +19,7 @@
     <form name="projectForm" style="width: 600px;">
         <md-input-container class="md-block">
             <label>Title</label>
-            <input ng-model="vm.item.title">
+            <input required="true" ng-model="vm.item.title">
         </md-input-container>
         <md-input-container class="md-block">
             <label>description</label>
@@ -27,7 +27,7 @@
         </md-input-container>
         <md-input-container class="md-block">
             <label>dateCompleted</label>
-            <input ng-model="vm.item.dateCompleted">
+            <input type="date" ng-model="vm.item.dateCompleted">
         </md-input-container>
         <md-input-container class="md-block">
             <label>notes</label>
