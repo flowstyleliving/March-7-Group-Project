@@ -31,7 +31,7 @@
             <input type="text" ng-model='vm.socialHold.provider' disabled>
         </md-input-container>
         <md-input-container class="md-block">
-            <label>Username</label>
+            <label>URL</label>
             <input type="text" ng-model='vm.socialHold.url'>
         </md-input-container>
         </div>
@@ -40,7 +40,7 @@
         </md-button>
     </div>
     <div layout="row" layout-align="center">
-        <div ng-repeat="s in vm.social">
+        <div ng-repeat="s in vm.user.social">
             <md-button class="md-accent md-mini md-hue-2">{{s.provider}}</md-button>
         </div>
     </div>

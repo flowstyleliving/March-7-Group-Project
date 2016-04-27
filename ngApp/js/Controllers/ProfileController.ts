@@ -3,19 +3,18 @@ namespace app.Controllers {
         public status;
         public user;
         public socialHold;
-        public social = [];
         public isShow = false;
         public theme;
 
         /////////Add socialSite to Array
         public addSocial(){
-            this.social.push(this.socialHold);
+            this.user.social.push(this.socialHold);
             this.socialHold = {};
         }
 
         public updateProfile(){
-            this.UserService.update(this.status.email, this.user.aboutMe, this.social, this.user.img, this.theme).then((res)=>{
-                this.$state.go('Home');
+            this.UserService.update(this.user.email, this.user.aboutMe, this.user.social, this.user.img, this.theme).then((res)=>{
+                this.$state.go('User Profile',{email: this.user.email});
             })
         }
 
@@ -24,7 +23,6 @@ namespace app.Controllers {
             { mimetype: 'image/*',
              cropRatio: 1,
              cropForce: true
-
             },
             this.fileUploaded.bind(this)
             );
