@@ -5,23 +5,26 @@ let User = require('../../User/model').User;
 let Item = require('../../Item/model').Item;
 let sinon = require('sinon');
 let nodemailer = require('nodemailer');
+let crypto = require('crypto');
 require('sinon-as-promised');
 require('sinon-mongoose');
+let transporter = require('../../utils/mailerHelper').transporter;
+
 
 
 describe('User Controller', () => {
-  let UserMock;
-  let ItemMock;
-  let hashStub;
+  let UserMock, ItemMock, hashStub, MailMock;
   beforeEach((done) => {
     UserMock = sinon.mock(User);
     ItemMock = sinon.mock(Item);
+    MailMock = sinon.mock(transporter);
     hashStub = sinon.stub(User.prototype, 'hashPassword');
     done();
   });
   afterEach((done) => {
     UserMock.restore();
     ItemMock.restore();
+    MailMock.restore();
     hashStub.restore();
     done();
   });
@@ -173,34 +176,119 @@ describe('User Controller', () => {
   });
 
   describe('forgot()', () => {
-    it('Should find user by email ', (done) => {
+    it('Should find user by email and send reset email', (done) => {
+
+
       UserMock.expects('findOne').withArgs({email: 'test@e.mail'})
       .chain('exec')
-      .yields(null, {})
-            let mailerMock = sinon.mock(nodemailer);
-            mailerMock.createTransport(transport)
+      .yields(null, {user: 'test@e.mail', save: function(cb){
+        cb(null);
+      }})
 
+      let cryptoStub = sinon.stub(crypto, "randomBytes");
+      cryptoStub.yields(null, {token: 'abc'})
 
+      MailMock.expects('sendMail').withArgs({
+        from: "Folio Team <folioteamcc@gmail.com>",
+        html: "Hey undefined,<br><br>We heard you forgot your password. There are 2 steps to reset:<br>1) Here is your reset token. It expires within an hour from when you requested to reset your password: <strong>[object Object]</strong><br><br>2) Click on the link below to reset<br>http://localhost:3000/resetPassword<br><br>If you did not request a reset, please ignore this email. Your password will not be reset.<br><br>Have a great day!<br><br>xo,<br>The Folio Team",
+        subject: "Folio Password Reset",
+        to: undefined
+      })
+      .yields(null)
 
-    let req = {
-      params: {
-        token: 'abc'
-      }
-    };
-    let res = {
-      json: function(data) {
-        data.user.resetPasswordToken.should.equal(undefined);
-        data.token.should.exist(true);
-        done();
-      }
-    };
-    let next = function() {
-      throw new Error('Next wanted Nap')
-    };
+      let req = {
+        params: {
+          token: 'abc'
+        },
+        body: {email: 'test@e.mail'}
+      };
+      let res = {
+        json: function(data) {
+          cryptoStub.restore();
+          data.user.resetPasswordToken.should.equal(undefined);
+          data.token.should.exist(true);
+          done();
+        },
+        redirect: function(data){
+          should.exist('/')
+          done();
+        }
+      };
+      let next = function() {
+        throw new Error('Next wanted Nap')
+      };
     controller.forgot(req, res, next);
     });
-  });
+    it('Should throw next when user is not found and message', (done) => {
+      UserMock.expects('findOne')
+      .chain('exec')
+      .yields({message: 'Invalid user'})
 
+      let req = {
+        body: {}
+      };
+      let res = {
+        json: function() {
+          throw new Error('JSON wanted to nap')
+        }
+      };
+      let next = function(err) {
+        err.message.should.equal('Invalid user')
+        done();
+      };
+      controller.forgot(req, res, next);
+    });
+  });
+  describe('resetPassword()', () => {
+    it('Should find user and send pw reset success email', (done) => {
+      UserMock.expects('findOne').withArgs({ resetPasswordDate: {$gt: sinon.match.number}, resetPasswordToken: "abc" })
+      .chain('exec')
+      .yields(null, {user: 'abc', save: function(cb) {
+        cb(null, {user: 'abc'})
+      }, hashPassword: function(password, hash) {hash(null)}
+      });
+
+      MailMock.expects('sendMail').withArgs({
+        from: "Folio Team <folioteamcc@gmail.com>",
+        html: "Hey undefined,<br><br>Looks like you were able to update your password!<br><br>If you did not reset it, please contact the Folio Team right away by replying to this email.<br><br>Have a great day!<br><br>xo,<br>The Folio Team",
+        subject: "Your Folio Password Has Been Updated!",
+        to: undefined
+      }).yields(null);
+
+      let req = {
+        body: {
+          token: 'abc',
+          password: undefined
+        }
+      };
+      let res = {
+        redirect: function(data) {
+          should.exist('/');
+          UserMock.verify();
+          done();
+        }
+      };
+      let next = function() {
+        throw new Error('Next wanted to nap')
+      };
+      controller.resetPassword(req, res, next)
+    });
+    it('Should throw next if user cannot be found through a token with a message', (done) => {
+      UserMock.expects('findOne')
+      .chain('exec')
+      .yields({message: 'Invalid token!'})
+
+      let req = {
+        body: {}
+      };
+      let res = {json: () => {throw new Error('JSON wanted to nap')}};
+      let next = function(err) {
+        err.message.should.equal('Invalid token!');
+        done();
+      };
+      controller.resetPassword(req, res, next);
+    });
+  });
   describe('findAll', () => {
     it('Should find All users', (done) => {
       UserMock.expects('find').withArgs({})

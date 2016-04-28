@@ -5,6 +5,7 @@ import * as async from 'async';
 import {User, IUserModel} from './model';
 import {Item, IItemModel} from '../Item/model';
 import {transporter} from '../utils/mailerHelper';
+require('nodemailer-smtp-transport');
 
 
 export function login(req: express.Request, res: express.Response, next: Function) {
@@ -48,6 +49,7 @@ export function forgot(req: express.Request, res: express.Response, next: Functi
                     user.resetPasswordToken = token;
                     user.resetPasswordDate = Date.now() + 3600000;
                     user.save((err) => {
+                      if(err) return next(err);
                         cb(err, token, user);
                     });
                 }, function(token, user: app.i.IUser, cb) {
@@ -58,6 +60,7 @@ export function forgot(req: express.Request, res: express.Response, next: Functi
                         html: 'Hey ' + user.name + ',<br><br>' + 'We heard you forgot your password. There are 2 steps to reset:<br>' + '1) Here is your reset token. It expires within an hour from when you requested to reset your password: ' + '<strong>' + token + '</strong><br><br>' + '2) Click on the link below to reset<br>' + 'http://localhost:3000/resetPassword<br><br>' + 'If you did not request a reset, please ignore this email. Your password will not be reset.<br><br>' + 'Have a great day!<br><br>' + 'xo,<br>' + 'The Folio Team'
                     };
                     transporter.sendMail(mailOptions, (err) => {
+                      if(err) return next(err);
                         return res.redirect('/');
                     })
                 }], function(err) {
@@ -80,10 +83,12 @@ export function resetPassword(req: express.Request, res: express.Response, next:
           function(cb) {
             user.hashPassword(req.body.password, (err, hash) => {
               if (err) return next(err);
+              
               user.password = hash;
               user.resetPasswordDate = undefined;
               user.resetPasswordToken = undefined;
               user.save((err) => {
+                if(err) return next(err);
                 cb(err, user);
               });
             });
