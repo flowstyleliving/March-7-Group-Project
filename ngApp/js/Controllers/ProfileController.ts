@@ -2,14 +2,20 @@ namespace app.Controllers {
     export class ProfileController {
         public status;
         public user;
-        public socialHold;
+        public socialHold= {
+            provider: null,
+            url: "http://www."
+        }
         public isShow = false;
         public theme;
 
         /////////Add socialSite to Array
         public addSocial(){
             this.user.social.push(this.socialHold);
-            this.socialHold = {};
+            this.socialHold = {
+                provider: null,
+                url: "http://www."
+            };
         }
 
         public updateProfile(){
