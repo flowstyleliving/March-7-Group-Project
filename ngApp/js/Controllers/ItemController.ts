@@ -21,7 +21,7 @@ namespace app.Controllers {
             });
         }
 
-        
+
         ///$mdDialog
         public showAdvanced(i) {
             this.$mdDialog.show({
@@ -42,7 +42,9 @@ namespace app.Controllers {
             private $mdMedia
             ) {
             this.status = UserService.status;
-            this.item = ItemService.getOne($stateParams['id']);
+            ItemService.getOne($stateParams['id']).then((res) => {
+              this.item = res;
+            });
         }
     }
     angular.module('app').controller("ItemController", ItemController);

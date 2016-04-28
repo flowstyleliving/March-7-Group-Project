@@ -1,4 +1,21 @@
 <div layout="column" layout-align="center center" style="margin-top: 50px;">
+    <md-button class="md-accent md-hue-2 md-raised">
+        <i class="fa fa-upload fa-5x" aria-hidden="true" style="color: white;" ng-click="vm.pickFile()"></i>
+    </md-button>
+    <div ng-repeat="p in vm.file" style="margin-top: 10px;">
+        <img ng-src="{{p.url | fpConvert:{w: 200} }}" alt="{{p.filename}}" />
+        <br />
+        <md-input-container flex>
+            <label>Caption</label>
+            <input ng-model="p.caption">
+        </md-input-container>
+        <div flex>
+            <label>Hero Image</label>
+            <md-checkbox ng-model="p.mainOrNah"></md-checkbox>
+        </div>
+    </div>
+</div>
+<div layout="column" layout-align="center center" style="margin-top: 50px;">
     <form name="projectForm" style="width: 600px;">
         <md-input-container class="md-block">
             <label>title</label>
@@ -14,7 +31,7 @@
         </md-input-container>
         <md-input-container class="md-block">
             <label>date completed</label>
-            <input type="date" ng-model="vm.item.dateCompleted">
+            <input type="text" ng-model="vm.item.dateCompleted | date: shortDate">
         </md-input-container>
         <md-input-container class="md-block">
             <label>category</label>

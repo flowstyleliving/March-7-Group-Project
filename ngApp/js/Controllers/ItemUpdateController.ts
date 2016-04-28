@@ -2,6 +2,7 @@ namespace app.Controllers{
   export class ItemUpdateController{
     public status;
     public item: app.i.IItem;
+    public file = [];
 
     public update() {
       this.ItemService.update(this.item).then((res) => {
@@ -15,11 +16,26 @@ namespace app.Controllers{
      });
    }
 
+   public pickFile() {
+     this.filepickerService.pick(
+       { mimetype: 'image/*'},
+
+       this.fileUploaded.bind(this)
+       );
+   }
+
+   public fileUploaded(file) {
+     this.file.push(file);
+     this.$scope.$apply(); // force page to update
+   }
+
     constructor(private UserService: app.Services.UserService,
     private CommentService: app.Services.CommentService,
     private $stateParams: ng.ui.IStateParamsService,
     private ItemService: app.Services.ItemService,
-    private $state: ng.ui.IStateService) {
+    private $state: ng.ui.IStateService,
+    private filepickerService,
+    private $scope: ng.IScope) {
       this.status = UserService.status;
       ItemService.getOne($stateParams['id']).then((res) => {
         this.item = res;
