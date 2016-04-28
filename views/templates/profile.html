@@ -8,34 +8,41 @@
             </md-card-title-media>
             <md-card-title-text layout-align="center center">
                 <span class="md-headline" style="font-size: 5.5rem; color: white;">{{vm.user.name}}</span>
+                <br />
+                <p>{{vm.user.aboutMe}}</p>
             </md-card-title-text>
         </md-card-title>
     </md-card>
     <div style="width: 960px;">
         <md-content layout="row">
             <md-tabs md-dynamic-height md-stretch-tabs='always' md-border-bottom flex>
-                <md-tab label="About Me">
-                    <md-content class="md-padding">
-                        <h1 class="md-display-2">{{vm.user.name}}</h1>
-                        <p>{{vm.user.aboutMe}}</p>
-                    </md-content>
-                </md-tab>
-                <md-tab label="Portfolio">
-                    <md-content class="md-padding" ng-repeat="i in vm.user.items">
-                        <div layout="row" flex>
-                            <div layout="column" flex='33' ng-repeat="u in i.images">
-                                <img ng-src="{{u.url}}" alt="{{u.url}}" ng-hide="!u.mainOrNah" class="item_img">
-                            </div>
-                            <div layout="column" flex="5"></div>
-                            <div layout="column" layout-align="start center" flex="60">
-                                <a ui-sref="Item({id: i._id})"><h1>{{i.title}}</h1></a>
-                                <p>{{i.description}}</p>
-                                <span layout="row" layout-align="start start"><p>Date Posted: {{i.datePosted | date: medium}} </p>&nbsp&nbsp <p>Date Completed: {{i.dateCompleted}}</p></span>
-                                <pre>{{i.category}}</pre>
-                            </div>
-                        </div>
-                    </md-content>
-                </md-tab>
+              <md-tab label="Portfolio">
+                <div layout="row" style="margin-top: 20px;">
+                    <md-input-container>
+                        <label>Sort by Category</label>
+                        <md-select ng-model="vm.selectedCategory" ng-change="vm.getItems()">
+                            <md-option>-</md-option>
+                            <md-option ng-repeat="c in vm.category" value="{{c}}">
+                                {{c}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                  <md-content class = "md-padding" ng-repeat="i in vm.user.items">
+                      <div layout="row" layout-align="center">
+                          <div layout="column" flex='33' ng-repeat="u in i.images">
+                              <img ng-src="{{u.url}}" alt="{{u.url}}" ng-hide="!u.mainOrNah" class="item_img">
+                          </div>
+                          <div layout="column" flex="5"></div>
+                          <div layout="column" layout-align="start center" flex="60">
+                              <a ui-sref="Item({id: i._id})"><h1>{{i.title}}</h1></a>
+                              <p>{{i.description}}</p>
+                              <span layout="row" layout-align="start start"><p>Date Posted: {{i.datePosted | date: medium}} </p>&nbsp&nbsp <p>Date Completed: {{i.dateCompleted}}</p></span>
+                              <pre>{{i.category}}</pre>
+                          </div>
+                      </div>
+                  </md-content>
+              </md-tab>
                 <md-tab label="Contact Me">
                     <md-content class="md-padding">
                         <div ng-show="vm.user.social">
@@ -66,6 +73,7 @@
                         </div>
                     </md-content>
                 </md-tab>
+
             </md-tabs>
         </md-content>
     </div>

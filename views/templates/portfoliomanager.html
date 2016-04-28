@@ -1,0 +1,34 @@
+<div layout="row" layout-align="center center" style="margin-top: 20px;">
+    <md-input-container>
+        <label>Sort by Category</label>
+        <md-select ng-model="vm.selectedCategory" ng-change="vm.getItems()">
+            <md-option>-</md-option>
+            <md-option ng-repeat="c in vm.category" value="{{c}}">
+                {{c}}
+            </md-option>
+        </md-select>
+    </md-input-container>
+</div>
+
+<md-content layout="row" layout-align="center center" layout-margin layout-padding>
+    <md-list flex flex-gt-sm="80" flex-gt-md="60">
+        <md-list-item class="md-3-line ">
+            <div class="md-list-item-text md-offset" layout="column" layout-gt-xs="row">
+                <h3 flex flex-gt-sm="33" flex-sm="20">TITLE</h3>
+                <h3 flex flex-gt-sm="33">CATEGORY</h3>
+                <h3 flex flex-gt-sm="33">DATE</h3>
+            </div>
+            <md-divider></md-divider>
+        </md-list-item>
+        <md-list-item class="md-3-line" ng-repeat="i in vm.user.items" ng-click="vm.edit(i)">
+            <img ng-src="{{i.images[0].url}}" class="md-avatar" alt="{{i.filename}}" style="border-radius: 0" />
+            <div class="md-list-item-text" layout="column" layout-gt-xs="row">
+                <h3 flex flex-gt-sm="33" flex-sm="20">{{ i.title }}</h3>
+                <h4 flex flex-gt-sm="33">{{ i.category }}</h4>
+                <p flex flex-gt-sm="33">{{ i.datePosted | date: short }}</p>
+                <i class="fa fa-pencil fa-lg" aria-hidden="true" style="color: #29a3a3"></i>
+            </div>
+            <md-divider></md-divider>
+        </md-list-item>
+    </md-list>
+</md-content>
