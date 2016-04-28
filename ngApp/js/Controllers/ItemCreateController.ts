@@ -1,11 +1,11 @@
 namespace app.Controllers {
   export class ItemCreateController {
-    public item;
+    public item: app.i.IItem;
     public file=[];
     public obj;
 
     public create(){
-        this.ItemService.createItem(this.item.title, this.file, this.item.description, this.item.dateCompleted, this.item.notes, this.item.category).then(()=>{
+        this.ItemService.createItem(this.item.title, this.file, this.item.description, this.item.dateCompleted, this.item.projectURL, this.item.category).then(()=>{
             this.$state.go('Home');
         })
     }
