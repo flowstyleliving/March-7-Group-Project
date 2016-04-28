@@ -4,9 +4,9 @@ import * as crypto from 'crypto';
 import * as async from 'async';
 import {User, IUserModel} from './model';
 import {Item, IItemModel} from '../Item/model';
+import {transporter} from '../utils/mailerHelper';
+require('nodemailer-smtp-transport');
 
-let nodemailer = require('nodemailer');
-let transport = require('nodemailer-smtp-transport');
 
 export function login(req: express.Request, res: express.Response, next: Function) {
     User.findOne({ email: req.body.email })
@@ -49,23 +49,18 @@ export function forgot(req: express.Request, res: express.Response, next: Functi
                     user.resetPasswordToken = token;
                     user.resetPasswordDate = Date.now() + 3600000;
                     user.save((err) => {
+                      if(err) return next(err);
                         cb(err, token, user);
                     });
                 }, function(token, user: app.i.IUser, cb) {
-                    let smtpTransporter = nodemailer.createTransport(transport({
-                        service: 'Gmail',
-                        auth: {
-                            user: process.env.GMAIL_USER,
-                            pass: process.env.GMAIL_PASS
-                        }
-                    }));
                     let mailOptions = {
                         from: 'Folio Team <folioteamcc@gmail.com>',
                         to: user.email,
                         subject: 'Folio Password Reset',
                         html: 'Hey ' + user.name + ',<br><br>' + 'We heard you forgot your password.<br><br>' + 'Click on the link below to reset<br>' + 'http://localhost:3000/resetPassword/' + token + '<br><br>' + 'If you did not request a reset, please ignore this email. Your password will not be reset.<br><br>' + 'Have a great day!<br><br>' + 'xo,<br>' + 'The Folio Team'
                     };
-                    smtpTransporter.sendMail(mailOptions, (err) => {
+                    transporter.sendMail(mailOptions, (err) => {
+                      if(err) return next(err);
                         return res.redirect('/');
                     })
                 }], function(err) {
@@ -88,28 +83,23 @@ export function resetPassword(req: express.Request, res: express.Response, next:
           function(cb) {
             user.hashPassword(req.body.password, (err, hash) => {
               if (err) return next(err);
+              
               user.password = hash;
               user.resetPasswordDate = undefined;
               user.resetPasswordToken = undefined;
               user.save((err) => {
+                if(err) return next(err);
                 cb(err, user);
               });
             });
           }, function(user: app.i.IUser, cb) {
-            let smtpTransporter = nodemailer.createTransport(transport({
-                service: 'Gmail',
-                auth: {
-                    user: process.env.GMAIL_USER,
-                    pass: process.env.GMAIL_PASS
-                }
-            }));
             let mailOptions = {
                 from: 'Folio Team <folioteamcc@gmail.com>',
                 to: user.email,
                 subject: 'Your Folio Password Has Been Updated!',
                 html: 'Hey ' + user.name + ',<br><br>' + 'Looks like you were able to update your password!<br><br>' + 'If you did not reset it, please contact the Folio Team right away by replying to this email.<br><br>' + 'Have a great day!<br><br>' + 'xo,<br>' + 'The Folio Team'
             };
-            smtpTransporter.sendMail(mailOptions, (err) => {
+            transporter.sendMail(mailOptions, (err) => {
                 if (err) return next(err);
                 return res.redirect('/');
             })

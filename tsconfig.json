@@ -93,6 +93,7 @@
     "User/interface.ts",
     "User/model.ts",
     "User/routes.ts",
+    "utils/mailerHelper.ts",
     "views/viewRoutes.ts"
   ],
   "atom": {
