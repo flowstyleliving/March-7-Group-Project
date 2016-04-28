@@ -67,6 +67,11 @@ namespace app {
         templateUrl: '/templates/aboutFolio.html',
         controller: 'AboutUsController',
         controllerAs: 'vm'
+    }).state('Portfolio Manager', {
+        url: '/portfoliomanager/:email',
+        templateUrl: '/templates/portfoliomanager.html',
+        controller: 'PortfolioManagerController',
+        controllerAs: 'vm'
     });
 
     $mdThemingProvider.theme('default')
