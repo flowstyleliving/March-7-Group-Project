@@ -17,15 +17,19 @@
         <md-content layout="row">
             <md-tabs md-dynamic-height md-stretch-tabs='always' md-border-bottom flex>
               <md-tab label="Portfolio">
-                  <md-content class="md-padding">
-                    <md-select ng-model="vm.user.items" md-selected-text="getItems()">
-                      <md-optgroup label="categories">
-                        <md-option ng-value="category" ng-repeat="category in vm.user.items"></md-option>
-                      </md-optgroup>
-                    </md-select>
-                    <!-- <select ng-options="s.category for s in vm.user.items" ng-model="vm.user.items" ng-change="vm.getItems()"> -->
-                    </select>
-                      <!-- <div layout="row" flex>
+                <div layout="row" style="margin-top: 20px;">
+                    <md-input-container>
+                        <label>Sort by Category</label>
+                        <md-select ng-model="vm.selectedCategory" ng-change="vm.getItems()">
+                            <md-option>-</md-option>
+                            <md-option ng-repeat="c in vm.category" value="{{c}}">
+                                {{c}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                  <md-content class = "md-padding" ng-repeat="i in vm.user.items">
+                      <div layout="row" layout-align="center">
                           <div layout="column" flex='33' ng-repeat="u in i.images">
                               <img ng-src="{{u.url}}" alt="{{u.url}}" ng-hide="!u.mainOrNah" class="item_img">
                           </div>
@@ -36,7 +40,7 @@
                               <span layout="row" layout-align="start start"><p>Date Posted: {{i.datePosted | date: medium}} </p>&nbsp&nbsp <p>Date Completed: {{i.dateCompleted}}</p></span>
                               <pre>{{i.category}}</pre>
                           </div>
-                      </div> -->
+                      </div>
                   </md-content>
               </md-tab>
                 <md-tab label="Contact Me">
