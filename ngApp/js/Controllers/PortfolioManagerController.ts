@@ -16,7 +16,11 @@ namespace app.Controllers {
             })
         }
 
-        constructor(private UserService: app.Services.UserService) {
+        public edit(item){
+            this.$state.go('ItemUpdate',{id: item._id});
+        }
+
+        constructor(private UserService: app.Services.UserService, private $state: ng.ui.IStateService) {
             this.status = UserService.status;
             UserService.getUser(this.status.email).then((res) => {
                 this.user = res;
