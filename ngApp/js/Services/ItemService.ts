@@ -12,7 +12,7 @@ namespace app.Services {
     }
 
     public getOne(id: string) {
-      return this.ItemResource.get({id: id});
+      return this.ItemResource.get({id: id}).$promise;
     }
 
     public createItem(title, images, description, dateCompleted, projectURL, category) {

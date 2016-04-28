@@ -21,7 +21,9 @@ namespace app.Controllers{
     private ItemService: app.Services.ItemService,
     private $state: ng.ui.IStateService) {
       this.status = UserService.status;
-
+      ItemService.getOne($stateParams['id']).then((res) => {
+        this.item = res;
+      });
     }
   }
   angular.module('app').controller('ItemUpdateController', ItemUpdateController);
