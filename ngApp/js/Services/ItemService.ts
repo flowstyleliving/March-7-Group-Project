@@ -8,7 +8,7 @@ namespace app.Services {
     private ItemResource: IItemClass;
 
     public getAll() {
-      return this.ItemResource.query();
+      return this.ItemResource.query().$promise;
     }
 
     public getOne(id: string) {
