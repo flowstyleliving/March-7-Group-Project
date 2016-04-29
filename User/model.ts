@@ -16,7 +16,7 @@ let userSchema = new mongoose.Schema({
   resetPasswordToken: {type: String},
   resetPasswordDate: {type: Number},
   name: {type: String, required: true},
-  img: {type: String, default: 'something.png'},
+  img: {type: String, default: '/images/default_user.png'},
   aboutMe: {type: String},
 	social: [{
 		provider: {type: String, lowercase: true, trim: true},
