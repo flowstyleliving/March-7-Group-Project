@@ -1,3 +1,15 @@
+<div layout="row" layout-align="center center">
+  <h1>{{vm.item.title}}</h1>
+
+</div>
+<div layout="row" layout-align="center center">
+
+  <p>
+    <em>
+      {{vm.item.description}}
+    </em>
+  </p>
+</div>
 <div class="container slider">
   <img ng-repeat="c in vm.item.images" class="slide slide-animation nonDraggableImage img-center"
           ng-swipe-right="vm.nextSlide()" ng-swipe-left="vm.prevSlide()"
@@ -15,10 +27,18 @@
      </nav>
 </div>
 
-<md-divider></md-divider>
+<div layout="row" layout-align="center center">
+  <a ng-href="{{vm.item.projectURL}}" target="_blank">{{vm.item.projectURL}}</a>
 
+</div>
 
+<div layout="column" layout-align="center center">
+  completed on: {{vm.item.dateCompleted}}
+  <br />
+  category: {{vm.item.category}}
+</div>
 
+<br />
 <md-divider></md-divider>
 
 
