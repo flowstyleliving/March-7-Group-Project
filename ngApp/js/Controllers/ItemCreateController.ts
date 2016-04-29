@@ -1,25 +1,27 @@
 namespace app.Controllers {
   export class ItemCreateController {
     public item: app.i.IItem;
-    public file=[];
+    public files = [];
     public obj;
 
     public create(){
-        this.ItemService.createItem(this.item.title, this.file, this.item.description, this.item.dateCompleted, this.item.projectURL, this.item.category).then(()=>{
+        this.ItemService.createItem(this.item.title, this.files, this.item.description, this.item.dateCompleted, this.item.projectURL, this.item.category).then(()=>{
             this.$state.go('Home');
         })
     }
 
     public pickFile() {
-      this.filepickerService.pick(
+      this.filepickerService.pickMultiple(
         { mimetype: 'image/*'},
 
         this.fileUploaded.bind(this)
         );
     }
 
-    public fileUploaded(file) {
-      this.file.push(file);
+    public fileUploaded(arr) {
+      for(let i = 0; i < arr.length; i++) {
+        this.files.push(arr[i]);
+      }
       this.$scope.$apply(); // force page to update
     }
 

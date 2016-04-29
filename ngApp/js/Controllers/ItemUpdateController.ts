@@ -2,9 +2,12 @@ namespace app.Controllers{
   export class ItemUpdateController{
     public status;
     public item: app.i.IItem;
-    public file = [];
+    public files = [];
 
     public update() {
+      for(let i = 0; i < this.file.length; i++){
+        this.item.images.push(this.files[i]);
+      }
       this.ItemService.update(this.item).then((res) => {
         this.$state.go('Item', {id: this.item._id});
       });
@@ -17,15 +20,17 @@ namespace app.Controllers{
    }
 
    public pickFile() {
-     this.filepickerService.pick(
+     this.filepickerService.pickMultiple(
        { mimetype: 'image/*'},
 
        this.fileUploaded.bind(this)
        );
    }
 
-   public fileUploaded(file) {
-     this.file.push(file);
+   public fileUploaded(arr) {
+     for(let i = 0; i < arr.length; i++) {
+       this.files.push(arr[i]);
+     }
      this.$scope.$apply(); // force page to update
    }
 

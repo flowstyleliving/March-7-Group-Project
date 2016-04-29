@@ -27,6 +27,7 @@
     "mongoose": "registry:dt/mongoose#3.8.5+20160316155526",
     "morgan": "registry:dt/morgan#1.2.2+20160317120654",
     "node": "registry:dt/node#4.0.0+20160317120654",
+    "nodemailer": "registry:dt/nodemailer#1.3.2+20160316155526",
     "passport": "registry:dt/passport#0.2.0+20160317120654",
     "passport-facebook": "registry:dt/passport-facebook#1.0.3+20160316155526",
     "passport-google-oauth": "registry:dt/passport-google-oauth#1.0.3+20160316155526",
