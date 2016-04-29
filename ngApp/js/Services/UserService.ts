@@ -32,6 +32,8 @@ namespace app.Services{
                 this.setToken(res.data['token']);
                 this.setUser();
                 q.resolve();
+            }, (err) => {
+              q.reject();
             });
             return q.promise;
         }
@@ -55,6 +57,8 @@ namespace app.Services{
           let q = this.$q.defer();
           this.$http.post('/api/v1/users/forgot', user).then((res) => {
               q.resolve();
+          }, (err) => {
+            q.reject();
           });
           return q.promise;
         }

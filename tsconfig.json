@@ -60,6 +60,7 @@
     "ngApp/js/Services/UserService.ts",
     "server.ts",
     "typings/browser.d.ts",
+    "typings/browser/ambient/angular-material/index.d.ts",
     "typings/browser/ambient/angular-resource/index.d.ts",
     "typings/browser/ambient/angular-ui-bootstrap/index.d.ts",
     "typings/browser/ambient/angular-ui-router/index.d.ts",
