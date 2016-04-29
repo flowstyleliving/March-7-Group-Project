@@ -208,3 +208,20 @@ margin: auto;
 transform: translateX(-50%);
 left: 50%;
 }
+
+
+.box{
+  width: 400px;
+  padding: 10px;
+  border: 1px solid rgb(79, 80, 80);
+  margin: 0;
+  text-align: center;
+}
+
+.smallbox{
+  width: 200px;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 0;
+  text-align: center;
+}

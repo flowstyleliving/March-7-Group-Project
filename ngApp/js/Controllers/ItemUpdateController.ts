@@ -4,6 +4,10 @@ namespace app.Controllers{
       public item: app.i.IItem;
       public files = [];
 
+      public blob = {
+        url: null
+      }
+
       public updateToast() {
         this.$mdToast.show(
             this.$mdToast.simple('Your portfolio has been updated')
@@ -34,6 +38,14 @@ namespace app.Controllers{
         this.ItemService.update(this.item).then((res) => {
             this.$state.go('Item', { id: this.item._id });
             this.updateToast();
+        });
+      }
+
+      public removeFilePicker(blob){
+        this.blob.url = blob.url;
+        this.item.images.splice(this.item.images.indexOf(blob), 1);
+        this.filepickerService.remove(this.blob, function(){
+            console.log("Removed");
         });
       }
 
@@ -72,7 +84,8 @@ namespace app.Controllers{
           private $state: ng.ui.IStateService,
           private filepickerService,
           private $mdToast,
-          private $scope: ng.IScope) {
+          private $scope: ng.IScope,
+          private $http: ng.IHttpService) {
           this.status = UserService.status;
           ItemService.getOne($stateParams['id']).then((res) => {
               this.item = res;

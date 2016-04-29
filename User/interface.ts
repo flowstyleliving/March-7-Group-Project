@@ -8,6 +8,8 @@ namespace app.i{
     name: string;
     img?: string;
     aboutMe?: string;
+    personalURL: string;
+    location: string;
     social: [{
         provider: string,
         url: string,
