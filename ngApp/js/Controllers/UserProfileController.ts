@@ -8,7 +8,7 @@ namespace app.Controllers{
         public selectedCategory;
 
         public getItems(){
-            this.UserService.getUser(this.status.email).then((res) => {
+            this.UserService.getUser(this.user.email).then((res) => {
                 this.user = res;
                 if(this.selectedCategory != "-"){
                     this.user.items = this.user.items.filter((u)=> {
@@ -20,7 +20,7 @@ namespace app.Controllers{
 
         constructor(private UserService: app.Services.UserService, private $stateParams: ng.ui.IStateParamsService){
           this.status = UserService.status;
-          UserService.getUser(this.status.email).then((res) => {
+          UserService.getUser($stateParams['email']).then((res) => {
               this.user = res;
               for (let i = 0; i < this.user.items.length; i++){
                   this.category.push(this.user.items[i].category);
