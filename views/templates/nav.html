@@ -15,7 +15,7 @@
                             <div ng-show="!nav.status._id">
                                 <a ui-sref="Login">
                                     <md-menu-item>
-                                        <md-button  aria-label="Login" style="text-align: center;">
+                                        <md-button aria-label="Login" style="text-align: center;">
                                             Login
                                         </md-button>
                                     </md-menu-item>
@@ -28,42 +28,42 @@
                                     </md-button>
                                 </md-menu-item>
                                 <menudivider></menudivider>
-                                <a ui-sref="Settings" class="menuLink">
-                                <md-menu-item>
-                                    <md-button aria-label="User" style="text-align: center;">
-                                        Profile Settings
-                                    </md-button>
-                                </md-menu-item>
-                            </a>
+                                <a ui-sref="User Profile({email: nav.status.email})" class="menuLink">
+                                    <md-menu-item>
+                                        <md-button aria-label="User" style="text-align: center;">
+                                            View Portfolio
+                                        </md-button>
+                                    </md-menu-item>
+                                </a>
                                 <menudivider></menudivider>
                                 <a ui-sref="Portfolio Manager({email: nav.status.email})" class="menuLink">
-                                <md-menu-item>
-                                    <md-button aria-label="User" style="text-align: center;">
-                                        Manage Portfolio
-                                    </md-button>
-                                </md-menu-item>
-                            </a>
+                                    <md-menu-item>
+                                        <md-button aria-label="User" style="text-align: center;">
+                                            Manage Portfolio
+                                        </md-button>
+                                    </md-menu-item>
+                                </a>
                                 <menudivider></menudivider>
-                                <a ui-sref="User Profile({email: nav.status.email})" class="menuLink">
-                                <md-menu-item>
-                                    <md-button aria-label="User" style="text-align: center;">
-                                        View Portfolio
-                                    </md-button>
-                                </md-menu-item>
-                            </a>
+                                <a ui-sref="Settings" class="menuLink">
+                                    <md-menu-item>
+                                        <md-button aria-label="User" style="text-align: center;">
+                                            Profile Settings
+                                        </md-button>
+                                    </md-menu-item>
+                                </a>
                                 <menudivider></menudivider>
                             </div>
                             <div>
-                              <md-menu-item>
-                              </md-menu-item>
-                              <a ui-sref="AboutFolio" class="menuLink">
-                              <md-menu-item>
-                                <md-button aria-label="AboutFolio" style="text-align: center;">
-                                  About Folio
-                                </md-button>
-                              </md-menu-item>
-                              </a>
-                              <menudivider></menudivider>
+                                <md-menu-item>
+                                </md-menu-item>
+                                <a ui-sref="AboutFolio" class="menuLink">
+                                    <md-menu-item>
+                                        <md-button aria-label="AboutFolio" style="text-align: center;">
+                                            About Folio
+                                        </md-button>
+                                    </md-menu-item>
+                                </a>
+                                <menudivider></menudivider>
                             </div>
                         </md-menu-content>
                     </md-menu>

@@ -11,7 +11,8 @@
         </md-input-container>
         <div flex>
             <label>Hero Image</label>
-            <md-checkbox ng-model="p.mainOrNah"></md-checkbox>
+            <!-- <md-checkbox ng-model="p.mainOrNah"></md-checkbox> -->
+            <input type="radio" name="main" ng-model="p.mainOrNah">
         </div>
     </div>
 </div>
@@ -38,7 +39,12 @@
             <input ng-model="vm.item.category">
         </md-input-container>
     </form>
-    <md-button class="md-accent md-raised md-cornered md-hue-2" ng-click="vm.create()" flex>
-        Submit
-    </md-button>
+    <span layout='row'>
+      <md-button class="md-accent md-raised md-cornered md-hue-2" ng-click="vm.create()" flex>
+          Submit
+      </md-button>
+      <md-button class="md-accent md-raised md-cornered md-hue-2" ui-sref='Portfolio Manager(nav.status.email)' flex>
+          Cancel
+      </md-button>
+    </span>
 </div>
