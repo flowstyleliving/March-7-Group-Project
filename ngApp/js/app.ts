@@ -18,7 +18,7 @@ namespace app {
       controller: 'HomeController',
       controllerAs: 'vm'
     }).state('InvalidPage', {
-      url: '/dummypage',
+      url: '/InvalidPage',
       templateUrl: '/templates/404.html'
     }).state('Login', {
       url: '/login',
