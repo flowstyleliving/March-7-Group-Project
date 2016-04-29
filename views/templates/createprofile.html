@@ -4,7 +4,7 @@
     </div>
     <br />
     <div layout='row' layout-align="center" >
-        <form name="profile" flex-gt-sm="33" ng-submit="hold">
+        <form name="profile" ng-submit="hold">
             <div layout-padding>
               <md-input-container class='md-block' flex-gt-sm>
                   <label class="md-accent">My name is</label>
@@ -13,6 +13,17 @@
                       <div ng-message="required">*Required</div>
                   </div>
               </md-input-container>
+              <md-input-container class='md-block' flex-gt-sm>
+                  <label class="md-accent">I am currently located...</label>
+                  <input name="location" class="md-accent" required="true" ng-model="vm.user.location" />
+                  <div ng-messages="profile.location.$error">
+                      <div ng-message="required">*Required</div>
+                  </div>
+              </md-input-container>
+                <md-input-container class='md-block' flex-gt-sm>
+                    <label class="md-accent">Personal Site</label>
+                    <input name="location" class="md-accent" type="url" ng-model="vm.user.location" />
+                </md-input-container>
                 <md-input-container class='md-block' flex-gt-sm>
                     <label class="md-accent">About Me</label>
                     <textarea rows="6" cols="50" name="about" required='true' ng-model="vm.user.aboutMe" maxlength="200" class="md-accent"></textarea>
@@ -23,9 +34,7 @@
             </div>
         </form>
     </div>
-    <br />
 
-    <br />
     <div layout='column' layout-align="start center" >
         <h3>Social Media Settings</h3>
     </div>

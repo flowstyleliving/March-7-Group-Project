@@ -18,6 +18,8 @@ let userSchema = new mongoose.Schema({
   name: {type: String, required: true},
   img: {type: String, default: '/images/default_user.png'},
   aboutMe: {type: String},
+  personalURL: {type: String},
+  location: {type: String},
 	social: [{
 		provider: {type: String, lowercase: true, trim: true},
         url: {type: String},
