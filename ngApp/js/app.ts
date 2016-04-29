@@ -1,6 +1,6 @@
 'use strict';
 namespace app {
-  angular.module('app', ['ui.router', 'ngResource', 'ui.bootstrap', 'ngMessages', 'ngMaterial', 'angular-filepicker', 'uiGmapgoogle-maps'])
+  angular.module('app', ['ui.router', 'ngAnimate','ngResource', 'ui.bootstrap', 'ngMessages', 'ngMaterial', 'angular-filepicker', 'uiGmapgoogle-maps'])
     .config((
     $mdThemingProvider,
     $httpProvider: ng.IHttpProvider,
@@ -57,7 +57,7 @@ namespace app {
         controllerAs: 'vm'
     }).state('Item', {
         url: '/item/:id',
-        templateUrl: '/templates/item.html',
+        templateUrl: '/templates/itemDetails.html',
         controller: 'ItemController',
         controllerAs: 'vm'
     }).state('ItemUpdate', {

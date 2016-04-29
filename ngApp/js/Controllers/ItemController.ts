@@ -5,6 +5,28 @@ namespace app.Controllers {
         public isShow = true;
         public comment;
 
+        public direction = 'left';
+        public currentIndex = 0;
+
+        public setCurrentSlide(index: number) {
+          this.direction = (index > this.currentIndex) ? 'left' : 'right';
+          this.currentIndex = index;
+        }
+
+        public isCurrentSlide(index: number) {
+          return this.currentIndex === index;
+        }
+
+        public prevSlide() {
+          this.direction = 'left';
+          this.currentIndex = (this.currentIndex < this.item.images.length - 1) ? ++this.currentIndex: 0;
+        }
+
+        public nextSlide() {
+          this.direction = 'right';
+          this.currentIndex = (this.currentIndex > 0) ? --this.currentIndex : this.item.images.length - 1;
+        }
+
         public toast() {
           this.$mdToast.show(
             this.$mdToast.simple('Your comment has been removed')

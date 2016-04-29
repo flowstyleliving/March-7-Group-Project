@@ -10,6 +10,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "angular-animate": "^1.5.5",
     "angular-google-maps": "^2.3.2",
     "async": "^2.0.0-rc.3",
     "atob": "^2.0.3",
