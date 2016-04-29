@@ -6,3 +6,4 @@
 npm-debug.log
 !*.spec.js
 !angular_filepicker.js
+*.DS_Store
