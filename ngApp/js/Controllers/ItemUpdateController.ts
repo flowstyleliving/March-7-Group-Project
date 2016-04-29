@@ -5,9 +5,6 @@ namespace app.Controllers{
     public files = [];
 
     public update() {
-      for(let i = 0; i < this.file.length; i++){
-        this.item.images.push(this.files[i]);
-      }
       this.ItemService.update(this.item).then((res) => {
         this.$state.go('Item', {id: this.item._id});
       });
@@ -30,6 +27,9 @@ namespace app.Controllers{
    public fileUploaded(arr) {
      for(let i = 0; i < arr.length; i++) {
        this.files.push(arr[i]);
+     }
+     for(let i = 0; i < this.files.length; i++){
+       this.item.images.push(this.files[i]);
      }
      this.$scope.$apply(); // force page to update
    }
