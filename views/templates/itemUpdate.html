@@ -11,8 +11,9 @@
         </md-input-container>
         <div flex>
             <label>Hero Image</label>
-            <md-checkbox ng-model="p.mainOrNah"></md-checkbox>
+            <input type="radio" ng-model="p.mainOrNah">
         </div>
+        <md-button ng-click="vm.removeFilePicker(p)">Delete</md-button>
     </div>
 </div>
 <div layout="column" layout-align="center center" style="margin-top: 50px;">
