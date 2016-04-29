@@ -1,4 +1,6 @@
 <div layout-gt-sm="row" layout="column" flex-gt-sm="60" flex-offset-gt-sm="20" flex style="margin-top: 40px;" layout-align="center center">
+  {{vm.item.datePosted | date: 'yyyy-MM-dd HH:mm:ss Z'}}
+  {{vm.item.dateUpdated | date: 'yyyy-MM-dd HH:mm:ss Z'}}
     <div layout="column" ng-repeat="i in vm.item.images">
         <md-card class="md-padding">
             <div class="img-container">

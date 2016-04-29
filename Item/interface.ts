@@ -5,6 +5,7 @@ namespace app.i{
     images: [any];
     description: string;
     datePosted: number;
+    dateUpdated: number;
     dateCompleted: string;
     projectURL: string;
     category: string;

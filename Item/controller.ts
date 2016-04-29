@@ -29,6 +29,7 @@ export function getOne(req: express.Request, res: express.Response, next: Functi
 export function create(req: express.Request, res: express.Response, next: Function) {
     req.body.user = req['payload']._id;
     req.body.datePosted = Date.now();
+    req.body.dateUpdated = Date.now();
     Item.create(req.body, (err, item:IItemModel)=>{
         if (err) return next (err);
         User.update({ _id: item.user }, { $push: { 'items': item._id } }, (err, result) => {
@@ -39,9 +40,9 @@ export function create(req: express.Request, res: express.Response, next: Functi
 }
 
 export function update(req: express.Request, res: express.Response, next: Function) {
+    req.body.dateUpdated = Date.now();
     Item.update({_id: req.params.id, user: req['payload']._id}, req.body,(err, numRows: any) => {
         if (err) return next(err);
-        if(numRows.nModified === 0) return next({message: 'Unable to update entry', status: 500});
         res.json({message: 'This entry has been updated!'});
     })
 }
