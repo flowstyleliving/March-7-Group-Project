@@ -5,6 +5,14 @@ namespace app.Controllers {
         public isShow = true;
         public comment;
 
+        public toast() {
+          this.$mdToast.show(
+            this.$mdToast.simple('Your comment has been removed')
+            .position('top right')
+            .hideDelay(3000)
+          );
+        }
+
         public createComment() {
             this.comment.item = this.item._id;
             this.CommentService.create(this.comment).then((res) => {
@@ -18,6 +26,7 @@ namespace app.Controllers {
         public removeComment(c: app.i.IComment) {
             this.CommentService.remove(c._id).then(() => {
                 this.item.comments.splice(this.item.comments.indexOf(c), 1);
+                this.toast();
             });
         }
 
@@ -39,7 +48,8 @@ namespace app.Controllers {
             private ItemService: app.Services.ItemService,
             private $state: ng.ui.IStateService,
             private $mdDialog,
-            private $mdMedia
+            private $mdMedia,
+            private $mdToast
             ) {
             this.status = UserService.status;
             ItemService.getOne($stateParams['id']).then((res) => {
@@ -55,4 +65,6 @@ namespace app.Controllers {
         constructor(private $mdDialog, private i) { }
     }
     angular.module('app').controller("DialogController", DiaglogController);
+
+
 }

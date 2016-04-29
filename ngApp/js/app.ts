@@ -88,6 +88,7 @@ namespace app {
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('AuthInterceptor');
+    $httpProvider.interceptors.push('httpInterceptors');
     uiGmapGoogleMapApiProvider.configure({});
   });
 }

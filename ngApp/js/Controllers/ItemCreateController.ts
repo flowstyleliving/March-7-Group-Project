@@ -3,10 +3,11 @@ namespace app.Controllers {
     public item: app.i.IItem;
     public file=[];
     public obj;
+    public status;
 
     public create(){
         this.ItemService.createItem(this.item.title, this.file, this.item.description, this.item.dateCompleted, this.item.projectURL, this.item.category).then(()=>{
-            this.$state.go('Home');
+            this.$state.go('Portfolio Manager',{email: this.status.email});
         })
     }
 
@@ -28,9 +29,10 @@ namespace app.Controllers {
       private ItemService: app.Services.ItemService,
       private $state: ng.ui.IStateService,
       private filepickerService,
-      private $scope: ng.IScope
+      private $scope: ng.IScope,
+      private UserService: app.Services.UserService
     ) {
-
+      this.status = UserService.status;
     }
   }
   angular.module('app').controller('ItemCreateController', ItemCreateController);
