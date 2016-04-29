@@ -22,6 +22,8 @@ namespace app.Services{
             let q = this.$q.defer();
             this.$http.put('/api/v1/users/update/' + id, {aboutMe: aboutMe, social: social, img: img, theme: theme}).then((res)=>{
                 q.resolve();
+            }, (err) => {
+              q.reject();
             });
             return q.promise;
         }
@@ -67,6 +69,8 @@ namespace app.Services{
           let q = this.$q.defer();
           this.$http.post('/api/v1/users/resetPassword/' + token, user).then((res) => {
             q.resolve();
+          }, (err) => {
+            q.reject();
           });
           return q.promise;
         }
