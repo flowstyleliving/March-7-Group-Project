@@ -1,6 +1,16 @@
 'use strict';
 namespace app {
-  angular.module('app', ['ui.router', 'ngAnimate','ngResource', 'ui.bootstrap', 'ngMessages', 'ngMaterial', 'angular-filepicker', 'uiGmapgoogle-maps'])
+  angular.module('app', [
+    'ui.router',
+    'ngAnimate',
+    'ngResource',
+    'ui.bootstrap',
+    'ngMessages',
+    'ngMaterial',
+    'angular-filepicker',
+    'uiGmapgoogle-maps',
+    'ngEmbed'
+  ])
     .config((
     $mdThemingProvider,
     $httpProvider: ng.IHttpProvider,

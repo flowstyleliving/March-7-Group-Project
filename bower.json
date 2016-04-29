@@ -23,6 +23,10 @@
     "angular-material": "^1.0.7",
     "angular-filepicker": "^1.1.4",
     "lodash": "^4.11.2",
-    "angular-google-maps": "^2.3.2"
+    "angular-google-maps": "^2.3.2",
+    "ngEmbed": "ng-embed#^2.0.4"
+  },
+  "resolutions": {
+    "angular": "1.5.5"
   }
 }
