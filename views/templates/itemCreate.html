@@ -31,14 +31,15 @@
             <input ng-model="vm.item.projectURL">
         </md-input-container>
         <md-input-container class="md-block">
-            <label>dateCompleted</label>
-            <input type="date" ng-model="vm.item.dateCompleted">
+            <label>date completed</label>
+            <input type="text" ng-model="vm.item.dateCompleted">
         </md-input-container>
         <md-input-container class="md-block">
             <label>category</label>
             <input ng-model="vm.item.category">
         </md-input-container>
     </form>
+    <br />
     <span layout='row'>
       <md-button class="md-accent md-raised md-cornered md-hue-2" ng-click="vm.create()" flex>
           Submit
