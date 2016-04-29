@@ -38,7 +38,12 @@
             <input ng-model="vm.item.category">
         </md-input-container>
     </form>
-    <md-button class="md-accent md-raised md-cornered md-hue-2" ng-click="vm.create()" flex>
-        Submit
-    </md-button>
+    <span layout='row'>
+      <md-button class="md-accent md-raised md-cornered md-hue-2" ng-click="vm.create()" flex>
+          Submit
+      </md-button>
+      <md-button class="md-accent md-raised md-cornered md-hue-2" ui-sref='Portfolio Manager(nav.status.email)' flex>
+          Cancel
+      </md-button>
+    </span>
 </div>
