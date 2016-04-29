@@ -17,6 +17,9 @@ namespace app {
       templateUrl: '/templates/home.html',
       controller: 'HomeController',
       controllerAs: 'vm'
+    }).state('InvalidPage', {
+      url: '/dummypage',
+      templateUrl: '/templates/404.html'
     }).state('Login', {
       url: '/login',
       templateUrl: '/templates/login.html',
@@ -85,10 +88,9 @@ namespace app {
     $mdThemingProvider.theme('dark-light-green').primaryPalette('light-green').backgroundPalette('light-green').dark();
     $mdThemingProvider.theme('dark-pink').primaryPalette('pink').backgroundPalette('pink').dark();
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('InvalidPage');
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('AuthInterceptor');
-    $httpProvider.interceptors.push('httpInterceptors');
     uiGmapGoogleMapApiProvider.configure({});
   });
 }
