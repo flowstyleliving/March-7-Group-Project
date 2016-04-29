@@ -42,7 +42,7 @@ namespace app {
       templateUrl: '/templates/itemCreate.html',
       controller: 'ItemCreateController',
       controllerAs: 'vm'
-    }).state('Create Profile', {
+    }).state('Settings', {
         url:'/settings',
         templateUrl: '/templates/createprofile.html',
         controller: "ProfileController",

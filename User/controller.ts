@@ -83,7 +83,7 @@ export function resetPassword(req: express.Request, res: express.Response, next:
           function(cb) {
             user.hashPassword(req.body.password, (err, hash) => {
               if (err) return next(err);
-              
+
               user.password = hash;
               user.resetPasswordDate = undefined;
               user.resetPasswordToken = undefined;
@@ -125,7 +125,7 @@ export function findAll(req: express.Request, res: express.Response, next: Funct
 export function findOne(req: express.Request, res: express.Response, next: Function) {
     User.findOne({ email: req.params.email })
         .select('-password -facebook')
-        .populate('items', 'title images description datePosted dateComplete notes category')
+        .populate('items', 'title images description datePosted dateUpdated dateComplete notes category')
         .exec((err, data) => {
         if (err) return next(err);
         if (!data) return next({ message: 'no users.' });

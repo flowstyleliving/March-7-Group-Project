@@ -18,7 +18,7 @@ namespace app.Controllers {
                 UserService.getUser(this.status.email).then((data)=>{
                     this.user = data;
                     if(!this.user.aboutMe){
-                        this.$state.go('Create Profile');
+                        this.$state.go('Settings');
                     }
                 });
             }

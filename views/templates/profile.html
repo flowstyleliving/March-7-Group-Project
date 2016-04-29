@@ -1,3 +1,4 @@
+<div ng-init="sort='-dateUpdated'">
 <div layout="column" layout-align="center center">
     <md-card class="md-whiteframe-z2" md-theme="{{ vm.user.theme }}" md-theme-watch layout-margin style="width: 960px;">
         <md-card-title>
@@ -17,8 +18,11 @@
         <md-content layout="row">
             <md-tabs md-dynamic-height md-stretch-tabs='always' md-border-bottom flex>
               <md-tab label="Portfolio">
-                <div layout="row" style="margin-top: 20px;">
+                <div layout="row" style="margin-top: 20px;"  layout-align="center">
                     <md-input-container>
+                      <span class="text-sort">Sort by Last Updated</span>
+                      <md-button class="btn-sort" ng-show="sort ==='-dateUpdated'" ng-click="sort='dateUpdated'"><i class="fa fa-chevron-up" aria-hidden="true"></i></md-button>
+                      <md-button class="btn-sort" ng-show="sort ==='dateUpdated'" ng-click="sort='-dateUpdated'"><i class="fa fa-chevron-down" aria-hidden="true"></i></md-button>
                         <label>Sort by Category</label>
                         <md-select ng-model="vm.selectedCategory" ng-change="vm.getItems()">
                             <md-option>-</md-option>
@@ -27,8 +31,9 @@
                             </md-option>
                         </md-select>
                     </md-input-container>
+
                 </div>
-                  <md-content class = "md-padding" ng-repeat="i in vm.user.items">
+                  <md-content class = "md-padding" ng-repeat="i in vm.user.items | orderBy: sort">
                       <div layout="row" layout-align="center">
                           <div layout="column" flex='33' ng-repeat="u in i.images">
                               <img ng-src="{{u.url}}" alt="{{u.url}}" ng-hide="!u.mainOrNah" class="item_img">
@@ -37,7 +42,11 @@
                           <div layout="column" layout-align="start center" flex="60">
                               <a ui-sref="Item({id: i._id})"><h1>{{i.title}}</h1></a>
                               <p>{{i.description}}</p>
-                              <span layout="row" layout-align="start start"><p>Date Posted: {{i.datePosted | date: medium}} </p>&nbsp&nbsp <p>Date Completed: {{i.dateCompleted}}</p></span>
+                              <span layout="row" layout-align="start start"><p>Date Posted: {{i.datePosted | date: 'yyyy-MM-dd HH:mm:ss Z'}} </p>&nbsp&nbsp
+                                <p>
+                                  date updated: {{i.dateUpdated | date: 'yyyy-MM-dd HH:mm:ss Z' }}
+                                </p>
+                              </span>
                               <pre>{{i.category}}</pre>
                           </div>
                       </div>
@@ -77,4 +86,5 @@
             </md-tabs>
         </md-content>
     </div>
+</div>
 </div>

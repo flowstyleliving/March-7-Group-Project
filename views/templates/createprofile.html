@@ -1,10 +1,35 @@
 <md-content layout='column' layout-align=" start " md-theme="{{vm.theme}}" md-theme-watch style="height: 100vh;">
     <div layout='column' layout-align="start center" >
-        <h3>Let the people know a little about you</h3>
-        <p>
-            Choose a social media account you'd like to add!
-        </p>
+        <h3>Profile Settings</h3>
     </div>
+    <br />
+    <div layout='row' layout-align="center" >
+        <form name="profile" flex-gt-sm="33" ng-submit="hold">
+            <div layout-padding>
+              <md-input-container class='md-block' flex-gt-sm>
+                  <label class="md-accent">My name is</label>
+                  <input name="name" class="md-accent" required="true" ng-model="vm.user.name" />
+                  <div ng-messages="profile.name.$error">
+                      <div ng-message="required">*Required</div>
+                  </div>
+              </md-input-container>
+                <md-input-container class='md-block' flex-gt-sm>
+                    <label class="md-accent">About Me</label>
+                    <textarea rows="6" cols="50" name="about" required='true' ng-model="vm.user.aboutMe" maxlength="200" class="md-accent"></textarea>
+                    <div ng-messages="profile.about.$error">
+                        <div ng-message="required">*Required</div>
+                    </div>
+                </md-input-container>
+            </div>
+        </form>
+    </div>
+    <br />
+
+    <br />
+    <div layout='column' layout-align="start center" >
+        <h3>Social Media Settings</h3>
+    </div>
+    <br />
     <div layout='row' layout-align="center">
         <div class="md-block" >
             <md-button class="md-fab" ng-click="vm.socialHold.provider = 'facebook'; vm.socialHold.template='fa-facebook-square'">
@@ -39,37 +64,30 @@
             <i class="fa fa-plus" aria-hidden="true"></i>
         </md-button>
     </div>
+    <br />
     <div layout="row" layout-align="center">
         <div ng-repeat="s in vm.user.social">
             <md-button class="md-accent md-mini md-hue-2">{{s.provider}}</md-button>
         </div>
     </div>
-    <md-divider></md-divider>
+    <br />
+    <br />
     <div layout="column" layout-align="center center" >
         <p>
-            Profile Picture
+            <h3>Profile Picture</h3>
         </p>
         <md-button class="md-accent md-hue-2 md-raised" ng-show="!vm.isShow"ng-click="vm.pickFile()">
             <i class="fa fa-user  fa-3x" aria-hidden="true" style="color: white;" ></i>
         </md-button>
             <img ng-show="vm.isShow" ng-src="vm.user.img | fpConvert:{w: 200}"  / >
+            <br />
     </div>
-    <div layout='row' layout-align="center" >
-        <form name="profile" flex-gt-sm="33" ng-submit="hold">
-            <div layout-padding>
-                <md-input-container class='md-block' flex-gt-sm>
-                    <label class="md-accent">About Me</label>
-                    <textarea rows="6" cols="50" name="about" type="text" class="md-accent" required='true' ng-model="vm.user.aboutMe"></textarea>
-                    <div ng-messages="userForm.about.$error">
-                        <div ng-message="required">*Required</div>
-                    </div>
-                </md-input-container>
-            </div>
-        </form>
-    </div>
+    <br />
+<br />
     <div layout="row" layout-align="center">
-        <h1>Theme</h1>
+        <h3>Theme</h3>
     </div>
+    <br />
     <div layout="row" layout-align="center">
         <md-button md-theme="dark-red" class="md-raised md-primary"  ng-click="vm.theme = 'dark-red'">
         </md-button>
@@ -84,7 +102,11 @@
         <md-button md-theme="dark-light-green"  class="md-raised md-primary" ng-click="vm.theme = 'dark-light-green'">
         </md-button>
     </div>
+    <br />
     <div layout="row" layout-align="center">
             <md-button class="md-accent md-raised md-hue-2" ng-click="vm.updateProfile()">Submit</md-button>
     </div>
+    <br />
+    <br />
+
 </md-content>
