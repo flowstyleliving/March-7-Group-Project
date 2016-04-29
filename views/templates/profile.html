@@ -31,16 +31,17 @@
                             </md-option>
                         </md-select>
                     </md-input-container>
-
                 </div>
                   <md-content class = "md-padding" ng-repeat="i in vm.user.items | orderBy: sort">
                     <div layout= "column" layout-align="center center">
                       <div class="box">
-                        <a ui-sref="Item({id: i._id})"><h1>{{i.title}}</h1></a>
-                        <br />
-                        <div class="smallbox" ng-repeat="u in i.images">
-                            <img ng-src="{{u.url}}" alt="{{u.url}}" ng-hide="!u.mainOrNah" class="item_img" >
+                        <center>
+                        <div class="smallbox" ng-repeat="u in i.images" ng-hide="!u.mainOrNah">
+                            <img ng-src="{{u.url}}" alt="{{u.url}}" class="item_img" >
                         </div>
+                      </center>
+                      <a ui-sref="Item({id: i._id})"><h1>{{i.title}}</h1></a>
+                      <br />
                       </div>
                     </div>
 
