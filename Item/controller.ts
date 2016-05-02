@@ -53,7 +53,7 @@ export function remove(req: express.Request, res: express.Response, next: Functi
         if (item) {
             Comment.remove({item: req.params.id}, (err) => {
                 if (err) return next (err);
-                User.update({id: req['payload']._id}, {$pull: {items: item._id}}, (err, numRows: any) =>{
+                User.update({id: req['payload']._id}, {$pull: {'items': item._id}}, (err, numRows: any) =>{
                     if (err) return next (err);
                     res.json({message: 'This entry has been removed'});
                 })
