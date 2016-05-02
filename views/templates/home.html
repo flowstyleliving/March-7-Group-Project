@@ -43,7 +43,7 @@
 <div ng-show="nav.status._id">
 <md-content layout="column" layout-align="center center">
     <div ng-repeat="u in vm.users">
-        <a ui-sref="User Profile({email: u.email})">
+
         <md-card style="width: 960px;" class="md-whiteframe-z2" md-theme="{{ u.theme }}" md-theme-watch>
             <md-card-title layout-padding layout-margin>
                 <md-card-title-media>
@@ -52,10 +52,16 @@
                     </div>
                 </md-card-title-media>
                 <md-card-title-text>
-                    <span class="md-headline" style="color: white;">{{u.name}}</span>
+                    <span class="md-headline" style="color: white;">
+                      <a ui-sref="User Profile({email: u.email})">
+                      {{u.name}}</a></span>
                     <span class="md-subhead">About Me</span>
                     <span><p style="color: white;">{{u.aboutMe}}</p></span>
                 </md-card-title-text>
+                <md-card-title-action style="color: white">
+                  <a ui-sref="User Profile({email: u.email})">
+                  {{(u.items).length}} items</a>
+                </md-card-title>
             </md-card-title>
         </md-card>
         </a>
