@@ -131,10 +131,7 @@ export function findOne(req: express.Request, res: express.Response, next: Funct
         if (!data) return next({ message: 'no users.' });
         Item.populate(data.items, { path: 'user', select: 'name', model: 'User' }, (err, response) => {
             if (err) return next(err);
-            User.populate(data.like, {path: 'user', select:'name img email', model: 'User'}, (err, response) => {
-                if (err) return next(err);
-                res.json(data);
-            });
+            res.json(data);
         });
     });
 }
