@@ -1,9 +1,6 @@
-<div layout="column" layout-align="center center" style="margin-top: 50px;">
-    <md-button class="md-accent md-hue-2 md-raised">
-        <i class="fa fa-plus" aria-hidden="true" style="color: white;" ng-click="vm.pickFile()"></i>
-    </md-button>
-  </div>
-
+<md-button class="md-accent md-hue-2 md-raised">
+    <i class="fa fa-upload fa-5x" aria-hidden="true" style="color: white;" ng-click="vm.pickFile()"></i>
+</md-button>
 <table>
   <tr>
       <th>Image</th>
@@ -15,7 +12,7 @@
     <td><img ng-src="{{p.url | fpConvert:{w: 200} }}" alt="{{p.filename}}" /></td>
     <td><input ng-model="p.caption"></td>
     <td>
-      <input type="radio" name="main" ng-model="p.mainOrNah" value="true">
+      <input type="radio" name="main" ng-click="setDefault(p)" ng-model="vm.item.images" ng-value="p.mainOrNah">
     </td>
     <td><md-button ng-click="vm.removeFilePicker(p)">Delete</md-button></td>
   </tr>

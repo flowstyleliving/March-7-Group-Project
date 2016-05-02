@@ -9,7 +9,10 @@ namespace app.Controllers{
       }
 
       public setDefault(x) {
-        this.item.images.splice(0, 1);
+        angular.forEach(this.item.images, (y) => {
+          y.mainOrNah = false;
+        });
+        x.mainOrNah = true;
       }
 
       public updateToast() {
