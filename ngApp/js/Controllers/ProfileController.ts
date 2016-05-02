@@ -4,7 +4,7 @@ namespace app.Controllers {
         public user;
         public socialHold= {
             provider: null,
-            url: "http://www."
+            url: "http://"
         }
         public isShow = false;
         public theme;
@@ -14,13 +14,13 @@ namespace app.Controllers {
             this.user.social.push(this.socialHold);
             this.socialHold = {
                 provider: null,
-                url: "http://www."
+                url: "http://"
             };
         }
 
         public updateProfile(){
             this.UserService.update(this.user.email, this.user.aboutMe, this.user.location, this.user.personalURL,this.user.social, this.user.img, this.theme).then((res)=>{
-                this.$state.go('User Profile',{email: this.user.email});
+                this.$state.go('Portfolio Manager');
             })
         }
 
