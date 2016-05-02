@@ -1,15 +1,19 @@
 import * as express from 'express';
 import * as controller from './controller';
 import {User, IUserModel} from './model';
+import * as jwt from 'express-jwt';
 
 const passport = require('passport');
 const router = express.Router();
+const auth = jwt({
+  secret: process.env.JWT_SECRET,
+  userProperty: 'payload'
+});
 
 router.get('/', controller.findAll);
 router.get('/:email', controller.findOne);
 router.put('/update/:email', controller.update);
-router.put('/like/:id', controller.like);
-router.put('/dislike/:id', controller.dislike);
+router.put('/like/:id', auth, controller.like);
 
 router.post('/login', controller.login);
 router.post('/register', controller.register);

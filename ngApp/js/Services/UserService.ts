@@ -112,24 +112,12 @@ namespace app.Services{
             return decodeURIComponent(encodeURIComponent(this.$window.atob(output))); //polifyll https://github.com/davidchambers/Base64.js
         }
 
-        public like(id: string) {
+        public like(id: string, user) {
             let q = this.$q.defer();
-            this.$http.put('/api/v1/users/like/' + id, null).then((res)=>{
+            this.$http.put('/api/v1/users/like/' + id, {user: user}).then((res)=>{
                 console.log('made it here');
                 q.resolve();
             }, (err)=>{
-                q.reject();
-            });
-            return q.promise;
-        }
-
-        public dislike(id: string) {
-            let q = this.$q.defer();
-            this.$http.put('/api/v1/users/dislike/' + id, null).then((res)=>{
-                console.log('made it here');
-                q.resolve();
-            }, (err)=>{
-                console.log('err');
                 q.reject();
             });
             return q.promise;

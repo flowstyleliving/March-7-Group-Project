@@ -18,29 +18,9 @@ namespace app.Controllers{
             })
         }
 
-        public showActionToast (user) {
-            var seeya = user;
-            var toast = this.$mdToast.simple()
-                .textContent('Disliking hides this user forever! Proceed?')
-                .action('OK')
-                .highlightAction(false)
-                .position('top right')
-                .hideDelay(3000);
-            this.$mdToast.show(toast).then((response)=>{
-                if ( response == 'ok' ) {
-                    this.dislike();
-                    console.log("peace");
-                }
-            });
-        };
 
-
-        public like() {
-            this.UserService.like(this.status.email);
-        }
-
-        public dislike() {
-            this.UserService.dislike(this.status.email);
+        public like(user) {
+            this.UserService.like(this.status._id, user);
         }
 
         constructor(private UserService: app.Services.UserService, private $stateParams: ng.ui.IStateParamsService, private $mdToast){

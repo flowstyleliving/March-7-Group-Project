@@ -16,8 +16,7 @@ namespace app.i{
         template: string,
     }];
     theme: string;
-    like: [string | IUser];
-    dislike: [string | IUser];
+    like: [{user: string}];
     comments?: Array<string>;
     items?: Array<string>;
     facebook: {id: string, token: string},
