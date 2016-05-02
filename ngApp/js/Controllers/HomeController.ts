@@ -4,24 +4,7 @@ namespace app.Controllers {
         public user;
         public users;
 
-        public toastFail() {
-          this.$mdToast.show(
-            this.$mdToast.simple()
-            .textContent('Email already exists')
-            .position('top right')
-            .hideDelay(3000)
-          );
-        }
-
-        public register() {
-          this.UserService.register(this.user).then(() => {
-            this.$state.go('Home');
-          }, () => {
-            return this.toastFail();
-          });
-        }
-
-        constructor(private UserService: app.Services.UserService, private $location: ng.ILocationService, private $mdDialog, private $state: ng.ui.IStateService, private $mdToast) {
+        constructor(private UserService: app.Services.UserService, private $location: ng.ILocationService, private $mdDialog, private $state: ng.ui.IStateService) {
             this.status = UserService.status;
             console.log($location.search());
             if ($location.search().code) {

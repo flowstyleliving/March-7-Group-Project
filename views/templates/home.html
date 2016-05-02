@@ -13,40 +13,9 @@
 
   <div layout-gt-sm="row" layout="column" layout-padding layout-align="center" >
       <div layout="column" layout-align="start center">
-          <form name="userForm" flex-gt-sm="33" ng-submit="vm.register()">
-              <!-- EMAIL -->
-              <div>
-                <md-input-container class='md-block' flex-gt-sm>
-                    <label>Name</label>
-                    <input name="email" type="text" required='true' ng-model="vm.user.name">
-                    <div ng-messages="userForm.name.$error">
-                        <div ng-message="required">*Required</div>
-                    </div>
-                </md-input-container>
-                  <md-input-container class='md-block' flex-gt-sm>
-                      <label>Email</label>
-                      <input name="email" type="email" required='true' ng-model="vm.user.email">
-                      <div ng-messages="userForm.email.$error">
-                          <div ng-message="required">*Required</div>
-                      </div>
-                  </md-input-container>
-              </div>
-              <div>
-                  <md-input-container class='md-block' flex-gt-sm>
-                      <label>Password</label>
-                      <input name="password" type="password" required='true' ng-model="vm.user.password">
-                      <div ng-messages="userForm.password.$error">
-                          <div ng-message="required">*Required</div>
-                      </div>
-                  </md-input-container>
-              </div>
-              <div layout="row" layout-align="center">
-                  <md-button ng-disabled="userForm.$invalid" class="md-raised md-accent md-primary md-cornered md-padding registerbtn" type="submit">
-                      Sign Up!
-                  </md-button>
-              </div>
-              <div layout ="row" layout-align="center" flex class="md-padding">
-                  <p>Already have an account? Login <a ui-sref="Login">here</a>.
+              <div layout ="column" layout-align="center center" flex class="md-padding">
+                  <p>Sign up <a ui-sref="Register">here</a>.</p>
+                  <p>Already have an account? Login <a ui-sref="Login">here</a>.</p>
               </div>
           </form>
       </div>
