@@ -136,6 +136,21 @@ export function findOne(req: express.Request, res: express.Response, next: Funct
     });
 }
 
+export function like(req: express.Request, res: express.Response, next: Function) {
+    User.update({email: req['payload'].email}, {$push: {'like': req.params.id}}, (err, numRows)=>{
+        if (err) return next (err);
+        res.json({message: 'Liked!'});
+    })
+}
+
+export function dislike(req: express.Request, res: express.Response, next: Function) {
+    User.findOneAndUpdate({email: req['payload'].email}, {$push: {'dislike': req.params.id}}, (err, numRows: any)=>{
+        if (err) return next (err);
+        if (numRows.nModified === 0) return next({ message: "Could not update the requested blog.", status: 500 });
+        res.json({message: 'Gone for life!'});
+    })
+}
+
 export function update(req: express.Request, res: express.Response, next: Function) {
     User.update({ email: req.params.email }, req.body, (err, numRows) => {
         if (err) return next(err);

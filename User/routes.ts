@@ -7,7 +7,9 @@ const router = express.Router();
 
 router.get('/', controller.findAll);
 router.get('/:email', controller.findOne);
-router.put('/update/:email', controller.update)
+router.put('/update/:email', controller.update);
+router.put('/like/:id', controller.like);
+router.put('/dislike/:id', controller.dislike);
 
 router.post('/login', controller.login);
 router.post('/register', controller.register);
