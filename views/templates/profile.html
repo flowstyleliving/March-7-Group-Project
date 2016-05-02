@@ -93,11 +93,16 @@
                             </div>
                         </div>
                         <div ng-show="vm.user.personalURL">
-                          <a href="{{vm.user.personalURL}}">
-                              <md-button class="md-fab">
-                                  <i class="fa fa-link" aria-hidden="true"></i>
-                              </md-button>
-                          </a>
+                          <div layout="row" layout-align="center">
+                              <h3>Personal Site</h3>
+                          </div>
+                          <div layout="row" layout-align="center">
+                            <a href="{{vm.user.personalURL}}">
+                                <md-button class="md-fab">
+                                    <i class="fa fa-link" aria-hidden="true"></i>
+                                </md-button>
+                            </a>
+                          </div>
                         </div
                     </md-content>
                 </md-tab>
