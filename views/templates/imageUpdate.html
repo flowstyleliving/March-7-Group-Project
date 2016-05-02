@@ -14,7 +14,9 @@
   <tr ng-repeat="p in vm.item.images">
     <td><img ng-src="{{p.url | fpConvert:{w: 200} }}" alt="{{p.filename}}" /></td>
     <td><input ng-model="p.caption"></td>
-    <td><input type="radio" name="main" ng-model="p.mainOrNah"></td>
+    <td>
+      <input type="radio" name="main" ng-model="p.mainOrNah" value="true">
+    </td>
     <td><md-button ng-click="vm.removeFilePicker(p)">Delete</md-button></td>
   </tr>
 </table>
