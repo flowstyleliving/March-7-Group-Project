@@ -17,16 +17,17 @@ namespace app.Controllers{
                 }
             })
         }
-        
+
         constructor(private UserService: app.Services.UserService, private $stateParams: ng.ui.IStateParamsService, private $mdToast, private $state: ng.ui.IStateService){
           this.status = UserService.status;
           UserService.getUser($stateParams['email']).then((res) => {
               this.user = res;
               for (let i = 0; i < this.user.items.length; i++){
-                  this.category.push(this.user.items[i].category);
                   if(this.category.indexOf(this.user.items[i].category) > -1){
                       continue;
                   }
+                  this.category.push(this.user.items[i].category);
+
               }
           });
         }
