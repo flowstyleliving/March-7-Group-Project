@@ -51,6 +51,8 @@ namespace app.Services{
                 this.setToken(res.data['token']);
                 this.setUser();
                 q.resolve();
+            }, (err) => {
+              q.reject();
             });
             return q.promise;
         }

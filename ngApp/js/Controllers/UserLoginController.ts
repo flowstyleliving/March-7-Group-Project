@@ -13,7 +13,7 @@ namespace app.Controllers {
 
         public login(){
             this.UserService.login(this.user).then(()=> {
-                this.$state.go('Home');
+                this.$state.go('Home2');
             }, () => {
               return this.toastFail();
             })

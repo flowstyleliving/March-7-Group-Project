@@ -24,6 +24,11 @@ namespace app {
 
     $stateProvider.state('Home', {
       url: '/',
+      templateUrl: '/templates/intro.html',
+      controller: 'UserRegisterController',
+      controllerAs: 'vm'
+    }).state('Home2', {
+      url: '/home',
       templateUrl: '/templates/home.html',
       controller: 'HomeController',
       controllerAs: 'vm'
