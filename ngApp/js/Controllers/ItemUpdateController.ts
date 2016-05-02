@@ -10,7 +10,6 @@ namespace app.Controllers{
 
       public setDefault(x) {
         angular.forEach(this.item.images, (y) => {
-          console.log(y.mainOrNah);
           y.mainOrNah = false;
         });
         x.mainOrNah = true;

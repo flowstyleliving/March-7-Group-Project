@@ -1,22 +1,40 @@
 <md-button class="md-accent md-hue-2 md-raised">
     <i class="fa fa-upload fa-5x" aria-hidden="true" style="color: white;" ng-click="vm.pickFile()"></i>
 </md-button>
-<table>
-  <tr>
-      <th>Image</th>
-      <th>Caption</th>
-      <th>Make Default</th>
-      <th>Delete</th>
-  </tr>
-  <tr ng-repeat="p in vm.item.images">
-    <td><img ng-src="{{p.url | fpConvert:{w: 200} }}" alt="{{p.filename}}" /></td>
-    <td><input ng-model="p.caption"></td>
-    <td>
-      <input type="radio" name="main" ng-click="setDefault(p)" ng-model="p.mainOrNah" ng-value="p.mainOrNah">
-    </td>
-    <td><md-button ng-click="vm.removeFilePicker(p)">Delete</md-button></td>
-  </tr>
-</table>
+
+<md-content layout="row" layout-align="center center" layout-margin layout-padding>
+    <md-list flex flex-gt-sm="80" flex-gt-md="60">
+        <md-list-item class="md-3-line ">
+            <div class="md-list-item-text md-offset" layout="column" layout-gt-xs="row">
+                <h3 flex flex-gt-sm="33" flex-sm="20">IMAGE</h3>
+                <h3 flex flex-gt-sm="33">CAPTION</h3>
+                <h3 flex flex-gt-sm="33">SET AS DEFAULT</h3>
+                <h3 flex flex-gt-sm="33">REMOVE IMAGE</h3>
+            </div>
+            <md-divider></md-divider>
+        </md-list-item>
+        <md-list-item class="md-3-line" ng-repeat="i in vm.item.images">
+            <img ng-src="{{i.url  | fpConvert:{w: 200} }}" alt="{{i.filename}}" style="border-radius: 0" />
+            <div class="md-list-item-text" layout="column" layout-gt-xs="row">
+                <input ng-model="i.caption">
+                <input type="radio" name="main" ng-click="vm.setDefault(p)" ng-value="p">
+                <md-button ng-click="vm.removeFilePicker(p)">Delete</md-button>
+            </div>
+            <md-divider></md-divider>
+        </md-list-item>
+        <!-- <table>
+          <tr ng-repeat="p in vm.item.images">
+            <td><img ng-src="{{p.url | fpConvert:{w: 200} }}" alt="{{p.filename}}" /></td>
+            <td><input ng-model="p.caption"></td>
+            <td>
+              <input type="radio" name="main" ng-click="vm.setDefault(p)" ng-value="p">
+            </td>
+            <td><md-button ng-click="vm.removeFilePicker(p)">Delete</md-button></td>
+          </tr>
+        </table> -->
+    </md-list>
+</md-content>
+
 
     <!-- <div ng-repeat="p in vm.item.images" style="margin-top: 10px;">
         <img ng-src="{{p.url | fpConvert:{w: 200} }}" alt="{{p.filename}}" />
