@@ -1,4 +1,4 @@
-import nodemailer = require('nodemailer');
+let nodemailer = require('nodemailer');
 let transport = require('nodemailer-smtp-transport');
 
 export let transporter = nodemailer.createTransport(transport({
