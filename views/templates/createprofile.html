@@ -88,8 +88,9 @@
         <md-button class="md-accent md-hue-2 md-raised" ng-show="!vm.isShow"ng-click="vm.pickFile()">
             <i class="fa fa-user  fa-3x" aria-hidden="true" style="color: white;" ></i>
         </md-button>
-            <img ng-show="vm.isShow" ng-src="vm.user.img | fpConvert:{w: 200}"  / >
+            <img ng-show="vm.isShow" ng-src="{{vm.user.img | fpConvert:{w: 200} }}"  / >
             <br />
+
     </div>
     <br />
 <br />
