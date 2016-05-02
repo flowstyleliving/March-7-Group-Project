@@ -20,7 +20,6 @@ let userSchema = new mongoose.Schema({
   aboutMe: {type: String},
   personalURL: {type: String},
   location: {type: String},
-  like: [{user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}}],
 	social: [{
 		provider: {type: String, lowercase: true, trim: true},
         url: {type: String},

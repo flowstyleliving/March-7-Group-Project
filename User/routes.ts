@@ -13,7 +13,6 @@ const auth = jwt({
 router.get('/', controller.findAll);
 router.get('/:email', controller.findOne);
 router.put('/update/:email', controller.update);
-router.put('/like/:id', auth, controller.like);
 
 router.post('/login', controller.login);
 router.post('/register', controller.register);

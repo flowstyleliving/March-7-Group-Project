@@ -21,9 +21,10 @@ namespace app.Controllers{
 
         public like(user) {
             this.UserService.like(this.status._id, user);
+            this.$state.reload();
         }
 
-        constructor(private UserService: app.Services.UserService, private $stateParams: ng.ui.IStateParamsService, private $mdToast){
+        constructor(private UserService: app.Services.UserService, private $stateParams: ng.ui.IStateParamsService, private $mdToast, private $state: ng.ui.IStateService){
           this.status = UserService.status;
           UserService.getUser($stateParams['email']).then((res) => {
               this.user = res;

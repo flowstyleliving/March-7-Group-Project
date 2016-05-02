@@ -139,14 +139,6 @@ export function findOne(req: express.Request, res: express.Response, next: Funct
     });
 }
 
-export function like(req: express.Request, res: express.Response, next: Function) {
-    User.update({_id: req['payload']._id}, {$push: {'like': req.body}}, (err, numRows)=>{
-        if (err) return next (err);
-        res.json({message: 'Liked!'});
-    })
-}
-
-
 export function update(req: express.Request, res: express.Response, next: Function) {
     User.update({ email: req.params.email }, req.body, (err, numRows) => {
         if (err) return next(err);

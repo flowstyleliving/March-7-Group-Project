@@ -112,17 +112,6 @@ namespace app.Services{
             return decodeURIComponent(encodeURIComponent(this.$window.atob(output))); //polifyll https://github.com/davidchambers/Base64.js
         }
 
-        public like(id: string, user) {
-            let q = this.$q.defer();
-            this.$http.put('/api/v1/users/like/' + id, {user: user}).then((res)=>{
-                console.log('made it here');
-                q.resolve();
-            }, (err)=>{
-                q.reject();
-            });
-            return q.promise;
-        }
-
         constructor(private $http: ng.IHttpService, private $q: ng.IQService, private $window: ng.IWindowService) {
             if (this.getToken()) this.setUser();
         }

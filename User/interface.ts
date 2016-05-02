@@ -16,7 +16,6 @@ namespace app.i{
         template: string,
     }];
     theme: string;
-    like: [{user: string}];
     comments?: Array<string>;
     items?: Array<string>;
     facebook: {id: string, token: string},
