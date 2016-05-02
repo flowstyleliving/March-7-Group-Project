@@ -1,22 +1,4 @@
 <div layout="column" layout-align="center center" style="margin-top: 50px;">
-    <md-button class="md-accent md-hue-2 md-raised">
-        <i class="fa fa-upload fa-5x" aria-hidden="true" style="color: white;" ng-click="vm.pickFile()"></i>
-    </md-button>
-    <div ng-repeat="p in vm.item.images" style="margin-top: 10px;">
-        <img ng-src="{{p.url | fpConvert:{w: 200} }}" alt="{{p.filename}}" />
-        <br />
-        <md-input-container flex>
-            <label>Caption</label>
-            <input ng-model="p.caption">
-        </md-input-container>
-        <div flex>
-            <label>Hero Image</label>
-            <input type="radio" ng-model="p.mainOrNah">
-        </div>
-        <md-button ng-click="vm.removeFilePicker(p)">Delete</md-button>
-    </div>
-</div>
-<div layout="column" layout-align="center center" style="margin-top: 50px;">
     <form name="projectForm" style="width: 600px;">
         <md-input-container class="md-block">
             <label>title</label>
@@ -39,6 +21,9 @@
             <input ng-model="vm.item.category">
         </md-input-container>
     </form>
+    <md-button class="md-accent md-raised md-cornered md-hue-2" ui-sref="ImageUpdate({id:vm.item._id})" flex>
+        Update Images
+    </md-button>
     <md-button class="md-accent md-raised md-cornered md-hue-2" ng-click="vm.update()" flex>
         Submit
     </md-button>

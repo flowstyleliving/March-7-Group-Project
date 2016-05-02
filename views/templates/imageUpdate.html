@@ -1,0 +1,23 @@
+<div layout="column" layout-align="center center" style="margin-top: 50px;">
+    <md-button class="md-accent md-hue-2 md-raised">
+        <i class="fa fa-plus" aria-hidden="true" style="color: white;" ng-click="vm.pickFile()"></i>
+    </md-button>
+  </div>
+
+    <div ng-repeat="p in vm.item.images" style="margin-top: 10px;">
+        <img ng-src="{{p.url | fpConvert:{w: 200} }}" alt="{{p.filename}}" />
+        <br />
+        <md-input-container flex>
+            <label>Caption</label>
+            <input ng-model="p.caption">
+        </md-input-container>
+        <div flex>
+            <label>Hero Image</label>
+            <input type="radio" ng-model="p.mainOrNah">
+        </div>
+        <md-button ng-click="vm.removeFilePicker(p)">Delete</md-button>
+    </div>
+
+<md-button class="md-accent md-raised md-cornered md-hue-2" ui-sref="ItemUpdate({id:vm.item._id})" flex>
+    Done
+</md-button>

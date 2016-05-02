@@ -80,6 +80,11 @@ namespace app {
         templateUrl: '/templates/itemUpdate.html',
         controller: 'ItemUpdateController',
         controllerAs: 'vm'
+    }).state('ImageUpdate', {
+        url: '/itemupdate-images/:id',
+        templateUrl: '/templates/ImageUpdate.html',
+        controller: 'ItemUpdateController',
+        controllerAs: 'vm'
     }).state('AboutFolio', {
         url: '/aboutUs',
         templateUrl: '/templates/aboutFolio.html',
