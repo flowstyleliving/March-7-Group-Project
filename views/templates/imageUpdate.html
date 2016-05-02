@@ -4,7 +4,22 @@
     </md-button>
   </div>
 
-    <div ng-repeat="p in vm.item.images" style="margin-top: 10px;">
+<table>
+  <tr>
+      <th>Image</th>
+      <th>Caption</th>
+      <th>Make Default</th>
+      <th>Delete</th>
+  </tr>
+  <tr ng-repeat="p in vm.item.images">
+    <td><img ng-src="{{p.url | fpConvert:{w: 200} }}" alt="{{p.filename}}" /></td>
+    <td><input ng-model="p.caption"></td>
+    <td><input type="radio" name="main" ng-model="p.mainOrNah"></td>
+    <td><md-button ng-click="vm.removeFilePicker(p)">Delete</md-button></td>
+  </tr>
+</table>
+
+    <!-- <div ng-repeat="p in vm.item.images" style="margin-top: 10px;">
         <img ng-src="{{p.url | fpConvert:{w: 200} }}" alt="{{p.filename}}" />
         <br />
         <md-input-container flex>
@@ -16,8 +31,10 @@
             <input type="radio" ng-model="p.mainOrNah">
         </div>
         <md-button ng-click="vm.removeFilePicker(p)">Delete</md-button>
-    </div>
-
+    </div> -->
+    <md-button class="md-accent md-raised md-cornered md-hue-2" ng-click="vm.update2()" flex>
+        Submit
+    </md-button>
 <md-button class="md-accent md-raised md-cornered md-hue-2" ui-sref="ItemUpdate({id:vm.item._id})" flex>
-    Done
+    Cancel
 </md-button>

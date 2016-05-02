@@ -10,7 +10,7 @@
     </div>
 </div>
 
-<div layout-gt-sm="row" layout="column" layout-padding layout-align="center">
+<div layout-gt-sm="row" layout="column" layout-padding layout-align="center" ng-show="!nav.status._id">
     <div layout="column" layout-align="start center">
         <form name="userForm" flex-gt-sm="33" ng-submit="vm.register()">
             <!-- EMAIL -->
@@ -50,10 +50,10 @@
         </form>
     </div>
 </div>
-<div layout="column" layout-align="start center">
+<div layout="column" layout-align="start center"  ng-show="!nav.status._id">
   Or sign in with
 </div>
-<div layout="column" layout-align="start center">
+<div layout="column" layout-align="start center"  ng-show="!nav.status._id">
   <div layout="row" layout-align="center" flex class="md-padding">
     <a class="facebook" href="/api/v1/users/auth/facebook" target="_self">
         <md-button style='background-color: #3b5998; color: white;'>

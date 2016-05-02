@@ -8,9 +8,21 @@ namespace app.Controllers{
         url: null
       }
 
+      public setDefault(x) {
+        this.item.images.splice(0, 1);
+      }
+
       public updateToast() {
         this.$mdToast.show(
             this.$mdToast.simple('Your portfolio has been updated')
+                .position('top right')
+                .hideDelay(3000)
+            );
+      }
+
+      public update2Toast() {
+        this.$mdToast.show(
+            this.$mdToast.simple('Your images have been updated')
                 .position('top right')
                 .hideDelay(3000)
             );
@@ -38,6 +50,13 @@ namespace app.Controllers{
         this.ItemService.update(this.item).then((res) => {
             this.$state.go('Item', { id: this.item._id });
             this.updateToast();
+        });
+      }
+
+      public update2() {
+        this.ItemService.update(this.item).then((res) => {
+            this.$state.go('ItemUpdate', { id: this.item._id });
+            this.update2Toast();
         });
       }
 

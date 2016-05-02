@@ -22,13 +22,8 @@ namespace app {
 
     filepickerProvider.setKey('ArDxY3ePCQ6eI13v5WoxOz');
 
-    $stateProvider.state('Home', {
+    $stateProvider.state('Home2', {
       url: '/',
-      templateUrl: '/templates/intro.html',
-      controller: 'UserRegisterController',
-      controllerAs: 'vm'
-    }).state('Home2', {
-      url: '/home',
       templateUrl: '/templates/home.html',
       controller: 'HomeController',
       controllerAs: 'vm'
