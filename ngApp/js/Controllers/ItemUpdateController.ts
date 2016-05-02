@@ -10,6 +10,7 @@ namespace app.Controllers{
 
       public setDefault(x) {
         angular.forEach(this.item.images, (y) => {
+          console.log(y.mainOrNah);
           y.mainOrNah = false;
         });
         x.mainOrNah = true;
@@ -63,12 +64,17 @@ namespace app.Controllers{
         });
       }
 
+      public update3() {
+        this.ItemService.update(this.item);
+      }
+
       public removeFilePicker(blob){
         this.blob.url = blob.url;
         this.item.images.splice(this.item.images.indexOf(blob), 1);
         this.filepickerService.remove(this.blob, function(){
             console.log("Removed");
         });
+        this.update3();
       }
 
       public remove() {
