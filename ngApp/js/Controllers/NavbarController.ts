@@ -12,6 +12,10 @@ namespace app.Controllers {
             this.$mdSidenav('left').toggle();
         };
 
+        public visit (f){
+            this.$state.go("User Profile", {email: f.user.email });
+        }
+
 
         constructor(private UserService: app.Services.UserService, private $state: ng.ui.IStateService, private $mdSidenav){
             this.status = UserService.status;
