@@ -44,11 +44,11 @@
 <md-content layout="column" layout-align="center center">
     <div ng-repeat="u in vm.users">
 
-        <md-card style="width: 960px;" class="md-whiteframe-z2" md-theme="{{ u.theme }}" md-theme-watch>
+        <md-card style="width: 960px; border-radius: 5px;" class="md-whiteframe-z2" md-theme="{{ u.theme }}" md-theme-watch>
             <md-card-title layout-padding layout-margin>
                 <md-card-title-media>
                     <div class="md-media-lg card-media">
-                        <img ng-src="{{u.img}}" alt="{{u.img}}" class="profile_img">
+                        <img ng-src="{{u.img}}" alt="{{u.img}}" class="profile_img" style="border-radius: 50%;">
                     </div>
                 </md-card-title-media>
                 <md-card-title-text>

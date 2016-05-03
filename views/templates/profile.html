@@ -1,6 +1,6 @@
 <div ng-init="sort='-dateUpdated'">
 <div layout="column" layout-align="center center">
-    <md-card class="md-whiteframe-z2" md-theme="{{ vm.user.theme }}" md-theme-watch layout-margin style="width: 960px;">
+    <md-card class="md-whiteframe-z2" md-theme="{{ vm.user.theme }}" md-theme-watch layout-margin style="width: 960px; box-shadow: 3px 3px 2px #888888;">
         <md-card-title>
             <md-card-title-media layout-padding>
                 <div class="md-media-lg card-media">
@@ -19,18 +19,22 @@
         <md-content layout="row">
             <md-tabs md-dynamic-height md-stretch-tabs='always' md-border-bottom flex>
               <md-tab label="Portfolio">
-                <div layout="row" style="margin-top: 20px;"  layout-align="center">
-                    <md-input-container>
+                <div layout="row" style="margin-top: 20px;"  layout-align="left" style="padding-top: 10px;">
+                  <md-input-container>
+                      <label>Sort by Category</label>
+                      <md-select ng-model="vm.selectedCategory" ng-change="vm.getItems()">
+                          <md-option>-</md-option>
+                          <md-option ng-repeat="c in vm.category" value="{{c}}">
+                              {{c}}
+                          </md-option>
+                      </md-select>
+                  </md-input-container>
+                  &nbsp;
+                  &nbsp;
+                  <md-input-container style="top: -5px">
                       <span class="text-sort">Sort by Last Updated</span>
                       <md-button class="btn-sort" ng-show="sort ==='-dateUpdated'" ng-click="sort='dateUpdated'"><i class="fa fa-chevron-up" aria-hidden="true"></i></md-button>
                       <md-button class="btn-sort" ng-show="sort ==='dateUpdated'" ng-click="sort='-dateUpdated'"><i class="fa fa-chevron-down" aria-hidden="true"></i></md-button>
-                        <label>Sort by Category</label>
-                        <md-select ng-model="vm.selectedCategory" ng-change="vm.getItems()">
-                            <md-option>-</md-option>
-                            <md-option ng-repeat="c in vm.category" value="{{c}}">
-                                {{c}}
-                            </md-option>
-                        </md-select>
                     </md-input-container>
                 </div>
                   <md-content class = "md-padding" ng-repeat="i in vm.user.items | orderBy: sort">
