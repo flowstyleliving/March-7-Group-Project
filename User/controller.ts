@@ -57,7 +57,7 @@ export function forgot(req: express.Request, res: express.Response, next: Functi
                         from: 'Folio Team <folioteamcc@gmail.com>',
                         to: user.email,
                         subject: 'Folio Password Reset',
-                        html: 'Hey ' + user.name + ',<br><br>' + 'We heard you forgot your password.<br><br>' + 'Click on the link below to reset<br>' + 'http://localhost:3000/resetPassword/' + token + '<br><br>' + 'If you did not request a reset, please ignore this email. Your password will not be reset.<br><br>' + 'Have a great day!<br><br>' + 'xo,<br>' + 'The Folio Team'
+                        html: 'Hey ' + user.name + ',<br><br>' + 'We heard you forgot your password.<br><br>' + 'Click on the link below to reset<br>' + 'https://ccfolio.herokuapp.com/resetPassword/' + token + '<br><br>' + 'If you did not request a reset, please ignore this email. Your password will not be reset.<br><br>' + 'Have a great day!<br><br>' + 'xo,<br>' + 'The Folio Team'
                     };
                     transporter.sendMail(mailOptions, (err) => {
                       if(err) return next(err);
