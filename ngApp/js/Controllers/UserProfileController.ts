@@ -29,6 +29,8 @@ namespace app.Controllers{
                   this.category.push(this.user.items[i].category);
 
               }
+          }, () => {
+            this.$state.go('InvalidPage');
           });
         }
     }

@@ -6,6 +6,8 @@ namespace app.Services{
             let q = this.$q.defer();
             this.$http.get('/api/v1/users/' + id, null).then((res)=>{
                 q.resolve(res.data);
+            }, (err) => {
+              q.reject();
             });
             return q.promise;
         }
