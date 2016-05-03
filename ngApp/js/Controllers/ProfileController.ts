@@ -23,7 +23,7 @@ namespace app.Controllers {
         }
 
         public updateProfile(){
-            this.UserService.update(this.user.email, this.user.name, this.user.aboutMe, this.user.location, this.user.personalURL, this.user.social, this.user.img, this.theme).then((res)=>{
+            this.UserService.update(this.user.email, this.user.aboutMe, this.user.name, this.user.location, this.user.personalURL, this.user.social, this.user.img, this.theme).then((res)=>{
                 this.$state.go('Portfolio Manager');
             })
         }
