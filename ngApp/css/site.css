@@ -213,7 +213,8 @@ left: 50%;
 .box{
   width: 400px;
   padding: 10px;
-  border: 1px solid rgb(79, 80, 80);
+  border: 1px solid #292E37;
+  border-radius: 6px;
   margin: 0;
   text-align: center;
 }
