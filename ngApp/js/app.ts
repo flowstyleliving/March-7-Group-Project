@@ -77,7 +77,7 @@ namespace app {
         controllerAs: 'vm'
     }).state('ImageUpdate', {
         url: '/itemupdate-images/:id',
-        templateUrl: '/templates/ImageUpdate.html',
+        templateUrl: '/templates/imageUpdate.html',
         controller: 'ItemUpdateController',
         controllerAs: 'vm'
     }).state('AboutFolio', {
