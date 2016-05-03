@@ -1,9 +1,11 @@
-<div ng-init="sort='-dateUpdated'">
-<div layout="row" layout-align="center center" style="margin-top: 20px;">
+<div ng-init="sort='-dateUpdated'" style="padding-top: 10px;">
+<div layout="row" layout-align="center center" style="margin-top: 20px; margin-left: 50px;">
     <md-input-container>
       <span class="text-sort">Sort by Last Updated</span>
       <md-button class="btn-sort" ng-show="sort ==='-dateUpdated'" ng-click="sort='dateUpdated'"><i class="fa fa-chevron-up" aria-hidden="true"></i></md-button>
       <md-button class="btn-sort" ng-show="sort ==='dateUpdated'" ng-click="sort='-dateUpdated'"><i class="fa fa-chevron-down" aria-hidden="true"></i></md-button>
+    </md-input-container>
+    <md-input-container>
         <label>Sort by Category</label>
         <md-select ng-model="vm.selectedCategory" ng-change="vm.getItems()">
             <md-option>-</md-option>
@@ -14,7 +16,11 @@
     </md-input-container>
 </div>
 <div layout="row" layout-align="center center">
-  <h2>Your Portfolio</h2>
+  <h2 style="font-family: Pacifico">Your Portfolio</h2>
+  
+  <div layout = 'column' layout-align = 'center center'>
+    <md-button class= "md-accent md-raised md-cornered md-hue-2" ui-sref="itemCreate">add a new project</md-button>
+  </div>
 
 </div>
 <md-content layout="row" layout-align="center center" layout-margin layout-padding>
@@ -39,6 +45,3 @@
         </md-list-item>
     </md-list>
 </md-content>
-<div layout = 'column' layout-align = 'center center'>
-  <md-button class= "md-accent md-raised md-cornered md-hue-2" ui-sref="itemCreate">add a new project</md-button>
-</div>
