@@ -25,10 +25,10 @@ namespace app.Controllers {
             UserService.getUser(this.status.email).then((res) => {
                 this.user = res;
                 for (let i = 0; i < this.user.items.length; i++){
-                    this.category.push(this.user.items[i].category);
                     if(this.category.indexOf(this.user.items[i].category) > -1){
                         continue;
                     }
+                    this.category.push(this.user.items[i].category);
                 }
             });
         }
