@@ -89,7 +89,6 @@ namespace app.Services{
 
         public setUser() {
             let token = this.getToken();
-            console.log(token);
             let u = JSON.parse(this.urlBase64Decode(this.getToken().split('.')[1]));
             this.status._id = u._id;
             this.status.name = u.name;

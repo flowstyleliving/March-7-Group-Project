@@ -6,7 +6,6 @@ namespace app.Controllers {
 
         constructor(private UserService: app.Services.UserService, private $location: ng.ILocationService, private $mdDialog, private $state: ng.ui.IStateService) {
             this.status = UserService.status;
-            console.log($location.search());
             if ($location.search().code) {
                 UserService.setToken($location.search().code);
                 UserService.setUser();

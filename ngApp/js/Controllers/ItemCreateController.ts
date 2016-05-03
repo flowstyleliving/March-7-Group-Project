@@ -38,16 +38,3 @@ namespace app.Controllers {
   }
   angular.module('app').controller('ItemCreateController', ItemCreateController);
 }
-
-// save file url to database
-//   let modfile;
-//   modfile.imgUrl = file.url;
-//   this.file.push(modfile);
-//   console.log(this.file);
-// console.log(this.file)
-// let modfile = {}
-// modfile.imgUrl = this.file.url;
-// modfile.caption = file.caption;
-// modfile.mainOrNah = file.boolean;
-// console.log(this.modfile)
-// this.arr.push(modfile);
