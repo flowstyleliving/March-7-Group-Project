@@ -10,7 +10,7 @@
     </em>
   </p>
 </div>
-<div class="container slider">
+<div class="container slider" ng-show="(vm.item.images).length > 0">
   <img ng-repeat="c in vm.item.images" class="slide slide-animation nonDraggableImage img-center"
           ng-swipe-right="vm.nextSlide()" ng-swipe-left="vm.prevSlide()"
           ng-hide="!vm.isCurrentSlide($index)" ng-src="{{c.url}}" width="auto" height="400px" ng-click="vm.showAdvanced(c)" ng-attr-title="{{c.caption}}">
