@@ -43,7 +43,7 @@ export function update(req: express.Request, res: express.Response, next: Functi
     req.body.dateUpdated = Date.now();
     Item.update({_id: req.params.id, user: req['payload']._id}, req.body,(err, numRows: any) => {
         if (err) return next(err);
-        res.json({message: 'This entry has been updated!'});
+        res.json({message: 'This item has been updated!'});
     })
 }
 
@@ -55,12 +55,12 @@ export function remove(req: express.Request, res: express.Response, next: Functi
                 if (err) return next (err);
                 User.update({_id: req['payload']._id}, {$pull: {items: item._id}}, (err, numRows: any) =>{
                     if (err) return next (err);
-                    if (numRows.nModified === 0) return next({ message: "Could not update the requested blog.", status: 500 });
-                    res.json({message: 'This entry has been removed'});
+                    if (numRows.nModified === 0) return next({ message: "Could not update the requested item.", status: 500 });
+                    res.json({message: 'This item has been removed'});
                 })
             });
         }else {
-            next({message: 'Unable to delete entry', status: 500});
+            next({message: 'Unable to delete item', status: 500});
         }
     });
 }
