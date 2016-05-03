@@ -53,8 +53,9 @@ export function remove(req: express.Request, res: express.Response, next: Functi
         if (item) {
             Comment.remove({item: req.params.id}, (err) => {
                 if (err) return next (err);
-                User.update({id: req['payload']._id}, {$pull: {items: item._id}}, (err, numRows: any) =>{
+                User.update({_id: req['payload']._id}, {$pull: {items: item._id}}, (err, numRows: any) =>{
                     if (err) return next (err);
+                    if (numRows.nModified === 0) return next({ message: "Could not update the requested blog.", status: 500 });
                     res.json({message: 'This entry has been removed'});
                 })
             });
