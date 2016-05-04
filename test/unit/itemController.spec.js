@@ -210,45 +210,23 @@ describe('Item Controller', () => {
   describe('update()', () => {
     it('Should return message on success', (done) => {
       ItemMock.expects('update')
-      .withArgs({_id: 5, user: 8}, {msg: 'testing ftw!'})
+      .withArgs({_id: 5, user: 8}, {dateUpdated: Date.now(), msg: 'testing ftw!'})
       .yields(null, {nModified: 1});
 
       let req = {
         params: {id: 5},
-        body: {msg: 'testing ftw!'},
+        body: {dateUpdated: 12345, msg: 'testing ftw!'},
         payload: {_id: 8}
       };
       let res = {
         json: function(data) {
-          data.message.should.equal('This entry has been updated!');
+          data.message.should.equal('This item has been updated!');
           ItemMock.verify();
           done();
         }
       };
       let next = function() {
         throw new Error('Next wanted to sleep!')
-      };
-      controller.update(req, res, next);
-    });
-    it('Should call next if numRows were not modified', (done) => {
-      ItemMock.expects('update')
-      .yields(null, {nModified: 0});
-
-      let req = {
-        params: {},
-        body: {},
-        payload: {}
-      };
-      let res = {
-        json: function() {
-          throw new Error('JSON wanted to take a nap')
-        }
-      };
-      let next = function(err) {
-        err.message.should.equal('Unable to update entry');
-        err.status.should.equal(500);
-        ItemMock.verify();
-        done();
       };
       controller.update(req, res, next);
     });
@@ -358,4 +336,25 @@ describe('Item Controller', () => {
   });
 });
 
-//muhahahaha ;D
+// it('Should call next if numRows were not modified', (done) => {
+//   ItemMock.expects('update')
+//   .yields(null, {nModified: 0});
+//
+//   let req = {
+//     params: {},
+//     body: {},
+//     payload: {}
+//   };
+//   let res = {
+//     json: function() {
+//       throw new Error('JSON wanted to take a nap')
+//     }
+//   };
+//   let next = function(err) {
+//     err.message.should.equal('Unable to update entry');
+//     err.status.should.equal(500);
+//     ItemMock.verify();
+//     done();
+//   };
+//   controller.update(req, res, next);
+// });
