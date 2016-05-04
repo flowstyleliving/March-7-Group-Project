@@ -280,15 +280,20 @@ describe('Item Controller', () => {
       .withArgs({item: 5})
       .yields(null);
 
+      UserMock.expects('update')
+      .withArgs({email: 5})
+      .yields(null, {});
+
       let req = {
         params: {id: 5},
         payload: {_id: 8}
       };
       let res = {
         json: function(data) {
-          data.message.should.equal('This entry has been removed');
+          data.message.should.equal('This item has been removed');
           ItemMock.verify();
           CommentMock.verify();
+          UserMock.verify();
           done();
         }
       };
@@ -312,6 +317,7 @@ describe('Item Controller', () => {
         err.should.equal('ER-ROR');
         ItemMock.verify();
         CommentMock.verify();
+        UserMock.verify();
         done();
       };
       controller.remove(req, res, next);

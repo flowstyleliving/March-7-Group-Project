@@ -257,8 +257,10 @@ describe('User Controller', () => {
 
       let req = {
         body: {
-          token: 'abc',
           password: undefined
+        },
+        params: {
+          token: 'abc'
         }
       };
       let res = {
@@ -279,7 +281,8 @@ describe('User Controller', () => {
       .yields({message: 'Invalid token!'})
 
       let req = {
-        body: {}
+        body: {},
+        params: {}
       };
       let res = {json: () => {throw new Error('JSON wanted to nap')}};
       let next = function(err) {
