@@ -258,10 +258,6 @@ describe('Item Controller', () => {
       .withArgs({item: 5})
       .yields(null);
 
-      UserMock.expects('update')
-      .withArgs({email: 5})
-      .yields(null, {});
-
       let req = {
         params: {id: 5},
         payload: {_id: 8}
@@ -336,25 +332,4 @@ describe('Item Controller', () => {
   });
 });
 
-// it('Should call next if numRows were not modified', (done) => {
-//   ItemMock.expects('update')
-//   .yields(null, {nModified: 0});
-//
-//   let req = {
-//     params: {},
-//     body: {},
-//     payload: {}
-//   };
-//   let res = {
-//     json: function() {
-//       throw new Error('JSON wanted to take a nap')
-//     }
-//   };
-//   let next = function(err) {
-//     err.message.should.equal('Unable to update entry');
-//     err.status.should.equal(500);
-//     ItemMock.verify();
-//     done();
-//   };
-//   controller.update(req, res, next);
-// });
+//muhahahaha ;D
