@@ -326,7 +326,7 @@ describe('Item Controller', () => {
       };
       let res = {json: () => {throw new Error('JSON is hungry')}};
       let next = function(err) {
-        err.message.should.equal('Unable to delete entry');
+        err.message.should.equal('Unable to delete item');
         err.status.should.equal(500);
         ItemMock.verify();
         done();

@@ -190,7 +190,7 @@ describe('User Controller', () => {
 
       MailMock.expects('sendMail').withArgs({
         from: "Folio Team <folioteamcc@gmail.com>",
-        html: "Hey undefined,<br><br>We heard you forgot your password. There are 2 steps to reset:<br>1) Here is your reset token. It expires within an hour from when you requested to reset your password: <strong>[object Object]</strong><br><br>2) Click on the link below to reset<br>http://localhost:3000/resetPassword<br><br>If you did not request a reset, please ignore this email. Your password will not be reset.<br><br>Have a great day!<br><br>xo,<br>The Folio Team",
+        html: "Hey undefined,<br><br>We heard you forgot your password. There are 2 steps to reset:<br>1) Here is your reset token. It expires within an hour from when you requested to reset your password: <strong>[object Object]</strong><br><br>2) Click on the link below to reset<br>https://ccfolio.herokuapp.com/resetPassword<br><br>If you did not request a reset, please ignore this email. Your password will not be reset.<br><br>Have a great day!<br><br>xo,<br>The Folio Team",
         subject: "Folio Password Reset",
         to: undefined
       })
@@ -326,7 +326,7 @@ describe('User Controller', () => {
 
   describe('findOne()', () => {
     it('Should findOne by id and return it', (done) => {
-      UserMock.expects('findOne').withArgs({_id: 5})
+      UserMock.expects('findOne').withArgs({email: 5})
       .chain('select', '-password', '-facebook')
       .chain('populate', 'items', 'title images description datePosted dateComplete notes category')
       .chain('exec')
@@ -342,7 +342,7 @@ describe('User Controller', () => {
 
       let req = {
         params: {
-          id: 5
+          email: 5
         }
       };
       let res = {
@@ -376,7 +376,7 @@ describe('User Controller', () => {
       controller.findOne(req, res, next);
     });
     it('Should throw next on item populate with an error', (done) => {
-      UserMock.expects('findOne').withArgs({_id: 5})
+      UserMock.expects('findOne').withArgs({email: 5})
       .chain('select', '-password', '-facebook')
       .chain('populate', 'items', 'title images description datePosted dateComplete notes category')
       .chain('exec')
@@ -386,7 +386,7 @@ describe('User Controller', () => {
       .yields('ER-ROR');
 
       let req = {
-        params: {id: 5}
+        params: {email: 5}
       };
       let res = {
         json: function() {
@@ -403,13 +403,14 @@ describe('User Controller', () => {
 
   describe('update()', () => {
     it('Should update User and return success message', (done) => {
-      UserMock.expects('update').withArgs({_id: 5})
+      UserMock.expects('update').withArgs({email: 5})
       .yields(null, {})
 
       let req = {
-        params: {id: 5},
+        params: {email: 5},
         body: {}
       };
+
       let res = {
         json: function(data) {
           data.message.should.equal('Updated');
