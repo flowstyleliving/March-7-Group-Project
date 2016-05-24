@@ -41,10 +41,10 @@
   </div>
 </div>
 <div ng-show="nav.status._id">
-<md-content layout="column" layout-align="center center">
+<md-content class="md-padding" layout-xs="column" layout="row" layout-align="center center">
     <div ng-repeat="u in vm.users">
 
-        <md-card style="width: 960px; border-radius: 5px;" class="md-whiteframe-z2" md-theme="{{ u.theme }}" md-theme-watch>
+        <md-card style="border-radius: 5px;" class="md-whiteframe-z2" md-theme="{{ u.theme }}" md-theme-watch>
             <md-card-title layout-padding layout-margin>
                 <md-card-title-media>
                     <div class="md-media-lg card-media">

@@ -2,7 +2,7 @@
     <md-button class="md-accent md-hue-2 md-raised">
         <i class="fa fa-upload fa-5x" aria-hidden="true" style="color: white;" ng-click="vm.pickFile()"></i>
     </md-button>
-    <div ng-repeat="p in vm.files" style="margin-top: 10px;">
+    <div ng-repeat="p in vm.files" style="margin-top: 10px; padding: 15px; border: solid rgb(29,233,182) 1pt; border-radius: 5px;">
         <img ng-src="{{p.url | fpConvert:{w: 200} }}" alt="{{p.filename}}" />
         <br />
         <md-input-container flex>
