@@ -1,6 +1,5 @@
 <div layout="row" layout-align="center center">
   <h1 style="color: rgb(29,233,182);">{{vm.item.title}}</h1>
-
 </div>
 <div layout="row" layout-align="center center">
 
@@ -20,12 +19,13 @@
          <div class="wrapper">
              <ul class="dots">
                  <li class="dot" ng-repeat="c in vm.item.images">
-                     <a href="#" ng-class="{'active':vm.isCurrentSlide($index)}"
+                     <a href="#" style="width:10px; height:10px;" ng-class="{'active':vm.isCurrentSlide($index)}"
                         ng-click="vm.setCurrentSlide($index);"></a></li>
              </ul>
          </div>
      </nav>
 </div>
+<i ui-sref="ItemUpdate({id: vm.item._id})" class="fa fa-pencil fa-lg" aria-hidden="true" style="color: #29a3a3"></i>
 
 <div layout="row" layout-align="center center">
   <a ng-href="{{vm.item.projectURL}}" target="_blank">{{vm.item.projectURL}}</a>

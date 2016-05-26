@@ -59,7 +59,7 @@ namespace app.Controllers {
                 locals: { i: i },
                 controller: "DialogController as vm",
                 templateUrl: '/templates/image.html',
-                clickOutsideToClose: true,
+                clickOutsideToClose: true
             })
         };
 

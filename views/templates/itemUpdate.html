@@ -1,3 +1,16 @@
+<center>
+  <md-input-container style="padding-bottom:.03px">
+    <md-button class="md-accent md-raised md-cornered md-hue-2" ui-sref="ImageUpdate({id:vm.item._id})">
+        Update Images
+    </md-button>
+  </md-input-container>
+    <md-input-container>
+    <md-button class="md-accent md-raised md-cornered md-hue-2" ng-click="vm.remove()">
+        Remove from Portfolio
+    </md-button>
+  </md-input-container>
+</center>
+
 <div layout="column" layout-align="center center" style="margin-top: 50px;">
     <form name="projectForm" style="width: 600px;">
         <md-input-container class="md-block">
@@ -21,16 +34,10 @@
             <input ng-model="vm.item.category">
         </md-input-container>
     </form>
-    <md-button class="md-accent md-raised md-cornered md-hue-2" ui-sref="ImageUpdate({id:vm.item._id})" flex>
-        Update Images
-    </md-button>
     <md-button class="md-accent md-raised md-cornered md-hue-2" ng-click="vm.update()" flex>
         Submit
     </md-button>
     <md-button class="md-accent md-raised md-cornered md-hue-2" ui-sref="Portfolio Manager" flex>
         Cancel
-    </md-button>
-    <md-button class="md-accent md-raised md-cornered md-hue-2" ng-click="vm.remove()" flex>
-        Remove from Portfolio
     </md-button>
 </div>

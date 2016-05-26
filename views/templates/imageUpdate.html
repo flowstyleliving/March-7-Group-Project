@@ -12,7 +12,7 @@
         <md-list-item class="md-3-line" ng-repeat="i in vm.item.images">
             <img ng-src="{{i.url  | fpConvert:{w: 250} }}" alt="{{i.filename}}" style="border-radius: 0" />
             <div class="md-list-item-text" layout="column" layout-gt-xs="row">
-                <input flex flex-gt-sm="23" ng-model="i.caption">
+                <input flex flex-gt-sm="23" style="margin-left: 20px;" ng-model="i.caption">
                 <span flex></span>
                 <input flex type="radio" name="main" ng-click="vm.setDefault(i)" ng-value="i">
                 <md-button class="md-accent md-raised md-cornered md-hue-2" flex ng-click="vm.removeFilePicker(i)">Delete</md-button>
