@@ -44,6 +44,7 @@ namespace app.Controllers {
           this.$scope.$apply(); // force page to update
         }
 
+
         //////////////$mdDialog(Modal);
         public openDialog () {
             this.$mdDialog.show(
